@@ -1,0 +1,70 @@
+% ── SECTION 5: NUMERICAL SIMULATION RESULTS (~1,500 words) ──────────────────
+% Qiskit + Cirq implementation; comparison under noise models; figures.
+
+\section{Numerical Simulation}
+\label{sec:sim}
+
+\subsection{Implementation}
+
+% TODO: describe Qiskit and Cirq implementations of U_RA.
+% Include circuit diagram using quantikz.
+
+We implement $\URA(\alpha)$ in Qiskit~(IBM) and Cirq~(Google) using
+the decomposition into native two-qubit interactions.
+The gate is compiled to the hardware-native gate set via transpilation,
+and its performance is benchmarked against \textsc{cnot}, \textsc{iswap},
+and \textsc{cz} at equivalent entanglement capability.
+
+% Example quantikz circuit placeholder:
+% \begin{center}
+% \begin{quantikz}
+%   \lstick{$\ket{0}$} & \gate[2]{U_{\rm RA}(\alpha)} & \qw \\
+%   \lstick{$\ket{0}$} &                               & \qw
+% \end{quantikz}
+% \end{center}
+
+\subsection{Noise Models}
+
+Three noise channels are applied to each gate:
+\begin{enumerate}
+  \item \textbf{Depolarizing noise}: $\mathcal{E}(\rho) = (1-p)\rho +
+        \tfrac{p}{4}\mathbf{I}$, parameterized by error rate $p$.
+  \item \textbf{Dephasing (phase damping)}: suppression of off-diagonal
+        coherences at rate $\gamma$.
+  \item \textbf{Amplitude damping}: energy relaxation at rate $T_1$.
+\end{enumerate}
+
+\subsection{Results}
+
+% TODO: insert figures from simulation runs.
+% Report: gate fidelity, process fidelity, alpha(t) dynamics,
+%         comparison table vs. CNOT/iSWAP/CZ.
+
+Table~\ref{tab:fidelity} reports the process fidelity of each gate
+under each noise channel at representative error rates.
+Figure~\ref{fig:alpha-dynamics} shows $\bar\alpha(t)$ under dephasing.
+
+% Placeholder table — replace with actual simulation data:
+\begin{table}[h]
+\centering
+\caption{Process fidelity comparison under depolarizing noise ($p = 0.01$).}
+\label{tab:fidelity}
+\begin{tabular}{lcc}
+\toprule
+Gate & Fidelity & $\bar\alpha$ at peak \\
+\midrule
+\textsc{cnot}  & -- & -- \\
+\textsc{iswap} & -- & -- \\
+\textsc{cz}    & -- & -- \\
+$\URA(\pi/4)$  & -- & 1.0 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+% Placeholder figure reference:
+% \begin{figure}[h]
+%   \centering
+%   \includegraphics[width=0.45\textwidth]{figures/alpha-dynamics.pdf}
+%   \caption{Affinity Tensor dynamics $\bar\alpha(t)$ under dephasing noise.}
+%   \label{fig:alpha-dynamics}
+% \end{figure}

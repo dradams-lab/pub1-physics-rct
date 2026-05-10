@@ -1,0 +1,87 @@
+% ============================================================
+%  Publication 1 — Physics / Quantum Information
+%  "The Relational Coherence Theorem: Quantum Affinity,
+%   Decoherence, and a Coherence-Optimized Two-Qubit Gate"
+%
+%  Target: Physical Review A · npj Quantum Information
+%  Compiler: pdflatex (Overleaf)
+%  Dr. Joshua Adams | 2026
+% ============================================================
+
+\documentclass[aps,pra,preprint,amsmath,amssymb,longbibliography]{revtex4-2}
+
+% ── Encoding & fonts ──────────────────────────────────────
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+
+% ── Mathematics ───────────────────────────────────────────
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{mathtools}
+\usepackage{braket}          % \Bra{}, \Ket{}, \Braket{}
+\usepackage{physics}         % \tr{}, \norm{}, \comm{}{}
+
+% ── Quantum circuits ──────────────────────────────────────
+\usepackage{quantikz}        % quantum circuit diagrams
+
+% ── Graphics & tables ─────────────────────────────────────
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{array}
+\graphicspath{{figures/}}
+
+% ── Hyperlinks ────────────────────────────────────────────
+\usepackage{hyperref}
+\hypersetup{colorlinks=true, linkcolor=blue, citecolor=blue, urlcolor=blue}
+
+% ── Custom commands ───────────────────────────────────────
+\newcommand{\RCT}{\textsc{rct}}
+\newcommand{\URA}{U_{\!\mathrm{RA}}}
+\newcommand{\alpha}{\alpha}   % Affinity Tensor shorthand
+\newcommand{\rhoSE}{\rho(S|E)}
+
+% ── Theorem environments ──────────────────────────────────
+\newtheorem{theorem}{Theorem}
+\newtheorem{proposition}{Proposition}
+\newtheorem{definition}{Definition}
+\newtheorem{remark}{Remark}
+
+% ── Bibliography style ────────────────────────────────────
+% revtex4-2 handles this automatically for PRA
+
+% =============================================================
+\begin{document}
+% =============================================================
+
+\title{The Relational Coherence Theorem: Quantum Affinity, Decoherence,
+       and a Coherence-Optimized Two-Qubit Gate}
+
+\author{Joshua Adams}
+\email{josh@resilientconsultingsolutions.com}
+\affiliation{Resilient Consulting Solutions}
+
+\date{\today}
+
+% ── Abstract (inline for revtex) ──────────────────────────
+\begin{abstract}
+\input{sections/00-abstract}
+\end{abstract}
+
+\maketitle
+
+% ── Body sections ─────────────────────────────────────────
+\input{sections/01-introduction}
+\input{sections/02-background}
+\input{sections/03-rct}
+\input{sections/04-ura-gate}
+\input{sections/05-simulation}
+\input{sections/06-discussion}
+\input{sections/07-conclusion}
+
+% ── Appendix ──────────────────────────────────────────────
+\appendix
+\input{sections/A-rct-proof}
+
+% ── Bibliography ──────────────────────────────────────────
+\bibliography{references}
+
+\end{document}

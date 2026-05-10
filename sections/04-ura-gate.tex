@@ -1,0 +1,53 @@
+% ── SECTION 4: THE RELATIONAL AFFINITY GATE (~1,000 words) ──────────────────
+% Define U_RA, show Bell state production, Weyl chamber analysis.
+
+\section{The Relational Affinity Gate}
+\label{sec:gate}
+
+\subsection{Definition}
+
+The \emph{Relational Affinity Gate} is defined as the two-qubit unitary
+\begin{equation}
+  \URA(\alpha) = \exp\!\left(-\frac{i\alpha}{2}
+    \bigl(\sigma_x \otimes \sigma_x
+         + \sigma_y \otimes \sigma_y
+         + \sigma_z \otimes \sigma_z\bigr)\right),
+  \label{eq:URA}
+\end{equation}
+where $\alpha \in [0, \pi/2]$ is the Affinity Tensor parameter and
+$\sigma_{x,y,z}$ are the Pauli matrices.
+
+\subsection{Bell State Production}
+
+At $\alpha = \pi/4$:
+\begin{equation}
+  \URA(\pi/4)\ket{00}
+    = \frac{1}{\sqrt{2}}\bigl(\ket{00} + \ket{11}\bigr)
+    = \ket{\Phi^+},
+\end{equation}
+the maximally entangled Bell state, corresponding to $\bar\alpha = 1$
+(maximal relational affinity).
+
+\subsection{Weyl Chamber Analysis}
+
+% TODO: characterize U_RA in Weyl chamber of SU(4)/local operations.
+% Key point: U_RA belongs to iSWAP family, continuously parameterized by alpha.
+% Cite Zhang et al. 2003 for Weyl chamber framework.
+
+The local equivalence class of~$\URA$ in the Weyl chamber of
+$\mathrm{SU}(4)/[\mathrm{SU}(2)\otimes\mathrm{SU}(2)]$~\cite{Zhang2003WeylChamber}
+is characterized by coordinates $(c_1, c_2, c_3)$ that depend continuously on~$\alpha$.
+At $\alpha = 0$: $\URA = \mathbf{I}$ (identity, no entanglement).
+At $\alpha = \pi/4$: $\URA$ reaches maximum entanglement capability.
+
+\subsection{Entanglement Capability}
+
+% TODO: compute C(alpha) = entanglement capability as function of alpha.
+% Compare: CNOT, iSWAP, CZ are fixed points; U_RA continuously parameterized.
+
+The entanglement capability $\mathcal{C}(\alpha)$ of~$\URA$, measured
+by the maximum concurrence achievable over all input states, varies
+continuously with~$\alpha$.
+This continuous parameterization~---~absent from fixed gates such as
+\textsc{cnot}, \textsc{iswap}, and \textsc{cz}~---~allows the gate
+to be tuned to the coherence regime of the physical device.

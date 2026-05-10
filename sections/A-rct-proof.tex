@@ -1,0 +1,56 @@
+% ── APPENDIX A: FULL RCT PROOF ───────────────────────────────────────────────
+
+\section{Full Proof of the Relational Coherence Theorem}
+\label{app:rct-proof}
+
+% TODO: Full C*-algebra and operator algebra formulation.
+% Prove each of the four propositions formally.
+% Show Conservation of Relational Potential from unitarity.
+% Include Weyl chamber analysis detail.
+% Include numerical simulation parameters.
+
+\subsection{Mathematical Preliminaries}
+
+% C*-algebra formulation of quantum observables.
+% State space as density matrices on Hilbert space H_S ⊗ H_E.
+
+Let $\mathcal{H} = \mathcal{H}_S \otimes \mathcal{H}_E$ be the composite
+Hilbert space for system $S$ and environment $E$.
+Observables are self-adjoint elements of the C*-algebra
+$\mathcal{B}(\mathcal{H})$.
+States are positive trace-class operators $\rho \in \mathcal{B}(\mathcal{H})$
+with $\mathrm{Tr}[\rho] = 1$.
+
+\subsection{Proof of Proposition~\ref{prop:indefiniteness}}
+% TODO: Derive from Bell's theorem + Kochen-Specker.
+
+\subsection{Proof of Proposition~\ref{prop:determination}}
+% TODO: Show that definite outcomes emerge only through interaction
+% (measurement as relational event).
+
+\subsection{Proof of Proposition~\ref{prop:correspondence}}
+% TODO: Relate alpha to concurrence; show alpha = 0 iff separable,
+% alpha = 1 iff maximally entangled.
+
+\subsection{Proof of Proposition~\ref{prop:conservation}}
+
+For a closed system evolving under unitary $U(t)$:
+\begin{equation}
+  \rho(t) = U(t)\,\rho(0)\,U^\dagger(t).
+\end{equation}
+Then:
+\begin{equation}
+  \mathrm{Tr}\bigl[\rho(t)^2\bigr]
+    = \mathrm{Tr}\bigl[U\rho(0)U^\dagger U\rho(0)U^\dagger\bigr]
+    = \mathrm{Tr}\bigl[\rho(0)^2\bigr],
+\end{equation}
+since $\mathrm{Tr}[AB] = \mathrm{Tr}[BA]$ and $U^\dagger U = \mathbf{I}$.
+Quantum information (purity) is conserved under unitary evolution. $\square$
+
+\subsection{Weyl Chamber Analysis}
+% TODO: Detail the Weyl chamber coordinates for U_RA(alpha).
+% Cite Zhang et al. 2003.
+
+\subsection{Simulation Parameters}
+% TODO: list all Qiskit/Cirq parameters, noise model specifications,
+% shot counts, qubit connectivity.

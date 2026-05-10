@@ -1,0 +1,73 @@
+% ── SECTION 3: THE RELATIONAL COHERENCE THEOREM (~1,200 words) ───────────────
+% Formal statement and proof of the four propositions.
+
+\section{The Relational Coherence Theorem}
+\label{sec:rct}
+
+\subsection{Core Definitions}
+
+\begin{definition}[Relational Density Matrix]
+For composite system $SE$ in pure state $\ket{\psi_{SE}}$, the
+\emph{relational density matrix} of $S$ with respect to $E$ is
+\begin{equation}
+  \rhoSE = \mathrm{Tr}_E\bigl[\ket{\psi_{SE}}\bra{\psi_{SE}}\bigr].
+  \label{eq:rho-def}
+\end{equation}
+\end{definition}
+
+\begin{definition}[Affinity Tensor]
+The \emph{Affinity Tensor} $\alpha(S,E)$ is the matrix of off-diagonal
+coherence magnitudes of $\rhoSE$:
+\begin{equation}
+  \alpha(S,E)_{ij} = \bigl|\rho(S|E)_{ij}\bigr|, \quad i \neq j.
+  \label{eq:alpha-def}
+\end{equation}
+The scalar affinity $\bar\alpha = \|\alpha\|_F / \|\alpha_{\max}\|_F$
+normalizes to $[0,1]$, where $\bar\alpha = 0$ denotes full decoherence
+and $\bar\alpha = 1$ denotes maximal entanglement.
+\end{definition}
+
+\subsection{The Four Propositions}
+
+% TODO: state each as a formal Proposition and provide proof sketches.
+% Full proofs in Appendix A.
+
+\begin{proposition}[Property Indefiniteness]
+No quantum property of system $S$ exists independently of the relational
+context established by its interaction with $E$.
+\label{prop:indefiniteness}
+\end{proposition}
+
+\begin{proof}[Proof sketch]
+By Bell's theorem~\cite{Bell1964}, any assignment of definite values to
+observables prior to measurement requires hidden variables, which are
+excluded by the CHSH experiments~\cite{CHSH1969,Aspect1982}.
+See Appendix~\ref{app:rct-proof} for formal derivation.
+\end{proof}
+
+\begin{proposition}[Relational Determination]
+All definite properties of $S$ emerge through its relational
+network~$\Gamma_S = \{(S,E_i) : E_i \text{ interacts with } S\}$.
+\label{prop:determination}
+\end{proposition}
+
+\begin{proposition}[Coherence--Affinity Correspondence]
+The degree of relational participation in being is measured by~$\bar\alpha$:
+maximal entanglement ($\bar\alpha = 1$) corresponds to full relational
+existence; full decoherence ($\bar\alpha = 0$) corresponds to
+classical separability.
+\label{prop:correspondence}
+\end{proposition}
+
+\begin{proposition}[Conservation of Relational Potential]
+In a closed system, $\mathrm{Tr}[\rho^2] = 1$ is conserved under unitary
+evolution; total quantum information is neither created nor destroyed.
+\label{prop:conservation}
+\end{proposition}
+
+\begin{proof}[Proof sketch]
+Follows directly from unitarity of time evolution: $\rho(t) = U(t)\rho(0)U^\dagger(t)$
+preserves $\mathrm{Tr}[\rho^2]$.
+\end{proof}
+
+% TODO: Add figure showing alpha dynamics under a simple decoherence model.

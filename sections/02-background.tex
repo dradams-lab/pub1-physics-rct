@@ -1,0 +1,55 @@
+% ── SECTION 2: BACKGROUND (~800 words) ───────────────────────────────────────
+% Bell's theorem, relational QM, decoherence theory, entanglement measures.
+
+\section{Background}
+\label{sec:background}
+
+\subsection{Bell's Theorem and the End of Local Realism}
+
+% TODO: Bell 1964 → CHSH 1969 → Aspect 1982 → Zeilinger 2022.
+% Key result: no local hidden variables; quantum properties not intrinsic.
+
+Bell's theorem~\cite{Bell1964} proves that no theory of local hidden variables
+can reproduce the statistical predictions of quantum mechanics.
+The CHSH inequality~\cite{CHSH1969}, violated in Aspect's experiments~\cite{Aspect1982}
+and confirmed with loophole-free precision by Zeilinger and
+colleagues~\cite{Zeilinger2023Nobel}, establishes that quantum particles
+cannot possess determinate properties independently of measurement.
+
+\subsection{Relational Quantum Mechanics}
+
+% TODO: Rovelli 1996 + Helgoland 2021.
+% Key point: quantum states are always observer-relative, never absolute.
+% Measurement event as actualization of relational potential.
+
+Rovelli's relational quantum mechanics~\cite{Rovelli1996,Rovelli2021} proposes
+that quantum states are always defined relative to an observer or physical system,
+never absolutely.
+The state $\ket{\psi}_{S/O}$ describes system $S$ relative to observer $O$;
+a different observer $O'$ may assign a different state consistently.
+The measurement event is the moment when relational interaction actualizes
+a definite outcome from a superposition of possibilities.
+
+\subsection{Decoherence and the Quantum-to-Classical Transition}
+
+% TODO: Zurek 2003 (pointer basis, einselection), von Neumann 1932.
+% Environmental coupling suppresses off-diagonal elements of density matrix.
+
+Environmental decoherence~\cite{Zurek2003} describes how quantum superpositions
+effectively become classical mixtures through entanglement with environmental
+degrees of freedom.
+For system $S$ coupled to environment $E$, the reduced density matrix
+$\rhoSE = \mathrm{Tr}_E[\ket{\psi_{SE}}\bra{\psi_{SE}}]$
+loses off-diagonal coherence as $S$-$E$ entanglement grows.
+
+\subsection{Entanglement Measures}
+
+% TODO: von Neumann entropy, concurrence (Wootters 1998).
+% Relate to the Affinity Tensor in Section 3.
+
+Established entanglement measures include the von Neumann entropy
+$S(\rho) = -\mathrm{Tr}[\rho \log_2 \rho]$~\cite{vonNeumann1932}
+and the concurrence $\mathcal{C}(\rho)$~\cite{Wootters1998}.
+The Affinity Tensor $\alpha$ introduced in Section~\ref{sec:rct}
+is related to these measures but defined operationally to track
+relational coherence dynamics under noise.
