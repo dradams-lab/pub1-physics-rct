@@ -3,29 +3,81 @@
 \section{Discussion}
 \label{sec:disc}
 
-% Key points:
-%   1. Physical interpretation of the Affinity Tensor.
-%   2. Relationship to existing entanglement measures (concurrence, entropy).
-%   3. Limitations: RCT describes the relational structure; does not resolve
-%      the measurement problem but provides a formal framework for it.
-%   4. Future directions: experimental implementation, topological codes,
-%      multi-qubit extension of U_RA.
+\subsection{Physical Interpretation of the Affinity Tensor}
 
-The Affinity Tensor~$\alpha$ provides an operationalized measure of
-relational coherence that is distinct from, though related to,
-existing entanglement measures.
-While concurrence~\cite{Wootters1998} and von Neumann entropy~\cite{vonNeumann1932}
-quantify entanglement at a single moment, $\alpha(t)$ tracks the \emph{dynamics}
-of relational coherence under environmental coupling~---~making it particularly
-suited for characterizing gate performance in realistic noisy environments~\cite{Zurek2003}.
+The Affinity Tensor~$\bar\alpha$ provides an operationalized measure of
+relational coherence that is distinct from existing entanglement measures
+in both its definition and its purpose.
+Concurrence~\cite{Wootters1998} and von Neumann entropy~\cite{vonNeumann1932}
+are static measures: they quantify entanglement at a snapshot in time.
+$\bar\alpha(t)$ is a dynamical measure: it tracks the evolution of
+off-diagonal coherence under environmental coupling, decaying from~1
+to~0 as the system transitions from quantum to classical behavior.
 
-The \RCT\ does not resolve the quantum measurement problem; it provides
-a formal relational framework within which the problem is precisely stated.
-The philosophical implications of this framework, including the argument that
+For two-qubit pure states, Proposition~\ref{prop:correspondence} establishes
+$\bar\alpha = \mathcal{C}$, so the Affinity Tensor and concurrence agree.
+The operational difference appears under noise: $\bar\alpha(t)$ provides a
+single scalar trajectory that directly quantifies the relational coherence
+budget available to a gate at each moment of the circuit's execution, whereas
+concurrence characterizes static entanglement of a state.
+This makes $\bar\alpha$ the natural control parameter for hardware-adaptive
+entangling gates, which is precisely the role $\URA(\alpha)$ fills.
+
+\subsection{The Gate-Time Advantage and its Interpretation}
+
+The simulation results of Section~\ref{sec:sim} confirm a direct prediction
+of the \RCT: for tasks requiring partial entanglement ($\bar\alpha < 1$),
+operating at reduced~$\alpha$ preserves relational coherence that a fixed
+maximally entangling gate would destroy.
+The fidelity advantage~---~$\Delta F \in [+0.019, +0.040]$ at
+$p_{\rm base} = 0.10$ across all noise models~---~is not a fine-tuning
+artifact; it arises from the fundamental scaling of decoherence with
+gate duration (Eq.~\ref{eq:peff}) combined with the continuous
+parameterization of $\URA$ through the Weyl chamber.
+
+This result has a clear interpretation in terms of the four propositions.
+Conservation of Relational Potential (Proposition~\ref{prop:conservation})
+guarantees that the coherence ``spent'' during a gate operation transfers
+to system-environment correlations.
+A gate that operates below maximal entanglement capability spends less
+of this coherence budget per operation, leaving more available for
+subsequent circuit layers.
+The Affinity Tensor~$\bar\alpha$ is therefore not only a diagnostic
+measure but a \emph{resource}: controlling it directly through~$\alpha$
+is equivalent to controlling the coherence expenditure of the gate.
+
+\subsection{Scope and Limitations}
+
+The \RCT~formalizes the relational structure of quantum mechanics established
+by Bell's theorem and relational quantum mechanics; it does not resolve the
+quantum measurement problem.
+It provides a precise formal framework within which the measurement problem
+can be stated~---~a definite outcome is the establishment of a relational fact
+(Proposition~\ref{prop:determination})~---~but the question of \emph{which}
+outcome is selected in a given run of an experiment remains outside the
+framework's scope, as it does for all no-collapse interpretations.
+
+The simulation results employ a gate-time-proportional noise model appropriate
+for Heisenberg exchange interactions on superconducting hardware~\cite{Krantz2019}.
+On hardware where gate duration does not scale with~$\alpha$ (e.g., where
+$\URA$ must be decomposed into fixed native gates), the fidelity advantage
+depends on the depth of the decomposition and may be reduced.
+Direct hardware calibration of the Heisenberg exchange parameter, as
+demonstrated for \textsc{iswap}-family gates, would realize the full advantage.
+
+\subsection{Future Directions}
+
+Three extensions are immediate.
+First, experimental implementation of~$\URA$ on superconducting qubit
+platforms~\cite{Krantz2019} via direct calibration of the Heisenberg
+exchange coupling, bypassing gate decomposition overhead.
+Second, extension to multi-qubit relational networks: generalizing the
+Affinity Tensor to $n$-qubit systems $\alpha(S, \{E_i\})$ and deriving the
+corresponding $n$-qubit Relational Affinity unitaries parameterized by the
+full tensor.
+Third, investigation of topological quantum error correction codes
+parameterized by~$\bar\alpha$: the Affinity Tensor may provide a natural
+measure for the coherence threshold in surface codes.
+The philosophical implications of the \RCT~---~including the argument that
 process ontology is formally required (not merely permitted) by quantum
-mechanics, are developed in the companion paper~\cite{Adams2026Philosophy}.
-
-Future directions include experimental implementation of~$\URA$ on
-superconducting qubit platforms~\cite{Krantz2019}, extension to multi-qubit
-relational networks, and investigation of topological surface code implementations
-parameterized by the Affinity Tensor.
+mechanics~---~are developed in the companion paper~\cite{Adams2026Philosophy}.

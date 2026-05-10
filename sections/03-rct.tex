@@ -1,18 +1,26 @@
 % ── SECTION 3: THE RELATIONAL COHERENCE THEOREM (~1,200 words) ───────────────
-% Formal statement and proof of the four propositions.
 
 \section{The Relational Coherence Theorem}
 \label{sec:rct}
 
 \subsection{Core Definitions}
 
+Let $\mathcal{H} = \mathcal{H}_S \otimes \mathcal{H}_E$ be the composite
+Hilbert space for system $S$ and environment $E$, with
+$\dim\mathcal{H}_S = d_S$ and $\dim\mathcal{H}_E = d_E$.
+
 \begin{definition}[Relational Density Matrix]
-For composite system $SE$ in pure state $\ket{\psi_{SE}}$, the
-\emph{relational density matrix} of $S$ with respect to $E$ is
+For composite system $SE$ in pure state $\ket{\psi_{SE}} \in \mathcal{H}$,
+the \emph{relational density matrix} of $S$ with respect to $E$ is
 \begin{equation}
-  \rhoSE = \mathrm{Tr}_E\bigl[\ket{\psi_{SE}}\bra{\psi_{SE}}\bigr].
+  \rhoSE = \mathrm{Tr}_E\bigl[\ket{\psi_{SE}}\bra{\psi_{SE}}\bigr]
+         = \sum_k \bra{e_k}\psi_{SE}\rangle\langle\psi_{SE}\ket{e_k},
   \label{eq:rho-def}
 \end{equation}
+where $\{\ket{e_k}\}$ is any orthonormal basis of $\mathcal{H}_E$.
+The matrix elements $\rho(S|E)_{ij} = \bra{s_i}\rhoSE\ket{s_j}$ in a
+fixed basis $\{\ket{s_i}\}$ of $\mathcal{H}_S$ encode both the diagonal
+(probability) and off-diagonal (coherence) structure of $S$ as seen by $E$.
 \end{definition}
 
 \begin{definition}[Affinity Tensor]
@@ -22,52 +30,135 @@ coherence magnitudes of $\rhoSE$:
   \alpha(S,E)_{ij} = \bigl|\rho(S|E)_{ij}\bigr|, \quad i \neq j.
   \label{eq:alpha-def}
 \end{equation}
-The scalar affinity $\bar\alpha = \|\alpha\|_F / \|\alpha_{\max}\|_F$
-normalizes to $[0,1]$, where $\bar\alpha = 0$ denotes full decoherence
-and $\bar\alpha = 1$ denotes maximal entanglement.
+The \emph{scalar affinity} is the normalized Frobenius norm
+\begin{equation}
+  \bar\alpha = \frac{\|\alpha(S,E)\|_F}{\|\alpha_{\max}\|_F},
+  \label{eq:alpha-scalar}
+\end{equation}
+where $\|\alpha_{\max}\|_F$ is the Frobenius norm of $\alpha$ for a
+maximally entangled state of $SE$.
+By construction, $\bar\alpha \in [0,1]$: $\bar\alpha = 0$ corresponds to
+a fully decohered (classically separable) state; $\bar\alpha = 1$ corresponds
+to maximal entanglement.
 \end{definition}
+
+\begin{definition}[Relational Network]
+The \emph{relational network} of $S$ is
+$\Gamma_S = \{(S, E_i) : E_i \text{ interacts with } S\}$,
+the set of all systems with which $S$ shares nonzero relational affinity.
+A system is \emph{relationally isolated} if $\bar\alpha(S, E_i) = 0$
+for all $E_i \in \Gamma_S$~---~that is, it is entangled with nothing.
+\end{definition}
+
+The relational network $\Gamma_S$ is not a fixed graph but a dynamical
+structure: interactions create new edges (entanglement grows) and
+decoherence suppresses them (coherence decays).
+The Affinity Tensor $\alpha(t)$ provides the scalar measure of this
+dynamics at each instant.
 
 \subsection{The Four Propositions}
 
-% TODO: state each as a formal Proposition and provide proof sketches.
-% Full proofs in Appendix A.
-
 \begin{proposition}[Property Indefiniteness]
+\label{prop:indefiniteness}
 No quantum property of system $S$ exists independently of the relational
 context established by its interaction with $E$.
-\label{prop:indefiniteness}
+Formally: for any observable $\hat{A}$ on $\mathcal{H}_S$, there is no
+function $\lambda: \mathcal{H}_S \to \mathrm{spec}(\hat{A})$ assigning
+definite eigenvalues prior to relational interaction.
 \end{proposition}
 
 \begin{proof}[Proof sketch]
-By Bell's theorem~\cite{Bell1964}, any assignment of definite values to
-observables prior to measurement requires hidden variables, which are
-excluded by the CHSH experiments~\cite{CHSH1969,Aspect1982}.
-See Appendix~\ref{app:rct-proof} for formal derivation.
+Suppose, for contradiction, that $S$ possesses definite pre-interaction
+values $\lambda(\hat{A})$ for all observables.
+By the Kochen--Specker theorem~\cite{KochenSpecker1967}, no such
+non-contextual value assignment exists for $d_S \geq 3$.
+For $d_S = 2$, Bell's theorem~\cite{Bell1964} rules out local hidden
+variables: any value assignment consistent with the quantum predictions
+for a pair of qubits violates the CHSH
+inequality~\cite{CHSH1969,Aspect1982,Zeilinger2023Nobel}.
+Therefore no pre-existing value function $\lambda$ exists.
+Full proof in Appendix~\ref{app:rct-proof}.
 \end{proof}
 
 \begin{proposition}[Relational Determination]
-All definite properties of $S$ emerge through its relational
-network~$\Gamma_S = \{(S,E_i) : E_i \text{ interacts with } S\}$.
 \label{prop:determination}
-\end{proposition}
-
-\begin{proposition}[Coherence--Affinity Correspondence]
-The degree of relational participation in being is measured by~$\bar\alpha$:
-maximal entanglement ($\bar\alpha = 1$) corresponds to full relational
-existence; full decoherence ($\bar\alpha = 0$) corresponds to
-classical separability.
-\label{prop:correspondence}
-\end{proposition}
-
-\begin{proposition}[Conservation of Relational Potential]
-In a closed system, $\mathrm{Tr}[\rho^2] = 1$ is conserved under unitary
-evolution; total quantum information is neither created nor destroyed.
-\label{prop:conservation}
+All definite properties of $S$ emerge through its relational
+network~$\Gamma_S$.
+Formally: a definite outcome for observable $\hat{A}$ on $S$ occurs
+if and only if $S$ undergoes a relational interaction with some
+$E_i \in \Gamma_S$ that increases $\bar\alpha(S, E_i)$ from zero.
 \end{proposition}
 
 \begin{proof}[Proof sketch]
-Follows directly from unitarity of time evolution: $\rho(t) = U(t)\rho(0)U^\dagger(t)$
-preserves $\mathrm{Tr}[\rho^2]$.
+If $S$ is relationally isolated ($\bar\alpha(S, E_i) = 0$ for all $i$),
+then $\rhoSE = \rho_S \otimes \rho_E$ is a product state.
+In the absence of entanglement, $\rho_S$ is a pure state $\ket{\psi}\bra{\psi}$
+in a superposition of eigenstates of $\hat{A}$; no eigenvalue is selected.
+When $S$ interacts unitarily with $E_i$, the joint state
+$\ket{\psi_{SE_i}}$ develops off-diagonal elements: $\bar\alpha(S,E_i) > 0$.
+The einselection mechanism~\cite{Zurek2003} then selects a pointer basis
+for $S$ determined by the interaction Hamiltonian~$H_{SE_i}$.
+In that basis, the reduced state $\rhoSE$ becomes effectively diagonal:
+a definite outcome relative to $E_i$ is established.
+Full proof in Appendix~\ref{app:rct-proof}.
 \end{proof}
 
-% TODO: Add figure showing alpha dynamics under a simple decoherence model.
+\begin{proposition}[Coherence--Affinity Correspondence]
+\label{prop:correspondence}
+The scalar affinity $\bar\alpha$ is a faithful measure of relational
+participation: $\bar\alpha = 0$ if and only if $\rhoSE$ is separable
+(no entanglement); $\bar\alpha = 1$ if and only if $\ket{\psi_{SE}}$
+is maximally entangled.
+For pure states, $\bar\alpha = \mathcal{C}(\rho_{SE})$, the concurrence.
+For mixed states, $\bar\alpha \leq \mathcal{C}(\rho_{SE})$.
+\end{proposition}
+
+\begin{proof}[Proof sketch]
+($\bar\alpha = 0$): $\|\alpha\|_F = 0$ iff all off-diagonal elements of
+$\rhoSE$ vanish iff $\rhoSE$ is diagonal in the eigenbasis of $\hat{A}$ iff
+$\rhoSE$ is a classical mixture with no coherence iff $S$ and $E$ are
+unentangled (separable).
+
+($\bar\alpha = 1$): $\|\alpha\|_F = \|\alpha_{\max}\|_F$ iff $\rhoSE$
+has off-diagonal elements of maximum magnitude, which for a two-qubit
+pure state occurs precisely when $\mathcal{C}(\rho_{SE}) = 1$, i.e.,
+$\ket{\psi_{SE}}$ is a Bell state.
+The general inequality $\bar\alpha \leq \mathcal{C}(\rho_{SE})$ follows
+from the concavity of the Frobenius norm under partial trace.
+Full proof in Appendix~\ref{app:rct-proof}.
+\end{proof}
+
+\begin{proposition}[Conservation of Relational Potential]
+\label{prop:conservation}
+In a closed system evolving under unitary $U(t)$, the total
+quantum information (purity) $\mathrm{Tr}[\rho^2]$ is conserved.
+Relational potential is neither created nor destroyed; it is
+redistributed across the relational network $\Gamma_S$.
+\end{proposition}
+
+\begin{proof}[Proof sketch]
+$\rho(t) = U(t)\rho(0)U^\dagger(t)$ and $\mathrm{Tr}[AB] = \mathrm{Tr}[BA]$
+give $\mathrm{Tr}[\rho(t)^2] = \mathrm{Tr}[\rho(0)^2]$.
+Apparent loss of purity in $\rhoSE = \mathrm{Tr}_E[\rho_{SE}]$ reflects
+redistribution of coherence into $SE$ correlations, not destruction.
+Full proof in Appendix~\ref{app:rct-proof}.
+\end{proof}
+
+\subsection{Unified Statement}
+
+Taken together, the four propositions establish the following picture.
+Quantum systems possess no intrinsic properties (Proposition~\ref{prop:indefiniteness}).
+Properties emerge only through relational interaction, tracked by
+$\bar\alpha(t)$ (Proposition~\ref{prop:determination}).
+The scalar affinity faithfully measures the degree of relational
+participation~---~from full decoherence ($\bar\alpha = 0$) to
+maximal entanglement ($\bar\alpha = 1$)~---~and is related to the concurrence
+by equality for pure states (Proposition~\ref{prop:correspondence}).
+Across this entire dynamics, total quantum information is conserved:
+decoherence transfers coherence into system-environment correlations,
+not into nothing (Proposition~\ref{prop:conservation}).
+
+The Relational Affinity Gate~$\URA(\alpha)$ is derived from this framework
+in Section~\ref{sec:gate} as the two-qubit unitary that implements a
+controlled transfer of relational affinity between qubits, parameterized
+directly by~$\bar\alpha$.

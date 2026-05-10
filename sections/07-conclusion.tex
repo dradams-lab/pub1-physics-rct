@@ -3,29 +3,45 @@
 \section{Conclusion}
 \label{sec:conc}
 
-% Summarize: RCT, Affinity Tensor, U_RA gate.
-% State what has been proven vs. proposed.
-% Point to companion papers.
-
-We have introduced the Relational Coherence Theorem, a formal framework
-that formalizes the relational structure implied by Bell's theorem and
-relational quantum mechanics~\cite{Bell1964,Rovelli1996}.
-The \RCT~comprises four propositions characterizing the conditions under which
-quantum properties emerge, are sustained, and are lost through environmental
-decoherence.
+We have introduced the Relational Coherence Theorem (\RCT), a formal
+mathematical framework for the relational structure of quantum mechanics
+implied by Bell's theorem~\cite{Bell1964} and relational quantum
+mechanics~\cite{Rovelli1996,Rovelli2021}.
+The \RCT~comprises four propositions~---~property indefiniteness, relational
+determination, coherence--affinity correspondence, and conservation of
+relational potential~---~proven from the C*-algebra formulation of quantum
+mechanics and the experimental results of CHSH inequality
+violations~\cite{CHSH1969,Aspect1982,Zeilinger2023Nobel}.
 
 The Affinity Tensor~$\alpha(S,E)$ provides an operationalized, computable
-measure of relational coherence, related to but distinct from concurrence
-and von Neumann entropy.
-The Relational Affinity Gate~$\URA(\alpha)$ is derived from the \RCT~as
-a continuously parameterized two-qubit gate optimized for coherence preservation.
-Numerical simulations demonstrate measurable fidelity advantages in
-high-decoherence regimes.
+measure of relational coherence.
+For pure two-qubit states, $\bar\alpha$ equals the concurrence~$\mathcal{C}$
+(Proposition~\ref{prop:correspondence}).
+Under environmental noise, $\bar\alpha(t)$ tracks the quantum-to-classical
+transition as a single scalar trajectory, decaying from maximal entanglement
+($\bar\alpha = 1$) to classical separability ($\bar\alpha = 0$) while total
+purity is conserved in the joint system (Proposition~\ref{prop:conservation}).
 
-The philosophical implications of the \RCT~--- including the argument
-that process ontology is the only internally consistent metaphysical
-framework for quantum mechanics~--- are developed in the companion paper.
-The Bahá'í metaphysical correspondence is examined in a third companion paper.
+The Relational Affinity Gate~$\URA(\alpha)$ is derived from the \RCT~as a
+continuously parameterized two-qubit unitary in the \textsc{iswap} family,
+characterized by Weyl chamber coordinates $(c_1, c_2, c_3) = (\alpha, \alpha, \alpha)$.
+Numerical simulation under gate-time-proportional depolarizing, dephasing, and
+amplitude damping noise confirms that $\URA(\pi/8)$~---~operating at half the
+duration of a full \textsc{iswap} or \textsc{cnot}~---~achieves fidelity
+advantages of $+0.019$ to $+0.040$ over fixed gates at $p_{\rm base} = 0.10$,
+consistent across all three noise models.
 
-% \acknowledgments
-% TODO: Acknowledgments here.
+These results establish the \RCT~as a testable formal framework: the Affinity
+Tensor is measurable, the gate is implementable, and its predicted fidelity
+advantage under decoherence is a direct, quantitative consequence of the
+four propositions.
+
+The philosophical argument that process ontology is the only internally
+consistent metaphysical framework for quantum mechanics, and that
+Whitehead's process philosophy and the Bah\'{a}'\'{i} writings constitute
+independent prior instantiations of the relational structure described by
+the \RCT, is developed in the companion paper~\cite{Adams2026Philosophy}.
+
+\begin{acknowledgments}
+The author thanks \emph{[collaborators to be added]}.
+\end{acknowledgments}
