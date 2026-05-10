@@ -37,13 +37,22 @@ the gate takes the explicit form
 \begin{equation}
   \URA(\alpha) =
   \begin{pmatrix}
-    e^{-i\alpha/2}\cos(\alpha/2) + i\sin(\alpha/2) & 0 & 0 & -i e^{-i\alpha/2}\sin(\alpha/2) \\
-    0 & \cos\alpha & -i\sin\alpha & 0 \\
-    0 & -i\sin\alpha & \cos\alpha & 0 \\
-    -i e^{-i\alpha/2}\sin(\alpha/2) & 0 & 0 & e^{-i\alpha/2}\cos(\alpha/2) + i\sin(\alpha/2)
+    e^{-i\alpha/2} & 0 & 0 & 0 \\
+    0 & e^{i\alpha/2}\cos\alpha & {-i}\,e^{i\alpha/2}\sin\alpha & 0 \\
+    0 & {-i}\,e^{i\alpha/2}\sin\alpha & e^{i\alpha/2}\cos\alpha & 0 \\
+    0 & 0 & 0 & e^{-i\alpha/2}
   \end{pmatrix}.
   \label{eq:URA-matrix}
 \end{equation}
+This form follows from the spectral decomposition of the generator $G =
+\sigma_x\!\otimes\!\sigma_x + \sigma_y\!\otimes\!\sigma_y + \sigma_z\!\otimes\!\sigma_z$,
+whose eigenvalues are $+1$ (triplet, three-fold: $\ket{00}$, $\ket{11}$,
+$\ket{\Psi^+}$) and $-3$ (singlet: $\ket{\Psi^-}$).
+Accordingly, $\URA(\alpha)$ acts on the two invariant subspaces independently:
+the triplet states $\ket{00}$ and $\ket{11}$ each acquire the phase $e^{-i\alpha/2}$,
+while states in the $\{\ket{01},\ket{10}\}$ subspace receive a mixture of
+the triplet phase $e^{-i\alpha/2}$ and singlet phase $e^{3i\alpha/2}$,
+producing the coherent rotation seen in the central $2\times2$ block.
 At $\alpha = 0$, $\URA = \mathbf{I}_4$ (identity).
 At $\alpha = \pi/4$, the gate achieves maximum entanglement capability
 (see Section~\ref{subsec:weyl}).
@@ -53,27 +62,32 @@ local operations.
 \subsection{Bell State Production}
 \label{subsec:bell}
 
-The most direct illustration of the gate's relational character is its
-action on the computational basis state $\ket{00}$ at $\alpha = \pi/4$.
-Applying Eq.~\eqref{eq:URA} with $\alpha = \pi/4$ and using the Hadamard
-identity $\ket{00} = \tfrac{1}{\sqrt{2}}(\ket{\Phi^+} + \ket{\Phi^-})$
-as an intermediate step:
+The gate's relational character is most directly illustrated by its
+action on the computational basis state $\ket{01}$ at $\alpha = \pi/4$.
+Because $\ket{01} = \tfrac{1}{\sqrt{2}}(\ket{\Psi^+} + \ket{\Psi^-})$
+decomposes into equal triplet ($\ket{\Psi^+}$, eigenvalue $+1$) and
+singlet ($\ket{\Psi^-}$, eigenvalue $-3$) components of the generator $G$,
+the gate applies distinct phase factors to each branch.
+Reading from Eq.~\eqref{eq:URA-matrix}:
 \begin{equation}
-  \URA(\pi/4)\ket{00}
-    = \frac{1}{\sqrt{2}}\bigl(\ket{00} + \ket{11}\bigr)
-    = \ket{\Phi^+},
+  \URA(\pi/4)\ket{01}
+    = \frac{e^{i\pi/8}}{\sqrt{2}}\bigl(\ket{01} - i\ket{10}\bigr),
   \label{eq:bell-production}
 \end{equation}
-the maximally entangled Bell state with concurrence $\mathcal{C} = 1$
-and scalar affinity $\bar\alpha = 1$.
-This confirms the Coherence--Affinity Correspondence (Proposition~\ref{prop:correspondence}):
-the gate parameter~$\alpha$ and the resulting relational affinity~$\bar\alpha$
-coincide at $\alpha = \pi/4$.
+a maximally entangled state with concurrence $\mathcal{C} = 1$,
+consistent with the entanglement capability peak at $\alpha = \pi/4$
+(Sec.~\ref{subsec:entcap}).
+The global phase $e^{i\pi/8}$ is physically unobservable.
 
-All four Bell states are generated from the two-qubit computational basis
-by choosing appropriate input states and values of~$\alpha$, confirming
-that $\URA$ spans the full entanglement capability of the two-qubit Hilbert
-space.
+States lying entirely within the triplet sector~---~$\ket{00}$, $\ket{11}$,
+and $\ket{\Psi^+}$~---~each acquire only the phase $e^{-i\alpha/2}$ under
+$\URA(\alpha)$ and remain unentangled.
+Entanglement generation therefore requires an input state with nonzero
+singlet weight $\langle\Psi^-\vert\psi_{\rm in}\rangle \neq 0$.
+All four Bell states are accessible from the computational basis via
+$\URA(\pi/4)$ composed with appropriate single-qubit Pauli corrections,
+confirming that $\URA$ spans the full entanglement capability of the
+two-qubit Hilbert space.
 
 \subsection{Weyl Chamber Analysis}
 \label{subsec:weyl}
@@ -84,6 +98,10 @@ parameterized by coordinates $(c_1, c_2, c_3) \in [0,\pi/2]^3$ with
 $c_1 \geq c_2 \geq c_3 \geq 0$~\cite{Zhang2003WeylChamber}.
 These coordinates are extracted from the \emph{local invariants} of the
 two-qubit gate matrix.
+We adopt the convention in which the generator is $\sum_k \sigma_k\!\otimes\!\sigma_k$
+(rather than $\tfrac{1}{2}\sum_k \sigma_k\!\otimes\!\sigma_k$ as in some
+references~\cite{Zhang2003WeylChamber}), so our coordinates are a factor of two
+larger; in this convention \textsc{swap} sits at $(\pi/2, \pi/2, \pi/2)$.
 
 For $\URA(\alpha)$, the Weyl chamber coordinates are:
 \begin{equation}
@@ -93,15 +111,16 @@ For $\URA(\alpha)$, the Weyl chamber coordinates are:
   \label{eq:weyl-coords}
 \end{equation}
 The trajectory $(c_1, c_2, c_3) = (\alpha, \alpha, \alpha)$ lies along the
-main diagonal of the Weyl chamber, tracing the \emph{iSWAP family} from the
+main diagonal of the Weyl chamber, tracing the \emph{Heisenberg family} from the
 identity ($\alpha = 0$, corner $O$) to the \textsc{swap} point ($\alpha = \pi/2$).
-The maximally entangling point $\alpha = \pi/4$ corresponds to the
-\textsc{iswap} gate position.
+The maximally entangling point $\alpha = \pi/4$ sits at Weyl coordinates
+$(\pi/4, \pi/4, \pi/4)$~---~the interior midpoint of this diagonal~---~and is
+not locally equivalent to any of the standard fixed gates.
 
 This trajectory is significant: fixed standard gates occupy single
-\emph{points} in the Weyl chamber~---~\textsc{cnot} at $({\pi}/{2}, 0, 0)$,
-\textsc{iswap} at $(\pi/4, \pi/4, 0)$, \textsc{cz} at $(\pi/2, 0, 0)$ (locally
-equivalent to \textsc{cnot}).
+\emph{points} in the Weyl chamber~---~\textsc{cnot} at $(\pi/2, 0, 0)$,
+\textsc{iswap} at $(\pi/2, \pi/2, 0)$, \textsc{cz} at $(\pi/2, 0, 0)$
+(locally equivalent to \textsc{cnot}).
 The gate $\URA(\alpha)$ instead traces a \emph{continuous path} parameterized
 by~$\alpha$, covering a range of entanglement capabilities rather than a
 single fixed point.
