@@ -180,7 +180,9 @@ fully quantum-relational regime to the classically definite one.
 \label{prop:determination}
 Under Markovian dephasing [Eq.~\eqref{eq:lindblad}] with uniform
 jump operators $L_k = \sqrt{\gamma}\,\vert\pi_k\rangle\langle\pi_k\vert$
-and rate $\gamma > 0$, the scalar affinity decays exponentially:
+and rate $\gamma > 0$, and with $H_S$ diagonal in the pointer basis
+(equivalently, working in the interaction picture with respect to $H_S$),
+the scalar affinity decays exponentially:
 
 \begin{equation}
 \label{eq:alpha-decay}
@@ -191,39 +193,46 @@ and rate $\gamma > 0$, the scalar affinity decays exponentially:
 
 \noindent
 In particular, $\lim_{t\to\infty}\bar{\alpha}(S,E;\,t) = 0$, and the
-pointer states $\{\vert\pi_k\rangle\}$ are the unique asymptotically
-stable states of this evolution.
+pointer-basis-diagonal density matrices are the asymptotic fixed points
+of this evolution, of which the pure states
+$\{\vert\pi_k\rangle\langle\pi_k\vert\}$ are the only extremal members.
 \end{proposition}
 
 \begin{proof}
 With $L_k = \sqrt{\gamma}\,\vert\pi_k\rangle\langle\pi_k\vert$,
-we evaluate the dissipative part of Eq.~\eqref{eq:lindblad} for an
-off-diagonal element $\rho_{ij} \equiv \langle\pi_i\vert\rho_S\vert\pi_j\rangle$,
-$i \neq j$.
-The gain term contributes
+$L_k^\dagger L_k = \gamma\,\vert\pi_k\rangle\langle\pi_k\vert$, and
+$\sum_k L_k^\dagger L_k = \gamma\,\mathbf{I}$.
+Because $H_S$ is diagonal in the pointer basis, the unitary commutator
+$[H_S,\rho_S]$ contributes only an oscillating phase to each
+$\rho_{ij}\equiv\langle\pi_i\vert\rho_S\vert\pi_j\rangle$ that does not
+affect the magnitude $\lvert\rho_{ij}\rvert$; we therefore track the
+dissipative part of Eq.~\eqref{eq:lindblad} only.
+For $i\neq j$ the gain term gives
 \begin{equation*}
-  \sum_k \gamma\,
-  \langle\pi_i\vert L_k\rho_S L_k^\dagger\vert\pi_j\rangle
+  \sum_k\langle\pi_i\vert L_k\rho_S L_k^\dagger\vert\pi_j\rangle
   \;=\;
-  \gamma\sum_k \delta_{ik}\,\rho_{kk}\,\delta_{kj}
+  \gamma\sum_k \rho_{kk}\,\delta_{ik}\delta_{kj}
   \;=\; 0
-  \qquad (i \neq j).
+  \qquad (i \neq j),
 \end{equation*}
-The loss term contributes
+since $L_k\rho_S L_k^\dagger = \gamma\,\rho_{kk}\,\vert\pi_k\rangle\langle\pi_k\vert$
+is diagonal.
+The loss term gives
 \begin{equation*}
-  \frac{\gamma}{2}\sum_k
+  -\frac{1}{2}\sum_k\!
   \langle\pi_i\vert\{L_k^\dagger L_k,\,\rho_S\}\vert\pi_j\rangle
   \;=\;
-  \frac{\gamma}{2}\sum_k\!\bigl(\delta_{ik}\,\rho_{kj}
+  -\frac{\gamma}{2}\sum_k\!\bigl(\delta_{ik}\,\rho_{kj}
     + \delta_{kj}\,\rho_{ik}\bigr)
-  \;=\; \gamma\,\rho_{ij}.
+  \;=\; -\gamma\,\rho_{ij}.
 \end{equation*}
-Hence $\dot{\rho}_{ij} = -\gamma\,\rho_{ij}$, consistent with
-Eq.~\eqref{eq:decoherence-decay} at uniform rate
-$\Gamma_{ij} = \gamma$.
-Integrating: $\rho_{ij}(t) = \rho_{ij}(0)\,e^{-\gamma t}$ for all
-$i \neq j$.
-Since every off-diagonal entry carries the same exponential factor,
+Combining, the magnitude obeys
+$\frac{d}{dt}\lvert\rho_{ij}\rvert = -\gamma\,\lvert\rho_{ij}\rvert$,
+consistent with Eq.~\eqref{eq:decoherence-decay} at uniform rate
+$\Gamma_{ij} = \gamma$, so
+$\lvert\rho_{ij}(t)\rvert = \lvert\rho_{ij}(0)\rvert\,e^{-\gamma t}$ for
+all $i \neq j$.
+Since every off-diagonal magnitude carries the same exponential factor,
 \begin{equation*}
   \bigl\lVert\alpha(S,E;\,t)\bigr\rVert_F^2
   \;=\; \sum_{i\neq j}\bigl\lvert\rho_{ij}(t)\bigr\rvert^2
@@ -232,9 +241,10 @@ Since every off-diagonal entry carries the same exponential factor,
 \end{equation*}
 and Eq.~\eqref{eq:alpha-decay} follows from
 Definition~\ref{def:alpha-scalar}.
-Diagonal elements are preserved by this evolution (the gain and loss
-terms cancel on the diagonal), confirming that pointer states
-$\vert\pi_k\rangle\langle\pi_k\vert$ are the asymptotically stable
+Diagonal elements are preserved by the dissipator (its $(k,k)$ matrix
+element is $\gamma\rho_{kk}-\gamma\rho_{kk}=0$), so any pointer-basis-diagonal
+$\rho_S$ is a fixed point.
+The pure states $\vert\pi_k\rangle\langle\pi_k\vert$ are the extremal
 fixed points, consistent with einselection (Sec.~\ref{sec:decoherence}).
 \end{proof}
 
@@ -312,8 +322,19 @@ $\bar{\alpha} = 0 \Leftrightarrow \lVert\alpha\rVert_F = 0
 
 \emph{Part (ii).}
 $\bar{\alpha} = 1$ requires equality throughout the range bound.
-The Cauchy--Schwarz equality $\lvert\rho_{ij}\rvert^2 = \rho_{ii}\rho_{jj}$
-holds iff $\rho_S$ is a rank-one projector (pure state).
+Writing any purification of $\rho_S$ as
+$\rho_S = \sum_m\vert\phi_m\rangle\langle\phi_m\vert$ with
+$\lvert\rho_{ij}\rvert^2
+  = \bigl\lvert\sum_m\overline{\langle\phi_m\vert\pi_i\rangle}
+                       \langle\phi_m\vert\pi_j\rangle\bigr\rvert^2$,
+the Cauchy--Schwarz equality
+$\lvert\rho_{ij}\rvert^2 = \rho_{ii}\rho_{jj}$ holds for a single pair
+$(i,j)$ iff the column vectors
+$(\langle\phi_m\vert\pi_i\rangle)_m$ and
+$(\langle\phi_m\vert\pi_j\rangle)_m$ are proportional;
+equality at \emph{every} off-diagonal pair forces all such columns to be
+proportional, hence $\mathrm{rank}\,\rho_S \leq 1$, i.e., $\rho_S$ is a
+pure state.
 The power-mean equality $\sum_k\rho_{kk}^2 = 1/d$ holds iff
 $\rho_{kk} = 1/d$ for all $k$.
 Together these require $\rho_S = \vert\psi\rangle\langle\psi\vert$
@@ -350,29 +371,33 @@ trajectory, which is made precise in Proposition~\ref{prop:conservation}.
 \begin{proposition}[Conservation of Relational Potential]
 \label{prop:conservation}
 Let $S{+}E$ be a closed system evolving unitarily from a pure initial
-state $\rho_{SE}(0) = \vert\psi_0\rangle\langle\psi_0\vert$.
+product state $\rho_{SE}(0)
+  = \vert\psi_0\rangle_S\vert 0\rangle_E\langle 0\vert\langle\psi_0\vert$
+under a pointer-basis-coupling Hamiltonian
+$H_{\mathrm{int}} = \sum_k\vert\pi_k\rangle\langle\pi_k\vert\otimes B_k$
+that yields the pure-dephasing dynamics of
+Proposition~\ref{prop:determination}.
 \begin{enumerate}
   \item[\emph{(i)}] \emph{Purity conservation.}
     $\mathrm{Tr}[\rho_{SE}(t)^2] = 1$ for all $t \geq 0$.
   \item[\emph{(ii)}] \emph{Mutual information growth.}
-    The quantum mutual information
+    Under this pointer-basis coupling the quantum mutual information
     $I(S\!:\!E;\,t) = 2\,S(\rho_S(t))$
     is non-decreasing, where $S(\cdot)$ is the von Neumann entropy.
   \item[\emph{(iii)}] \emph{Coherence transfer.}
-    Under pointer-basis dephasing, as $\bar{\alpha}(S,E;\,t)$ decreases,
-    the off-diagonal coherences of $\rho_S$ are encoded in the growing
-    distinguishability of the pointer-correlated environmental branches
-    $\{\vert E_k(t)\rangle\}$, not annihilated.
-    Specifically, if $\vert\psi(t)\rangle = \sum_k c_k\,
-    \vert\pi_k\rangle\vert E_k(t)\rangle$, then
+    Writing $\vert\psi(t)\rangle = \sum_k c_k\,
+    \vert\pi_k\rangle\vert E_k(t)\rangle$ with
+    $c_k = \langle\pi_k\vert\psi_0\rangle$,
     \begin{equation}
     \label{eq:coherence-transfer}
       \langle\pi_i\vert\rho_S(t)\vert\pi_j\rangle
       \;=\; c_i\,c_j^*\;\langle E_j(t)\vert E_i(t)\rangle,
       \qquad i \neq j,
     \end{equation}
-    so that $\bar{\alpha}(t) \to 0$ as and only as
-    $\langle E_j(t)\vert E_i(t)\rangle \to 0$ for all $i \neq j$.
+    so that $\bar{\alpha}(t) \to 0$ if and only if
+    $\langle E_j(t)\vert E_i(t)\rangle \to 0$ for every pair $i \neq j$
+    with $c_i c_j^* \neq 0$ (off-diagonals at populations $c_i = 0$
+    or $c_j = 0$ vanish trivially).
 \end{enumerate}
 \end{proposition}
 
@@ -386,19 +411,25 @@ and the result follows.
 
 \emph{Part (ii).}
 For a pure bipartite state $\rho_{SE}$, the Schmidt decomposition
-gives $S(\rho_S) = S(\rho_E)$ and
-$S(\rho_{SE}) = 0$.
-Hence $I(S\!:\!E) = S(\rho_S) + S(\rho_E) - S(\rho_{SE})
-= 2\,S(\rho_S)$.
-As decoherence increases the mixedness of $\rho_S$
-(off-diagonal elements decay while populations are preserved by
-pointer-basis dephasing), $S(\rho_S)$ is non-decreasing.
+gives $S(\rho_S) = S(\rho_E)$ and $S(\rho_{SE}) = 0$, hence
+$I(S\!:\!E) = S(\rho_S) + S(\rho_E) - S(\rho_{SE}) = 2\,S(\rho_S)$.
+Under the pointer-basis-coupling Hamiltonian above, the induced channel
+on $\rho_S$ between any two times $t_1 < t_2$ is mixed-unitary
+(equivalently, unital: $\sum_k L_k^\dagger L_k = \gamma\,\mathbf{I}$, so
+the dual channel preserves the maximally mixed state), and therefore
+contractive on the spectrum of $\rho_S$ in the majorization
+order~\cite{NielsenChuang2000}.
+Since von Neumann entropy is Schur-concave, $S(\rho_S(t))$ is
+non-decreasing in $t$, and consequently so is $I(S\!:\!E;\,t)$.
 
 \emph{Part (iii).}
-Write the evolved joint state as
-$\vert\psi(t)\rangle = \sum_k c_k\,\vert\pi_k\rangle\vert E_k(t)\rangle$,
-where $c_k = \langle\pi_k\vert\psi_0\rangle$ and $\{\vert E_k(t)\rangle\}$
-are the time-evolved environmental branches (not necessarily orthonormal).
+A pointer-basis interaction
+$H_{\mathrm{int}} = \sum_k\vert\pi_k\rangle\langle\pi_k\vert\otimes B_k$
+acting on the product initial state generates conditional environmental
+branches $\vert E_k(t)\rangle = e^{-iB_k t/\hbar}\vert 0\rangle_E$
+(generally not orthonormal), so the joint state takes the form
+$\vert\psi(t)\rangle = \sum_k c_k\,\vert\pi_k\rangle\vert E_k(t)\rangle$
+with $c_k = \langle\pi_k\vert\psi_0\rangle$.
 The reduced density matrix is
 \begin{equation*}
   \rho_S(t) = \mathrm{Tr}_E\!\bigl[\vert\psi(t)\rangle\langle\psi(t)\vert\bigr]
@@ -406,15 +437,17 @@ The reduced density matrix is
     \vert\pi_i\rangle\langle\pi_j\vert,
 \end{equation*}
 from which Eq.~\eqref{eq:coherence-transfer} follows directly.
-The Markovian approximation leading to Eq.~\eqref{eq:alpha-decay}
-replaces $\langle E_j(t)\vert E_i(t)\rangle \approx e^{-\gamma t}$,
-reflecting the exponential loss of overlap as the environmental
-branches become distinguishable.
-When $\langle E_j(t)\vert E_i(t)\rangle = 0$ for all $i \neq j$,
-the joint state is a fully branched Schmidt decomposition and $S$
-has acquired a definite pointer-state record in $E$; no coherence
-has been destroyed --- it has been distributed into the
-orthogonality structure of $\{\vert E_k\rangle\}$.
+For each $i\neq j$ with $c_i c_j^* \neq 0$, the off-diagonal magnitude
+$\lvert\rho_{ij}(t)\rvert = \lvert c_i c_j^*\rvert\,
+\lvert\langle E_j(t)\vert E_i(t)\rangle\rvert$ is monotonically tied to
+the environmental overlap; the Markovian approximation leading to
+Eq.~\eqref{eq:alpha-decay} corresponds to
+$\lvert\langle E_j(t)\vert E_i(t)\rangle\rvert = e^{-\gamma t}$.
+When $\langle E_j(t)\vert E_i(t)\rangle = 0$ for every $i\neq j$ with
+$c_i c_j^* \neq 0$, the populated branches form an orthonormal set and
+$S$ has acquired a definite pointer-state record in $E$: no coherence
+has been destroyed --- it has been redistributed into the
+distinguishability of $\{\vert E_k\rangle\}$.
 \end{proof}
 
 \begin{remark}[Implications for quantum error correction]

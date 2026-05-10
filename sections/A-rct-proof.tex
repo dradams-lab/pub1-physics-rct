@@ -69,94 +69,157 @@ context, i.e., independently of relational interaction. $\square$
 
 \subsection{Proof of Proposition~\ref{prop:determination} (Relational Determination)}
 
-\textbf{Claim.} A definite outcome for observable $\hat{A}$ on $S$ occurs
-if and only if $S$ undergoes a relational interaction with some $E_i$ that
-increases $\bar\alpha(S, E_i)$ from zero.
+The dynamical proof~---~the Lindblad calculation showing
+$\bar\alpha(S,E;t) = \bar\alpha(S,E;0)\,e^{-\gamma t}$~---~is given in
+Sec.~\ref{sec:prop2}.
+Here we record an operational corollary that connects the dynamical
+decay to the relational reading of measurement outcomes.
 
-\textbf{Proof.}
+\textbf{Operational corollary.}
+A definite pointer-basis outcome for an observable $\hat{A}$ on $S$
+arises (relative to an environment $E_i$) if and only if $S$ has
+undergone a relational interaction with $E_i$ for which the
+\emph{transient} affinity $\bar\alpha(S,E_i;t)$ rose above zero before
+decaying to zero under einselection.
 
-($\Rightarrow$, \emph{necessity})
-Suppose $S$ is relationally isolated: $\bar\alpha(S, E_i) = 0$ for all $i$.
-Then $\|\alpha(S,E_i)\|_F = 0$, so all off-diagonal elements of
-$\rhoSE$ vanish and $\rhoSE$ is diagonal.
-For a pure state $\ket{\psi_S}$, a diagonal reduced density matrix requires
-$\ket{\psi_{SE}} = \ket{\psi_S}\otimes\ket{e_0}$ (a product state, Schmidt
-rank 1).
-The state $\ket{\psi_S}$ is a superposition of eigenstates of $\hat{A}$
-unless it happens to be an eigenstate~---~but by Proposition~\ref{prop:indefiniteness},
-no eigenstate is preferred prior to interaction.
-Hence no definite outcome obtains.
+\textbf{Sketch.}
 
-($\Leftarrow$, \emph{sufficiency})
-Suppose $S$ interacts with $E_i$ via Hamiltonian $H_{SE_i}$, generating
-the joint unitary $U(t) = e^{-iH_{SE_i}t}$.
-By the Schmidt decomposition, the evolved state
-\begin{equation}
-  \ket{\psi_{SE_i}(t)} = U(t)\ket{\psi_S}\otimes\ket{e_0}
-\end{equation}
-acquires Schmidt rank $r > 1$ for generic $H_{SE_i}$ and $t > 0$,
-so $\bar\alpha(S, E_i) > 0$.
-Zurek's einselection~\cite{Zurek2003} selects the pointer basis
-$\{\ket{s_i^*}\}$ determined by $H_{SE_i}$, in which the reduced state
-$\rhoSE$ becomes effectively diagonal.
-Relative to $E_i$, $S$ has a definite outcome in the pointer basis. $\square$
+($\Rightarrow$)
+Suppose $S$ has had no relational coupling: $\bar\alpha(S,E_i;t) = 0$
+for all $t$.
+Then $\rho_S(t)$ is diagonal in the pointer basis at all times, and
+the joint state remains a product
+$\ket{\psi_{SE_i}(t)} = \ket{\psi_S}\otimes\ket{e_0(t)}$ (Schmidt
+rank~1).
+By Proposition~\ref{prop:indefiniteness}, no pre-existing pointer-basis
+value is assigned to $\hat{A}$ in $\ket{\psi_S}$ unless it is already a
+pointer eigenstate; no definite outcome obtains.
+
+($\Leftarrow$)
+Suppose $S$ couples to $E_i$ via $H_{SE_i}$.
+The joint unitary $U(t) = e^{-iH_{SE_i}t/\hbar}$ generally takes
+$\ket{\psi_S}\otimes\ket{e_0}$ to a Schmidt rank $r>1$ state, so
+$\bar\alpha(S,E_i;t) > 0$ for some $t > 0$.
+Einselection~\cite{Zurek2003} then drives $\bar\alpha(S,E_i;t)\to 0$
+by Proposition~\ref{prop:determination}, leaving $\rho_S$
+pointer-basis-diagonal: relative to $E_i$, $S$ has a definite outcome
+in the pointer basis. $\square$
 
 \subsection{Proof of Proposition~\ref{prop:correspondence} (Coherence--Affinity Correspondence)}
 
-\textbf{Claim.} $\bar\alpha = 0$ iff $\rhoSE$ is separable;
-$\bar\alpha = 1$ iff $\ket{\psi_{SE}}$ is maximally entangled;
-for pure states $\bar\alpha = \mathcal{C}(\rho_{SE})$.
+\textbf{Claim.} (i)~$\bar\alpha = 0$ iff $\rho_S$ is diagonal in the
+pointer basis (complete decoherence);
+(ii)~$\bar\alpha = 1$ iff $\rho_S$ is a pure equal-weight pointer-basis
+superposition $\ket{\psi} = d_S^{-1/2}\sum_k e^{i\phi_k}\ket{\pi_k}$;
+(iii)~$\bar\alpha(t)$ is continuous and monotonically non-increasing
+under the dephasing dynamics of Proposition~\ref{prop:determination}.
+
+\textbf{Remark on local vs.\ joint scope.}~Throughout, $\bar\alpha(S,E)$
+is built from the off-diagonal entries of the \emph{reduced} state
+$\rho_S = \mathrm{Tr}_E[\rho_{SE}]$ in the pointer basis selected by
+einselection (Definition~\ref{def:alpha-tensor}), not from the joint
+state $\rho_{SE}$ in the Schmidt basis.
+$\bar\alpha$ is therefore a measure of \emph{local} pointer-basis
+coherence, not of $S$-$E$ entanglement; the two are inversely related
+along the decoherence trajectory of
+Proposition~\ref{prop:conservation}, but they are distinct objects.
+In particular, a Bell state $\ket{\Phi^+} = (\ket{00}+\ket{11})/\sqrt{2}$
+yields $\rho_S = \mathbf{I}/2$, hence $\bar\alpha(S,E) = 0$ at maximal
+entanglement; conversely, a product superposition
+$\ket{+}_S\otimes\ket{0}_E$ yields $\bar\alpha = 1$ at zero
+entanglement.
 
 \textbf{Proof.}
+This is the proof presented in
+Sec.~\ref{sec:prop3}; we restate it here for completeness.
 
-($\bar\alpha = 0 \Leftrightarrow$ separable)
-$\bar\alpha = 0$ iff $\|\alpha\|_F = 0$ iff all off-diagonal elements of
-$\rhoSE$ vanish iff $\rhoSE$ is diagonal in the Schmidt basis iff
-$\ket{\psi_{SE}}$ has Schmidt rank 1 (product state).
-For a product state, the concurrence $\mathcal{C} = 0$ and entanglement entropy $S = 0$.
+\textit{Range bound.}
+Since $\rho_S\geq 0$ with $\mathrm{Tr}\,\rho_S = 1$, the
+Cauchy--Schwarz inequality gives
+$\lvert\rho_{ij}\rvert^2 \leq \rho_{ii}\rho_{jj}$.
+Summing over $i\neq j$,
+\begin{equation*}
+  \lVert\alpha\rVert_F^2
+    \leq \sum_{i\neq j}\rho_{ii}\rho_{jj}
+    = \Bigl(\sum_k\rho_{kk}\Bigr)^{\!2} - \sum_k\rho_{kk}^2
+    = 1 - \sum_k\rho_{kk}^2
+    \leq \frac{d_S - 1}{d_S},
+\end{equation*}
+using $\sum_k\rho_{kk}^2 \geq 1/d_S$ (power-mean / Cauchy--Schwarz).
+Multiplying by $d_S/(d_S-1)$ and taking the square root yields
+$\bar\alpha\leq 1$; non-negativity is immediate.
 
-($\bar\alpha = 1 \Leftrightarrow$ maximally entangled)
-$\bar\alpha = 1$ iff $\|\alpha\|_F = \|\alpha_{\max}\|_F$.
-For a two-qubit pure state in the Schmidt basis
-$\ket{\psi_{SE}} = \sqrt{\lambda}\ket{u_1 v_1} + \sqrt{1-\lambda}\ket{u_2 v_2}$,
-the off-diagonal element magnitude is $|\rho_{12}| = \sqrt{\lambda(1-\lambda)}$,
-maximized at $\lambda = 1/2$ (i.e., $\mathcal{C} = 2\sqrt{\lambda(1-\lambda)} = 1$).
-Thus $\bar\alpha = 1$ iff $\lambda = 1/2$ iff $\ket{\psi_{SE}}$ is a Bell state.
+\textit{Part (i).}
+$\bar\alpha = 0\Leftrightarrow\lVert\alpha\rVert_F = 0
+ \Leftrightarrow \rho_{ij}=0$ for all $i\neq j$
+ $\Leftrightarrow\rho_S$ pointer-basis-diagonal.
 
-(Pure state identity $\bar\alpha = \mathcal{C}$)
-For a two-qubit pure state with Schmidt coefficients
-$\sqrt{\lambda}, \sqrt{1-\lambda}$:
-$\mathcal{C} = 2\sqrt{\lambda(1-\lambda)}$ and
-$\bar\alpha = |\rho_{12}|/|\rho_{12}^{\max}| = 2\sqrt{\lambda(1-\lambda)}$.
-Hence $\bar\alpha = \mathcal{C}$.
+\textit{Part (ii).}
+$\bar\alpha = 1$ requires equality in both bounds.
+The Cauchy--Schwarz equality
+$\lvert\rho_{ij}\rvert^2 = \rho_{ii}\rho_{jj}$ for every off-diagonal
+pair forces $\mathrm{rank}\,\rho_S \leq 1$ (a pure state), and
+$\sum_k\rho_{kk}^2 = 1/d_S$ forces $\rho_{kk} = 1/d_S$ for all $k$;
+together,
+$\ket{\psi} = d_S^{-1/2}\sum_k e^{i\phi_k}\ket{\pi_k}$.
 
-(Mixed state inequality $\bar\alpha \leq \mathcal{C}$)
-Follows from the concavity of the Frobenius norm of the coherences under
-convex mixture: for $\rho = \sum_k p_k \rho_k$,
-$\|\alpha(\rho)\|_F \leq \sum_k p_k\|\alpha(\rho_k)\|_F$,
-while $\mathcal{C}(\rho) = \max\sum_k p_k \mathcal{C}(\rho_k)$ by convex
-roof construction~\cite{Wootters1998}. $\square$
+\textit{Part (iii).}
+Each off-diagonal magnitude satisfies
+$\lvert\rho_{ij}(t)\rvert = \lvert\rho_{ij}(0)\rvert e^{-\gamma t}$
+(Proposition~\ref{prop:determination}), so $\bar\alpha(t)$ is
+continuous and strictly decreasing whenever $\bar\alpha(0)>0$.
+$\square$
+
+\textbf{Two-qubit reference values.}
+For a two-qubit pure state
+$\ket{\psi_{SE}} = c_{00}\ket{00} + c_{01}\ket{01}
+                  + c_{10}\ket{10} + c_{11}\ket{11}$,
+the local reduced state on qubit~$S$ is
+\begin{equation*}
+  \rho_S = \begin{pmatrix}
+    \lvert c_{00}\rvert^2 + \lvert c_{01}\rvert^2 &
+    c_{00}\overline{c_{10}} + c_{01}\overline{c_{11}} \\[2pt]
+    \overline{c_{00}}c_{10} + \overline{c_{01}}c_{11} &
+    \lvert c_{10}\rvert^2 + \lvert c_{11}\rvert^2
+  \end{pmatrix},
+\end{equation*}
+so $\bar\alpha(S,E) = 2\,\lvert c_{00}\overline{c_{10}}
+                      + c_{01}\overline{c_{11}}\rvert$
+in the computational pointer basis.
+This is \emph{not} equal to the concurrence
+$\mathcal{C} = 2\,\lvert c_{00}c_{11} - c_{01}c_{10}\rvert$ in general:
+$\bar\alpha$ probes pointer-basis coherence in $\rho_S$, whereas
+$\mathcal{C}$ probes the entanglement of $\rho_{SE}$. The Bell state
+$\ket{\Phi^+}$ has $\bar\alpha = 0$ while $\mathcal{C} = 1$;
+$\ket{+}_S\otimes\ket{0}_E$ has $\bar\alpha = 1$ while $\mathcal{C} = 0$.
 
 \subsection{Proof of Proposition~\ref{prop:conservation} (Conservation of Relational Potential)}
 
-\textbf{Claim.} For a closed system with unitary evolution $U(t)$,
-$\mathrm{Tr}[\rho(t)^2] = \mathrm{Tr}[\rho(0)^2]$ for all $t$.
+The full three-part proof is given in Sec.~\ref{sec:prop4}.
+We record here only the elementary purity identity that anchors
+part~(i), for completeness.
+
+\textbf{Claim (part (i)).}
+For a closed system with unitary evolution $U(t)$,
+$\mathrm{Tr}[\rho_{SE}(t)^2] = \mathrm{Tr}[\rho_{SE}(0)^2]$ for all $t$.
 
 \textbf{Proof.}
-\begin{align}
-  \mathrm{Tr}\bigl[\rho(t)^2\bigr]
-    &= \mathrm{Tr}\bigl[U(t)\rho(0)U^\dagger(t)\cdot U(t)\rho(0)U^\dagger(t)\bigr] \\
-    &= \mathrm{Tr}\bigl[U(t)\rho(0)^2 U^\dagger(t)\bigr]
+\begin{align*}
+  \mathrm{Tr}\bigl[\rho_{SE}(t)^2\bigr]
+    &= \mathrm{Tr}\bigl[U(t)\rho_{SE}(0)U^\dagger(t)\cdot
+                        U(t)\rho_{SE}(0)U^\dagger(t)\bigr] \\
+    &= \mathrm{Tr}\bigl[U(t)\rho_{SE}(0)^2 U^\dagger(t)\bigr]
       \qquad (\text{since } U^\dagger U = \mathbf{I}) \\
-    &= \mathrm{Tr}\bigl[\rho(0)^2\bigr]
+    &= \mathrm{Tr}\bigl[\rho_{SE}(0)^2\bigr]
       \qquad (\text{cyclicity of trace}).
-\end{align}
+\end{align*}
 The apparent purity loss in the reduced state
-$\rhoSE = \mathrm{Tr}_E[\rho_{SE}]$ reflects transfer of coherence
-into $SE$ correlations~---~the joint state remains pure, and
+$\rho_S = \mathrm{Tr}_E[\rho_{SE}]$ reflects transfer of coherence
+into $S$-$E$ correlations~---~the joint state remains pure, and
 $\mathrm{Tr}[\rho_{SE}^2] = 1$ throughout.
-The ``lost'' coherence is not destroyed; it is encoded in the relational
-network $\Gamma_S$ as $SE$ entanglement. $\square$
+The ``lost'' coherence is not destroyed; it is encoded in the
+relational network $\Gamma_S$ (Sec.~\ref{sec:rqm}) as $S$-$E$
+entanglement. $\square$
 
 \subsection{Weyl Chamber Coordinates for $\URA(\alpha)$}
 

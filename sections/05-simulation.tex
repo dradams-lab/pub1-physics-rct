@@ -7,7 +7,7 @@
 
 We implement $\URA(\alpha)$ as a two-qubit unitary operator via the
 explicit matrix form of Eq.~\eqref{eq:URA-matrix} in both
-Qiskit~\cite{Qiskit2023} (IBM) and Cirq~(Google).
+Qiskit~\cite{Qiskit2024} (IBM) and Cirq~\cite{Cirq2025} (Google).
 Simulation parameters follow Appendix~\ref{app:sim-params}.
 The circuit representation is:
 
@@ -139,14 +139,18 @@ The simulation confirms this prediction numerically.
 \textbf{$\bar\alpha(t)$ dynamics.}
 Figure~\ref{fig:alpha-dynamics} (placeholder; to be generated from
 simulation output) shows the decay of $\bar\alpha(t)$ for a two-qubit
-system under dephasing noise at $\gamma = 0.10$, initialized in the
-Bell state $\ket{\Phi^+}$ ($\bar\alpha = 1$).
-The Affinity Tensor decays monotonically from 1 to 0, tracking the
-loss of relational coherence as the classical pointer basis is selected
-by the environment~---~visualizing the Conservation of Relational
-Potential (Proposition~\ref{prop:conservation}) in action: purity
-transfers from the system to the $SE$ correlations, with $\mathrm{Tr}[\rho^2]$
-remaining constant in the joint state throughout.
+system $S$ under independent dephasing noise at $\gamma = 0.10$,
+initialized in the equal-weight pointer-basis superposition
+$\ket{++} = \tfrac{1}{2}(\ket{00}+\ket{01}+\ket{10}+\ket{11})$, for
+which $\bar\alpha(0) = 1$ in the four-dimensional computational pointer
+basis (Proposition~\ref{prop:correspondence}\emph{(ii)}).
+The Affinity Tensor decays monotonically from $1$ to $0$, tracking the
+loss of local pointer-basis coherence as the bath selects the classical
+pointer basis. Per
+Proposition~\ref{prop:conservation}, purity transfers from the system
+to $S$-bath correlations: although $\rho_S$ becomes mixed, the joint
+$\mathrm{Tr}[\rho_{S,\mathrm{bath}}^2]$ remains constant in the closed
+$S$+bath description.
 
 \begin{figure}[htbp]
   \centering
@@ -155,11 +159,17 @@ remaining constant in the joint state throughout.
     Figure: $\bar\alpha(t)$ decay under dephasing ($\gamma = 0.10$)\\
     \emph{[To be generated from simulation script]}
   \vspace{2cm}}}
-  \caption{Affinity Tensor dynamics $\bar\alpha(t)$ for initial Bell state
-    $\ket{\Phi^+}$ under independent dephasing noise ($\gamma = 0.10$).
-    The monotonic decay from $\bar\alpha = 1$ (maximal entanglement) to
-    $\bar\alpha = 0$ (classical separability) tracks the quantum-to-classical
-    transition. Total purity $\mathrm{Tr}[\rho_{SE}^2] = 1$ is conserved
-    throughout (Proposition~\ref{prop:conservation}).}
+  \caption{Affinity Tensor dynamics $\bar\alpha(t)$ for the two-qubit
+    initial state $\ket{++}$ under independent dephasing noise
+    ($\gamma = 0.10$). The monotonic decay from $\bar\alpha = 1$ (maximal
+    local pointer-basis coherence) to $\bar\alpha = 0$ (pointer-basis
+    diagonal $\rho_S$) tracks the quantum-to-classical transition for
+    the local state. Total purity of the closed $S$+bath system is
+    conserved throughout (Proposition~\ref{prop:conservation}); coherence
+    is redistributed into $S$-bath correlations rather than annihilated.
+    Note that $\bar\alpha$ measures local pointer-basis coherence in
+    $\rho_S$, not $S$-bath entanglement: a Bell state
+    $\ket{\Phi^+}$ initial would give $\bar\alpha(0) = \sqrt{2/3}$ in
+    this pointer basis, not $1$.}
   \label{fig:alpha-dynamics}
 \end{figure}
