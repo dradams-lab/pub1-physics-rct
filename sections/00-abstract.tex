@@ -29,11 +29,16 @@ Gate}~$\URA(\theta) = \exp[-i\theta(\sigma_x{\otimes}\sigma_x +
 a continuously parameterized two-qubit gate on the Heisenberg-exchange
 diagonal of the Weyl chamber of $\mathrm{SU}(4)/[\mathrm{SU}(2)\otimes\mathrm{SU}(2)]$
 with exchange angle $\theta \in [0,\pi/2]$.
+The novelty is twofold: the conservation law of the \RCT~furnishes a
+conceptual warrant for treating relational coupling as a continuous
+tunable rather than as a fixed entangling primitive, and on
+superconducting hardware whose Heisenberg-exchange duration scales
+linearly with~$\theta$, the gate-time saving at $\theta < \pi/4$
+yields a measurable per-gate fidelity advantage.
 Numerical simulations in Qiskit and Cirq compare~$\URA(\theta)$ against
 \textsc{cnot}, \textsc{iswap}, and \textsc{cz} under depolarizing, dephasing,
-and amplitude damping noise models.
-On hardware where gate duration scales linearly with~$\theta$,
-$\URA(\pi/8)$ demonstrates measurable fidelity advantages
-($\Delta F = +0.019$ to $+0.040$ at $p_{\rm base} = 0.10$) over fixed
-maximally entangling gates~---~an operational expression of the
-\RCT~conservation law~---~suggesting utility in near-term quantum devices.
+and amplitude damping noise models;
+on hardware with directly calibratable exchange coupling, $\URA(\pi/8)$
+outperforms all three fixed gates by $\Delta F = +0.019$ to $+0.040$
+at $p_{\rm base} = 0.10$~---~an operational expression of the
+\RCT~conservation law that suggests utility in near-term quantum devices.

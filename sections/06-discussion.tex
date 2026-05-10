@@ -38,6 +38,51 @@ pointer-basis coherence a gate consumes, layer by layer, before the
 bath records it~---~the appropriate observable is $\bar\alpha$, not
 concurrence.
 
+\subsection{Relation to the Resource Theory of Coherence}
+\label{subsec:rtoc}
+
+The scalar affinity sits naturally alongside the basis-dependent
+quantifiers of the resource theory of coherence developed by
+Baumgratz, Cramer, and Plenio~\cite{Baumgratz2014} and surveyed in
+\cite{Streltsov2017Review}.
+That framework fixes a reference basis $\{\vert i\rangle\}$, designates
+the basis-diagonal states as incoherent, and characterizes coherence
+through monotones such as the
+$\ell_1$-norm of coherence
+$C_{\ell_1}(\rho) = \sum_{i\neq j}\lvert\rho_{ij}\rvert$ and the
+relative entropy of coherence
+$C_{\rm re}(\rho) = S(\rho_{\rm diag}) - S(\rho)$.
+The scalar affinity is the normalized Hilbert--Schmidt quantifier in the
+same family,
+$\bar\alpha^2(\rho_S) = (d/(d-1))\sum_{i\neq j}\lvert\rho_{ij}\rvert^2$,
+and it shares the structural features that define the family: it
+vanishes precisely on the incoherent (basis-diagonal) states
+[Prop.~\ref{prop:correspondence}(i)] and attains its maximum on the
+equal-weight basis superposition [Prop.~\ref{prop:correspondence}(ii)],
+the same extremes as $C_{\ell_1}$ and $C_{\rm re}$.
+We do not claim $\bar\alpha$ is a coherence monotone in the strict
+sense of~\cite{Baumgratz2014}; the Hilbert--Schmidt quantifier is not
+in general monotone under arbitrary incoherent CPTP maps, and the
+use of $\bar\alpha$ here is as a circuit-level figure of merit
+under physical (Markovian dephasing, gate-time-proportional)
+noise channels, where its monotonic decay
+[Prop.~\ref{prop:determination}] is exact.
+
+What the \RCT~adds that the resource-theory framework does not supply
+on its own is twofold.
+First, the reference basis is not stipulated~---~it is fixed by
+physics: einselection (Sec.~\ref{sec:decoherence}) singles out the
+pointer basis from the $S$-$E$ Hamiltonian, so the basis-dependence of
+$\bar\alpha$ is grounded in the dynamics rather than chosen by
+convention.
+Second, $\bar\alpha$ acquires a conservation-law interpretation under
+unitary $S{+}E$ evolution [Prop.~\ref{prop:conservation}]: the local
+coherence depleted from $\rho_S$ is redistributed into $S$-$E$
+correlations rather than annihilated.
+The resource-theory monotones quantify static coherence relative to a
+chosen basis; $\bar\alpha$ is a kindred quantifier placed in a
+dynamical, conservation-aware, einselection-grounded setting.
+
 \subsection{The Gate-Time Advantage and its Interpretation}
 
 The simulation results of Sec.~\ref{sec:sim} are an operational
