@@ -14,13 +14,17 @@ mechanics and the experimental results of CHSH inequality
 violations~\cite{CHSH1969,Aspect1982,Zeilinger2023Nobel}.
 
 The Affinity Tensor~$\alpha(S,E)$ provides an operationalized, computable
-measure of relational coherence.
-For pure two-qubit states, $\bar\alpha$ equals the concurrence~$\mathcal{C}$
-(Proposition~\ref{prop:correspondence}).
+measure of relational coherence: it is built from the off-diagonal
+entries of the reduced state $\rho_S$ in the einselected pointer basis,
+and so quantifies \emph{local} pointer-basis coherence rather than $S$-$E$
+entanglement (Proposition~\ref{prop:correspondence} and the remark on
+affinity vs.\ entanglement in Sec.~\ref{sec:prop3}).
 Under environmental noise, $\bar\alpha(t)$ tracks the quantum-to-classical
-transition as a single scalar trajectory, decaying from maximal entanglement
-($\bar\alpha = 1$) to classical separability ($\bar\alpha = 0$) while total
-purity is conserved in the joint system (Proposition~\ref{prop:conservation}).
+transition as a single scalar trajectory, decaying from maximal local
+coherence ($\bar\alpha = 1$, an equal-weight pointer-basis superposition)
+to a pointer-basis-diagonal classical mixture ($\bar\alpha = 0$) while
+total purity is conserved in the joint $S{+}E$ system
+(Proposition~\ref{prop:conservation}).
 
 The Relational Affinity Gate~$\URA(\alpha)$ is derived from the \RCT~as a
 continuously parameterized two-qubit unitary in the \textsc{iswap} family,
@@ -45,3 +49,20 @@ the \RCT, is developed in the companion paper~\cite{Adams2026Philosophy}.
 \begin{acknowledgments}
 The author thanks \emph{[collaborators to be added]}.
 \end{acknowledgments}
+
+\section*{Code and Data Availability}
+
+All simulation scripts and figure-generation code used in this work are
+publicly available at
+\url{https://github.com/adams-research/relational-coherence-theorem}.
+The repository includes:
+\texttt{figures/generate\_fig1.py} (single-qubit affinity decay,
+Fig.~\ref{fig:affinity-decay});
+\texttt{figures/generate\_fig2.py} (two-qubit independent-dephasing
+dynamics, Fig.~\ref{fig:alpha-dynamics});
+and \texttt{figures/generate\_tables.py} (analytical sanity-check for
+Tables~\ref{tab:fidelity}--\ref{tab:fidelity-all}).
+Full Qiskit/Cirq simulator notebooks reproducing the dephasing and
+amplitude-damping rows of Table~\ref{tab:fidelity-all} accompany the
+release tag and are archived at Zenodo,
+doi:\texttt{10.5281/zenodo.XXXXXXX} (placeholder; replaced at submission).
