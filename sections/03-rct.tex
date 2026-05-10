@@ -124,7 +124,7 @@ $\bar{\alpha}(S,E)$ serve distinct roles throughout this paper.
 $\alpha(S,E)$ is a matrix that encodes the full coherence
 structure of $S$ --- the magnitude and phase of every off-diagonal
 element --- and appears in the proof of Proposition~\ref{prop:correspondence}
-and in the parameterization of $\URA$ (Sec.~\ref{sec:ura}).
+and in the parameterization of $\URA$ (Sec.~\ref{sec:gate}).
 $\bar{\alpha}(S,E)$ is the single scalar that collapses this
 structure to a coherence magnitude; it is the quantity that
 transitions continuously from $1$ (maximally coherent, fully
@@ -245,7 +245,7 @@ $\vert\psi_0\rangle = (\vert\pi_0\rangle + \vert\pi_1\rangle)/\sqrt{2}$,
 giving $\bar{\alpha}(0) = 1$, under dephasing at rate $\gamma = 0.10$.
 The exponential decay $\bar{\alpha}(t) = e^{-0.10\,t}$ is exact under
 the Markovian approximation; details of the numerical simulation appear
-in Sec.~\ref{sec:simulation}.
+in Sec.~\ref{sec:sim}.
 \end{remark}
 
 \begin{figure}[htbp]
@@ -258,7 +258,7 @@ in Sec.~\ref{sec:simulation}.
   The solid curve is the analytic result
   $\bar{\alpha}(t) = e^{-\gamma t}$ (Proposition~\ref{prop:determination});
   circles show values from the numerical density-matrix simulation of
-  Sec.~\ref{sec:simulation}.
+  Sec.~\ref{sec:sim}.
   The dashed line marks $\bar{\alpha} = 0$, the classical limit of
   complete decoherence.}
 \label{fig:affinity-decay}
@@ -419,7 +419,7 @@ orthogonality structure of $\{\vert E_k\rangle\}$.
 
 \begin{remark}[Implications for quantum error correction]
 Proposition~\ref{prop:conservation} has a direct bearing on the
-design of the $\URA$ gate (Sec.~\ref{sec:ura}).
+design of the $\URA$ gate (Sec.~\ref{sec:gate}).
 Because decoherence transfers, rather than destroys, relational
 structure, a gate that maximizes $\bar{\alpha}$ effectively
 harvests coherence before it disperses into environmental branches.
