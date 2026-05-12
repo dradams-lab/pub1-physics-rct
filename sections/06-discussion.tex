@@ -94,10 +94,11 @@ per-gate decoherence budget than a fixed maximally entangling primitive
 Equivalently, in the language of the \RCT, the gate spends less of the
 local pointer-basis coherence $\bar\alpha$ per operation, redistributing
 a smaller portion of $\bar\alpha$ into $S$-bath correlations.
-The fidelity advantage~---~$\Delta F \in [+0.019,+0.040]$ at
+The fidelity advantage~---~$\Delta F \in [+0.038,+0.039]$ at
 $p_{\rm base} = 0.10$ across depolarizing, dephasing, and amplitude
-damping noise (Table~\ref{tab:fidelity-all})~---~is the cumulative
-result of this per-gate saving over a circuit.
+damping noise, growing from $\Delta F \in [+0.019,+0.020]$ at
+$p_{\rm base} = 0.05$ (Table~\ref{tab:fidelity-all})~---~is the
+cumulative result of this per-gate saving over a circuit.
 
 We stress what this result is and is not.
 It is \emph{not} a quantitative identity between $\theta$ and
@@ -133,10 +134,11 @@ First, the gate-time-proportional noise model (Eq.~\eqref{eq:peff})
 is appropriate for Heisenberg exchange directly calibrated on
 superconducting hardware~\cite{Krantz2019}.
 On platforms where $\URA(\theta)$ must be decomposed into fixed native
-gates, the fidelity advantage depends on the decomposition depth and
-may shrink or vanish; a direct hardware calibration of the exchange
-angle, as demonstrated for \textsc{iswap}-family gates, is required to
-realize the full advantage.
+gates~\cite{VatanWilliams2004}, the fidelity advantage depends on the
+decomposition depth and may shrink or vanish; a direct hardware
+calibration of the exchange angle, as demonstrated for
+\textsc{iswap}-family gates, is required to realize the full
+advantage.
 Second, the decoherence treatment of Proposition~\ref{prop:determination}
 adopts the Markovian approximation; non-Markovian environments introduce
 memory kernels that modify the $e^{-\gamma t}$ decay law without

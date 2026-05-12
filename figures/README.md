@@ -1,14 +1,18 @@
 # Figures and reproducibility
 
 Scripts that generate the figures and table values referenced in the paper.
-All scripts are self-contained and depend only on `numpy` and `matplotlib`.
 
 ## Setup
 
 ```bash
 python3 -m venv figures/.venv
-figures/.venv/bin/pip install numpy matplotlib
+figures/.venv/bin/pip install numpy matplotlib qiskit qiskit-aer cirq-core
 ```
+
+The plain figure scripts (`generate_fig1.py`, `generate_fig2.py`) depend only on
+`numpy` and `matplotlib`. The Qiskit / Cirq simulators
+(`simulate_table2_qiskit.py`, `simulate_table2_cirq.py`) additionally require
+`qiskit`, `qiskit-aer`, and `cirq-core`.
 
 ## Reproducing the paper artifacts
 
@@ -16,7 +20,9 @@ figures/.venv/bin/pip install numpy matplotlib
 |---|---|---|
 | `generate_fig1.py` | `fig1_affinity_decay.pdf` (and `.png`) | Fig. 1, §III |
 | `generate_fig2.py` | `alpha-dynamics.pdf` | Fig. 2, §V |
-| `generate_tables.py` | stdout: Tables I and II values | §V |
+| `generate_tables.py` | stdout: closed-form Tables I and II | §V |
+| `simulate_table2_qiskit.py` | stdout: Table II via Qiskit-Aer density-matrix simulation | §V |
+| `simulate_table2_cirq.py` | stdout: Table II via Cirq density-matrix simulation | §V |
 
 Run each from the repository root:
 
@@ -24,6 +30,8 @@ Run each from the repository root:
 figures/.venv/bin/python figures/generate_fig1.py
 figures/.venv/bin/python figures/generate_fig2.py
 figures/.venv/bin/python figures/generate_tables.py
+figures/.venv/bin/python figures/simulate_table2_qiskit.py
+figures/.venv/bin/python figures/simulate_table2_cirq.py
 ```
 
 ## Notes for reviewers
@@ -41,10 +49,12 @@ figures/.venv/bin/python figures/generate_tables.py
   `ᾱ²(t) = (2/3) e^{−2γt} + (1/3) e^{−4γt}`
   is asserted internally (`np.allclose`, atol = 1e-12).
 
-- **Tables**: the analytical formulas in `generate_tables.py` reproduce
-  Table I (depolarizing, gate-time-proportional) **exactly**. The
-  dephasing and amplitude-damping rows of Table II in the paper come from
-  full Qiskit/Cirq simulation; the analytical estimates in this script
-  give the same sign and order of magnitude but not the exact values.
-  The full simulator notebooks are linked from the Code Availability
-  statement in §VII.
+- **Tables I and II**: all three scripts produce identical Δ F values to
+  numerical precision. `generate_tables.py` uses closed-form analytical
+  formulas; `simulate_table2_qiskit.py` builds explicit Kraus operators and
+  uses Qiskit-Aer's `average_gate_fidelity` against the Choi-Jamiolkowski
+  representation; `simulate_table2_cirq.py` does the same via Cirq's
+  `kraus_to_choi`. The dephasing channel uses the paper's convention of
+  per-qubit off-diagonal damping `1 − γ` (equivalent to a Pauli-Z channel
+  with flip probability `p_Z = γ/2`); the amplitude-damping channel uses
+  the standard Kraus operators independently per qubit.

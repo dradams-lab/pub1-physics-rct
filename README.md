@@ -20,7 +20,7 @@ The RCT comprises four propositions:
 3. **Coherence–affinity correspondence** — ᾱ = 1 at the equal-weight pointer-basis superposition, ᾱ = 0 at full pointer-basis decoherence
 4. **Conservation of relational potential** — under closed-system unitary evolution, local coherence is redistributed into S–E correlations rather than destroyed
 
-Motivated by the RCT, this paper introduces the **Relational Affinity Gate** U_RA(θ), a continuously parameterized two-qubit gate on the Heisenberg-exchange diagonal of the Weyl chamber of SU(4)/[SU(2)⊗SU(2)] with exchange angle θ ∈ [0, π/2]. On hardware where Heisenberg-exchange duration scales linearly with θ, U_RA(π/8) outperforms CNOT, iSWAP, and CZ by ΔF = +0.019 to +0.040 at p_base = 0.10 — an operational expression of the RCT conservation law that suggests utility in near-term quantum devices.
+Motivated by the RCT, this paper introduces the **Relational Affinity Gate** U_RA(θ), a continuously parameterized two-qubit gate on the Heisenberg-exchange diagonal of the Weyl chamber of SU(4)/[SU(2)⊗SU(2)] with exchange angle θ ∈ [0, π/2]. On hardware where Heisenberg-exchange duration scales linearly with θ, U_RA(π/8) outperforms CNOT, iSWAP, and CZ by ΔF ∈ [+0.038, +0.039] at p_base = 0.10 (and [+0.019, +0.020] at p_base = 0.05), consistent across depolarizing, dephasing, and amplitude-damping noise — an operational expression of the RCT conservation law that suggests utility in near-term quantum devices.
 
 Numerical simulations in Qiskit and Cirq compare U_RA(θ) against fixed entangling gates under depolarizing, dephasing, and amplitude-damping noise models.
 
