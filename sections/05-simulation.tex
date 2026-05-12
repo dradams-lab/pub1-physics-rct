@@ -47,12 +47,17 @@ decoherence mechanisms in near-term superconducting qubit devices:
 \end{enumerate}
 
 A critical physical consideration governs the comparison.
-On superconducting qubit hardware, two-qubit gate error accumulates in
-proportion to gate duration~\cite{Krantz2019}.
-The Heisenberg exchange interaction implementing $\URA(\theta)$ has
-duration proportional to~$\theta$: running at $\theta = \pi/8$ takes
-half the time of a full $\theta = \pi/4$ (\textsc{iswap}) operation.
-We therefore apply \emph{gate-time-proportional noise}: fixed gates
+On hardware where the two-qubit-gate pulse duration is set by the
+Heisenberg exchange coupling and the gate is directly calibrated as a
+single continuous parameter~---~spin-qubit exchange platforms, certain
+parametric transmon architectures, and Sycamore-class tunable
+couplers~\cite{LossDiVincenzo1998,Caldwell2018,Foxen2020,Abrams2020}~---~the
+coherence-limited contribution to two-qubit gate error accumulates in
+proportion to gate duration~\cite{Krantz2019}, and the
+exchange-angle pulse duration scales linearly with~$\theta$: running at
+$\theta = \pi/8$ takes half the time of a full $\theta = \pi/4$
+($\sqrt{\textsc{swap}}$) operation.
+We therefore postulate \emph{gate-time-proportional noise}: fixed gates
 (\textsc{cnot}, \textsc{iswap}, \textsc{cz}) receive error rate~$p_{\rm base}$
 at full duration, while $\URA(\theta)$ receives effective rate
 \begin{equation}
@@ -60,6 +65,13 @@ at full duration, while $\URA(\theta)$ receives effective rate
   \label{eq:peff}
 \end{equation}
 reflecting shorter physical operation time for $\theta < \pi/4$.
+This is a modelling assumption appropriate to coherence-limited error on
+direct-exchange hardware; it does not capture coherent calibration
+error, leakage to non-computational levels, or spectator-qubit
+crosstalk, all of which can have different scalings with~$\theta$.
+On platforms where $\URA(\theta)$ must be decomposed into fixed native
+primitives, the advantage below depends on the decomposition cost and
+may shrink or vanish (cf.\ Sec.~\ref{sec:disc}).
 
 \subsection{Results}
 
@@ -131,15 +143,25 @@ $\Delta F = 3\,p_{\rm base}/8$ obtained from $F_{\rm avg} = 1 - 3 p_{\rm eff}/4$
 with $p_{\rm eff}(\URA(\pi/8)) = p_{\rm base}/2$ and
 $p_{\rm eff}(\textsc{iswap}) = p_{\rm base}$ [Eq.~\eqref{eq:peff}].
 The dephasing and amplitude-damping rows are obtained by
-density-matrix simulation in Qiskit and Cirq under the corresponding
-Kraus channels, applied per-qubit at the gate-time-scaled rate;
-they agree with the closed-form depolarizing values to within a few
-parts in $10^3$ and confirm that the gate-time advantage is robust
-across the three dominant decoherence mechanisms in superconducting
-hardware.
-The advantage is consistent: $\Delta F \in [+0.038, +0.039]$ at
-$p_{\rm base} = 0.10$ across depolarizing, dephasing, and amplitude damping,
-and grows from $\Delta F \in [+0.019, +0.020]$ at $p_{\rm base} = 0.05$.
+density-matrix simulation in Qiskit and Cirq with per-qubit Kraus
+channels applied as a post-gate composition at the
+gate-time-scaled rate (see App.~\ref{app:sim-params} for the explicit
+Kraus operators and the application point).
+We emphasize that the near-equality between the depolarizing,
+dephasing, and amplitude-damping rows is not a coincidence: under
+gate-time-proportional, small-$p$, post-gate channels the leading-order
+contribution to $1 - F_{\rm avg}$ is linear in the per-qubit error rate
+and identical across the three channels up to channel-specific
+constants of order unity, with the closed-form depolarizing value
+$\Delta F = 3\,p_{\rm base}/8$ serving as a tight reference.
+The advantage is therefore not a discovery of robustness across noise
+models so much as a quantitative consequence of the gate-time scaling
+of Eq.~\eqref{eq:peff} in the small-noise regime.
+With that interpretation in mind, the simulations confirm that the
+gate-time-saving translates to a per-gate fidelity advantage of
+$\Delta F \in [+0.038, +0.039]$ at $p_{\rm base} = 0.10$ across all
+three channels and $\Delta F \in [+0.019, +0.020]$ at
+$p_{\rm base} = 0.05$.
 
 \begin{table}[htbp]
 \centering
@@ -165,8 +187,8 @@ Amplitude damp. & $+0.0080$ & $+0.0198$ & $+0.0393$ \\
 \end{table}
 
 \textbf{Interpretation via the \RCT.}
-The fidelity advantage is naturally interpreted through the
-conservation law of Proposition~\ref{prop:conservation}.
+The fidelity advantage is naturally read off in the
+$\bar\alpha$-language of Proposition~\ref{prop:conservation}.
 A gate operating at $\theta < \pi/4$ implements a weaker exchange
 interaction and consequently requires less physical interaction time
 with the bath, accumulating less decoherence per operation.

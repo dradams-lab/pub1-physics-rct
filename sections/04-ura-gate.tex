@@ -5,18 +5,26 @@
 
 \subsection{Definition}
 
-The \RCT~establishes that relational coupling between a system and its
-environment is a continuous resource: the scalar affinity
-$\bar\alpha(S,E)$ ranges over $[0,1]$ (Proposition~\ref{prop:correspondence})
-and decays continuously under decoherence
-(Proposition~\ref{prop:determination}), and the conservation law of
-Proposition~\ref{prop:conservation} establishes that this coherence is
-\emph{redistributed} into $S$-$E$ correlations rather than destroyed.
-A two-qubit entangling gate that takes this resource picture seriously
-should therefore expose a continuous coupling angle, allowing the
-operation to be tuned to the coherence budget actually available in
-hardware, rather than committing to a fixed entanglement capability as
-conventional two-qubit gates do.
+The \RCT~packages the dynamics of pointer-basis coherence as a
+continuous resource: the scalar affinity $\bar\alpha(S,E)$ ranges over
+$[0,1]$ (Proposition~\ref{prop:correspondence}), decays continuously
+under decoherence (Proposition~\ref{prop:determination}), and is
+redistributed into $S$--$E$ correlations rather than destroyed
+under unitary $S$--$E$ evolution (Proposition~\ref{prop:conservation}).
+The corresponding hardware engineering picture~---~that the natural
+two-qubit primitive should expose a continuous coupling angle, tunable
+to the coherence budget of the substrate rather than fixed to a
+particular entanglement capability~---~is by now well established.
+Continuously parameterized two-qubit exchange gates are realized as
+the native primitive on Loss--DiVincenzo spin
+qubits~\cite{LossDiVincenzo1998}, as parametric entangling gates on
+transmon platforms~\cite{Caldwell2018}, and as the continuous fSim/$XY$
+families demonstrated on Sycamore-class
+hardware~\cite{Foxen2020,Abrams2020,Lacroix2020}.
+The contribution of the present section is not the unitary itself~---~it
+is the standard isotropic Heisenberg-exchange family~---~but the
+coherence-budget framing of its parameter selection through the
+$\bar\alpha$-language of Sec.~\ref{sec:rct}.
 
 \begin{definition}[Relational Affinity Gate]
 The \emph{Relational Affinity Gate} is the two-qubit unitary
@@ -38,8 +46,15 @@ The generator $\hat{H} = \tfrac{1}{2}(\sigma_x\otimes\sigma_x +
 Heisenberg exchange interaction, established by Loss and
 DiVincenzo~\cite{LossDiVincenzo1998} as a universal two-qubit primitive
 for solid-state quantum computation and the natural exchange coupling
-realized on superconducting platforms~\cite{Krantz2019};
+realized on a range of superconducting and spin-qubit
+platforms~\cite{Krantz2019,Caldwell2018,Foxen2020,Abrams2020};
 it generates entanglement symmetrically across all three Pauli axes.
+The family $\URA(\theta)$ is therefore not a new gate but the
+isotropic-exchange or ``$\sqrt{\textsc{swap}}$ family'' parameterized
+by exchange angle; the contribution of this section is to position the
+family in the coherence-budget framework of Sec.~\ref{sec:rct} and to
+benchmark its fidelity advantage at $\theta < \pi/4$ under
+gate-time-proportional noise in Sec.~\ref{sec:sim}.
 The exchange angle~$\theta$ controls the magnitude of relational coupling
 effectuated between the two qubits in a single operation; its connection
 to the scalar affinity $\bar\alpha$ of Sec.~\ref{sec:rct} is
@@ -175,15 +190,24 @@ $\mathcal{E}(\pi/4) = 1$ and returns to $\mathcal{E}(\pi/2) = 0$
 (the \textsc{swap} gate, which permutes states without generating entanglement).
 
 The practical implication is direct: by selecting $\theta < \pi/4$ on
-hardware whose decoherence rate is non-negligible, the gate trades a
-fraction of its entanglement capability for a proportionally shorter
-operation time, accumulating less noise per gate
-(Sec.~\ref{sec:sim}, Eq.~\eqref{eq:peff}).
-This is the operational expression of
-Proposition~\ref{prop:conservation}: the coherence ``spent'' by an
-entangling operation is redistributed into $S$-$E$ correlations rather
-than annihilated, and a smaller exchange angle spends less of the local
-$\bar\alpha$ budget per gate.
-Fixed maximally entangling gates have no analogous tunable;
-Sec.~\ref{sec:sim} quantifies the resulting fidelity advantage of
-$\URA(\theta < \pi/4)$ numerically.
+hardware whose decoherence rate is non-negligible and whose
+two-qubit-gate duration scales linearly with the exchange angle, the
+gate trades a fraction of its entanglement capability for a
+proportionally shorter operation time, accumulating less coherence-limited
+noise per gate (Sec.~\ref{sec:sim}, Eq.~\eqref{eq:peff}).
+This is the operational counterpart of
+Proposition~\ref{prop:conservation}: the coherence redistributed from
+$\rho_S$ into $S$--$E$ correlations during a partial-exchange operation
+is a strictly smaller fraction of the local $\bar\alpha$ budget than for
+a full maximally-entangling operation.
+The fixed-angle gates \textsc{cnot}, \textsc{iswap}, and \textsc{cz}
+occupy single points of the Weyl chamber and do not admit this
+trade-off without explicit compilation; the continuous fSim/$XY$ and
+parametric exchange families~\cite{Foxen2020,Abrams2020,Lacroix2020,Caldwell2018}
+are analogous tunable primitives, and on Sycamore-class hardware
+Foxen~\textit{et~al.}\ have demonstrated experimentally the fidelity
+advantage of operating at a continuously-tunable, fractional-exchange
+parameter relative to a fixed entangler.
+Sec.~\ref{sec:sim} quantifies the corresponding advantage of
+$\URA(\theta < \pi/4)$ in independent simulation, with explicit caveats
+on the scope of applicability in Sec.~\ref{sec:disc}.

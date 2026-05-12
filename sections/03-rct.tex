@@ -6,23 +6,30 @@
 %  STATUS: Definitions complete. All four propositions developed.
 % ============================================================
 
-\section{\label{sec:rct}The Relational Coherence Theorem}
+\section{\label{sec:rct}The Relational Coherence Framework}
 
 We now formalize the concepts developed in Sec.~\ref{sec:background}.
-The Relational Coherence Theorem (\RCT) is a four-proposition
-framework that unifies the relational ontology of
+The Relational Coherence framework (\RCT) collects four
+identities that together unify the relational ontology of
 Sec.~\ref{sec:rqm} with the decoherence dynamics of
 Sec.~\ref{sec:decoherence} through a single quantitative object:
 the Affinity Tensor $\alpha(S,E)$.
+We retain the label ``Theorem'' for the central
+correspondence (Proposition~\ref{prop:correspondence}); the
+remaining three propositions are standard identities cast in
+$\bar\alpha$-language and are labelled propositions in that
+expository sense rather than as new theorems.
 The four propositions assert, in order: (I)~that a nonzero Affinity
 Tensor signals the absence of any definite pointer-state assignment
-for $S$; (II)~that dephasing drives the scalar affinity to zero
-exponentially, recovering the classical limit; (III)~that the scalar
-affinity ranges continuously over $[0,1]$, attaining its extremes at
-complete decoherence and maximum pointer-basis coherence; and
-(IV)~that this process conserves relational structure globally,
-redistributing local coherence into $S$-$E$ correlations rather than
-annihilating it.
+for $S$; (II)~that uniform Markovian dephasing in the pointer basis
+drives the scalar affinity to zero exponentially, recovering the
+classical limit; (III)~that the scalar affinity ranges continuously
+over $[0,1]$, attaining its extremes at complete decoherence and at
+the equal-weight pointer-basis pure superposition; and (IV)~that under
+closed unitary $S$--$E$ evolution the local pointer-basis coherence is
+redistributed into $S$--$E$ correlations rather than destroyed
+(purity conservation, $I(S{:}E)$ growth, and Joos--Zeh / Zurek
+branching, repackaged in $\bar\alpha$-language).
 We begin with the definitions that underpin all four propositions,
 drawing a careful distinction between the full tensorial object
 $\alpha(S,E)$ and the scalar summary $\bar{\alpha}(S,E)$ --- a
@@ -104,6 +111,15 @@ where $\lVert \cdot \rVert_F$ denotes the Frobenius norm.
 The prefactor $\sqrt{d/(d-1)}$ normalizes $\bar{\alpha}$ to the
 unit interval: $\bar{\alpha} \in [0, 1]$ (proven in
 Proposition~\ref{prop:correspondence}).
+Up to this normalization, $\bar\alpha$ coincides with the
+$\ell_2$ (Hilbert--Schmidt) coherence quantifier of the
+basis-dependent coherence resource
+theory~\cite{Baumgratz2014,Streltsov2017Review} when the reference
+basis is taken to be the einselected pointer basis.
+The novelty of the present construction lies not in the quantifier
+itself but in this physical grounding of the reference basis and in
+its role as a dynamical figure of merit, developed in
+Propositions~\ref{prop:determination}--\ref{prop:conservation} below.
 \end{definition}
 
 \begin{remark}[Boundary values of $\bar{\alpha}$]
@@ -377,9 +393,21 @@ trajectory, which is made precise in Proposition~\ref{prop:conservation}.
 % ── III.E  Proposition IV ────────────────────────────────────────────────────
 
 \subsection{\label{sec:prop4}Proposition~IV:
-            Conservation of Relational Potential}
+            Coherence Redistribution under Unitary $S$--$E$ Evolution}
 
-\begin{proposition}[Conservation of Relational Potential]
+The three identities collected below are standard~---~purity
+conservation under unitary evolution, the
+$I(S{:}E) = 2S(\rho_S)$ identity from the Schmidt
+decomposition~\cite{NielsenChuang2000}, and the Joos--Zeh / Zurek
+branching identity for environment-induced
+decoherence~\cite{JoosZeh1985,Zurek2003}~---~and we do not claim
+novelty for them.
+Their utility here is the explicit packaging in $\bar\alpha$-language,
+which renders the export of local pointer-basis coherence into
+$S$--$E$ correlations as a coherence-budget statement that can be
+read off layer by layer in a quantum circuit.
+
+\begin{proposition}[Coherence redistribution under unitary $S$--$E$ evolution]
 \label{prop:conservation}
 Let $S{+}E$ be a closed system evolving unitarily from a pure initial
 product state $\rho_{SE}(0)

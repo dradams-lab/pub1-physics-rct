@@ -85,15 +85,20 @@ dynamical, conservation-aware, einselection-grounded setting.
 
 \subsection{The Gate-Time Advantage and its Interpretation}
 
-The simulation results of Sec.~\ref{sec:sim} are an operational
-expression of Proposition~\ref{prop:conservation}.
-On hardware where gate duration scales linearly with the exchange angle,
-$\URA(\theta)$ at $\theta < \pi/4$ accumulates a smaller fraction of the
-per-gate decoherence budget than a fixed maximally entangling primitive
-[Eq.~\eqref{eq:peff}].
-Equivalently, in the language of the \RCT, the gate spends less of the
-local pointer-basis coherence $\bar\alpha$ per operation, redistributing
-a smaller portion of $\bar\alpha$ into $S$-bath correlations.
+The simulation results of Sec.~\ref{sec:sim} are an
+$\bar\alpha$-language expression of a now-established hardware
+observation: on platforms where the two-qubit-gate pulse duration is
+set by the Heisenberg exchange coupling, partial-exchange gates
+accumulate less coherence-limited error than fixed maximally-entangling
+gates, with the fidelity savings demonstrated experimentally for the
+continuous fSim and parametric-exchange families by Foxen,
+Abrams, Lacroix, and others~\cite{Foxen2020,Abrams2020,Lacroix2020,Caldwell2018}.
+Our independent simulations recover this in
+$\bar\alpha$-language: at $\theta < \pi/4$, $\URA(\theta)$ accumulates
+a smaller fraction of the per-gate decoherence budget than a fixed
+maximally-entangling primitive [Eq.~\eqref{eq:peff}], equivalently
+redistributing a smaller fraction of the local pointer-basis coherence
+$\bar\alpha$ into $S$--bath correlations.
 The fidelity advantage~---~$\Delta F \in [+0.038,+0.039]$ at
 $p_{\rm base} = 0.10$ across depolarizing, dephasing, and amplitude
 damping noise, growing from $\Delta F \in [+0.019,+0.020]$ at
@@ -104,16 +109,18 @@ We stress what this result is and is not.
 It is \emph{not} a quantitative identity between $\theta$ and
 $\bar\alpha$; the exchange angle and the scalar affinity have different
 domains and inverse responses, as discussed in Sec.~\ref{sec:gate}.
-What the \RCT~contributes is the conceptual warrant for designing a
-continuously parameterized exchange gate at all: relational coupling is
-a continuous, conservatively redistributed resource, so the natural
-two-qubit primitive is a continuous angle on the Heisenberg-exchange
-diagonal of the Weyl chamber, not a fixed point.
-Once that warrant is in place, the fidelity advantage follows from the
-gate-time scaling of decoherence on superconducting
-hardware~\cite{Krantz2019} combined with the continuous Weyl-chamber
-trajectory $(c_1,c_2,c_3) = (\theta,\theta,\theta)$ established in
-Sec.~\ref{subsec:weyl}.
+What the \RCT~contributes is the coherence-budget framing for the
+parameter selection: the redistribution structure of
+Proposition~\ref{prop:conservation} renders the per-gate cost of
+partial entanglement explicit as a fraction of $\bar\alpha$ exported into
+$S$--$E$ correlations, and the gate-time-proportional noise model of
+Eq.~\eqref{eq:peff} combined with the continuous Weyl-chamber
+trajectory $(c_1,c_2,c_3)=(\theta,\theta,\theta)$
+(Sec.~\ref{subsec:weyl}) then yields the corresponding average-gate
+fidelity advantage.
+We claim independent simulation consistency with the experimental
+continuous-fSim advantage, not novelty for the underlying hardware
+observation.
 
 \subsection{Scope and Limitations}
 
@@ -129,23 +136,35 @@ corollary in App.~\ref{app:rct-proof}), but the question of
 outside the framework's scope, as it does for all no-collapse
 interpretations.
 
-Three further limitations bound the simulation claims.
+Four further limitations bound the simulation claims.
 First, the gate-time-proportional noise model (Eq.~\eqref{eq:peff})
-is appropriate for Heisenberg exchange directly calibrated on
-superconducting hardware~\cite{Krantz2019}.
+captures only the coherence-limited contribution to gate error and is
+appropriate for Heisenberg exchange directly calibrated on suitable
+hardware~\cite{LossDiVincenzo1998,Krantz2019,Caldwell2018,Foxen2020,Abrams2020};
+coherent calibration error, leakage to non-computational levels, and
+spectator-qubit crosstalk can scale differently with $\theta$ and may
+attenuate the advantage at small $\theta$.
 On platforms where $\URA(\theta)$ must be decomposed into fixed native
 gates~\cite{VatanWilliams2004}, the fidelity advantage depends on the
-decomposition depth and may shrink or vanish; a direct hardware
-calibration of the exchange angle, as demonstrated for
-\textsc{iswap}-family gates, is required to realize the full
-advantage.
-Second, the decoherence treatment of Proposition~\ref{prop:determination}
+decomposition depth and may shrink or vanish.
+Second, the calibration overhead of providing $\URA(\theta)$ at
+arbitrary $\theta$~---~either as continuous in-situ tuning or as a
+pre-calibrated lookup~---~is not modelled here and constitutes an
+additional engineering cost that may offset per-gate savings in
+algorithm-level benchmarks~\cite{Foxen2020,Lacroix2020}.
+Third, the decoherence treatment of Proposition~\ref{prop:determination}
 adopts the Markovian approximation; non-Markovian environments introduce
 memory kernels that modify the $e^{-\gamma t}$ decay law without
-qualitatively altering the conservation result of
+qualitatively altering the redistribution result of
 Proposition~\ref{prop:conservation}, but a quantitative extension is
 deferred to future work.
-Third, the relational network $\Gamma_S$ is treated here as a collection
+Fourth, the einselection idealization assumed in
+Definition~\ref{def:alpha-tensor} is sharp only in the limit in which
+the pointer basis has converged; for finite baths and finite times the
+pointer basis is approximate, time-dependent, and partially defined,
+and the basis-dependence of $\bar\alpha$ inherits this
+approximation~\cite{Schlosshauer2005}.
+The relational network $\Gamma_S$ is also treated here as a collection
 of interaction events rather than a weighted graph; coupling-strength
 and event-ordering effects on the multi-environment generalization are
 left to subsequent development (cf.\ Sec.~\ref{sec:rqm}).
