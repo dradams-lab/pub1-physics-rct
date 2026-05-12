@@ -3,16 +3,21 @@
 %  "The Relational Coherence Theorem: Quantum Affinity,
 %   Decoherence, and a Coherence-Optimized Two-Qubit Gate"
 %
-%  Target: Physical Review A · npj Quantum Information
+%  SUBMISSION VERSION: Quantum journal
+%  Class: quantumarticle (https://quantum-journal.org)
 %  Compiler: pdflatex (Overleaf)
 %  Dr. Joshua Adams | 2026
 % ============================================================
 
-\documentclass[aps,pra,preprint,amsmath,amssymb,longbibliography]{revtex4-2}
+% Quantum journal class. Use 'unpublished' option until accepted.
+% After acceptance, replace with: accepted=YYYY-MM-DD
+\documentclass[a4paper,onecolumn,11pt,unpublished]{quantumarticle}
+\pdfoutput=1
 
 % ── Encoding & fonts ──────────────────────────────────────
-\usepackage[T1]{fontenc}
 \usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage[T1]{fontenc}
 
 % ── Mathematics ───────────────────────────────────────────
 \usepackage{amsmath,amssymb,amsthm}
@@ -33,13 +38,9 @@
 \usepackage{hyperref}
 \hypersetup{colorlinks=true, linkcolor=blue, citecolor=blue, urlcolor=blue}
 
-% ── ORCID ─────────────────────────────────────────────────
-\usepackage{orcidlink}
-
 % ── Custom commands ───────────────────────────────────────
 \newcommand{\RCT}{\textsc{rct}}
 \newcommand{\URA}{U_{\!\mathrm{RA}}}
-% (\alpha is the LaTeX primitive Greek letter; no redefinition needed.)
 \newcommand{\rhoSE}{\rho_{SE}}
 
 % ── Theorem environments ──────────────────────────────────
@@ -48,9 +49,6 @@
 \newtheorem{definition}{Definition}
 \newtheorem{remark}{Remark}
 
-% ── Bibliography style ────────────────────────────────────
-% revtex4-2 handles this automatically for PRA
-
 % =============================================================
 \begin{document}
 % =============================================================
@@ -58,18 +56,16 @@
 \title{The Relational Coherence Theorem: Quantum Affinity, Decoherence,
        and a Coherence-Optimized Two-Qubit Gate}
 
-\author{Dr. Joshua Adams \orcidlink{0000-0002-7185-9125}}
-\email{contact@joshuaadams.dev}
+\author{Joshua Adams}
 \affiliation{Independent Researcher}
+\email{contact@joshuaadams.dev}
+\orcid{0000-0002-7185-9125}
 
-\date{\today}
+\maketitle
 
-% ── Abstract (inline for revtex) ──────────────────────────
 \begin{abstract}
 \input{sections/00-abstract}
 \end{abstract}
-
-\maketitle
 
 % ── Body sections ─────────────────────────────────────────
 \input{sections/01-introduction}
@@ -85,6 +81,7 @@
 \input{sections/A-rct-proof}
 
 % ── Bibliography ──────────────────────────────────────────
+\bibliographystyle{quantum}
 \bibliography{references}
 
 \end{document}
