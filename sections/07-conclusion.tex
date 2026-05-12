@@ -29,8 +29,9 @@ total purity is conserved in the joint $S{+}E$ system
 (Proposition~\ref{prop:conservation}).
 
 The Relational Affinity Gate~$\URA(\theta)$ is motivated by the \RCT~as a
-continuously parameterized two-qubit unitary in the \textsc{iswap} family,
-characterized by Weyl chamber coordinates $(c_1, c_2, c_3) = (\theta, \theta, \theta)$.
+continuously parameterized two-qubit unitary in the
+isotropic-Heisenberg-exchange family, characterized by Weyl chamber
+coordinates $(c_1, c_2, c_3) = (\theta, \theta, \theta)$.
 The exchange angle $\theta$ is a Hamiltonian evolution parameter, not a
 direct identification with $\bar\alpha$; what the \RCT~contributes is the
 conceptual warrant for a continuously tunable exchange gate, namely that
@@ -39,8 +40,9 @@ resource (Proposition~\ref{prop:conservation}).
 Numerical simulation under gate-time-proportional depolarizing, dephasing,
 and amplitude damping noise confirms that $\URA(\pi/8)$~---~operating at
 half the duration of a full \textsc{iswap} or \textsc{cnot}~---~achieves
-fidelity advantages of $+0.019$ to $+0.040$ over fixed gates at
-$p_{\rm base} = 0.10$, consistent across all three noise models.
+fidelity advantages of $\Delta F \in [+0.038, +0.039]$ over fixed gates at
+$p_{\rm base} = 0.10$ (and $\Delta F \in [+0.019, +0.020]$ at
+$p_{\rm base} = 0.05$), consistent across all three noise models.
 
 These results establish the \RCT~as a testable formal framework: the
 Affinity Tensor is computable from the reduced state in the einselected
@@ -68,17 +70,19 @@ The author thanks \emph{[collaborators to be added]}.
 
 All simulation scripts and figure-generation code used in this work are
 publicly available at
-\url{https://github.com/adams-research/pub1-physics-rct}.
+\url{https://github.com/adams-research/pub1-physics-rct} and archived
+at Zenodo, concept DOI~\texttt{10.5281/zenodo.20130304} (evergreen).
 The repository includes:
 \texttt{figures/generate\_fig1.py} (single-qubit affinity decay,
 Fig.~\ref{fig:affinity-decay});
 \texttt{figures/generate\_fig2.py} (two-qubit independent-dephasing
 dynamics, Fig.~\ref{fig:alpha-dynamics});
-and \texttt{figures/generate\_tables.py} (analytical sanity-check for
-Tables~\ref{tab:fidelity}--\ref{tab:fidelity-all}).
-Full Qiskit/Cirq simulator notebooks reproducing the dephasing and
-amplitude-damping rows of Table~\ref{tab:fidelity-all} accompany the
-release tag and are archived at Zenodo,
-% TODO before submission: replace XXXXXXX with the actual Zenodo DOI
-% issued at release-tag deposit.
-doi:\texttt{10.5281/zenodo.XXXXXXX} (placeholder; replaced at submission).
+\texttt{figures/generate\_tables.py} (closed-form analytical
+reproduction of Tables~\ref{tab:fidelity}--\ref{tab:fidelity-all});
+and the density-matrix simulator scripts
+\texttt{figures/simulate\_table2\_qiskit.py} and
+\texttt{figures/simulate\_table2\_cirq.py}, which reproduce the
+dephasing and amplitude-damping rows of
+Table~\ref{tab:fidelity-all} via independent full-channel simulation
+in Qiskit-Aer and Cirq and agree with the analytical values to
+numerical precision.

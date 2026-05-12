@@ -93,7 +93,7 @@ entanglement capability ($\mathcal{E} = 1$) and, as the maximally entangling
 point of the Heisenberg diagonal (Sec.~\ref{subsec:weyl}), matches the
 fidelity of \textsc{iswap} under gate-time-proportional noise at equal duration.
 $\URA(\pi/8)$ (half duration, $\theta = \pi/8$) achieves measurable
-advantages: $+1.87\%$ at $p_{\rm base} = 0.05$ and $+3.75\%$ at
+advantages: $\Delta F = +0.019$ at $p_{\rm base} = 0.05$ and $+0.038$ at
 $p_{\rm base} = 0.10$ over all three fixed gates under depolarizing noise.
 
 \begin{table}[htbp]
@@ -137,26 +137,29 @@ they agree with the closed-form depolarizing values to within a few
 parts in $10^3$ and confirm that the gate-time advantage is robust
 across the three dominant decoherence mechanisms in superconducting
 hardware.
-The advantage is consistent: $\Delta F \in [+0.019, +0.040]$ at
-$p_{\rm base} = 0.10$ across depolarizing, dephasing, and amplitude damping.
+The advantage is consistent: $\Delta F \in [+0.038, +0.039]$ at
+$p_{\rm base} = 0.10$ across depolarizing, dephasing, and amplitude damping,
+and grows from $\Delta F \in [+0.019, +0.020]$ at $p_{\rm base} = 0.05$.
 
 \begin{table}[htbp]
 \centering
 \caption{Fidelity advantage $\Delta F = F[\URA(\pi/8)] - F[\mathrm{iSWAP}]$
 under gate-time-proportional noise. Depolarizing row: closed-form
-analytical values ($\Delta F = 3 p_{\rm base}/8$). Dephasing and
-amplitude-damping rows: Qiskit/Cirq density-matrix simulation under
-the corresponding per-qubit Kraus channels at the gate-time-scaled
-rate. Positive values confirm that $\URA(\pi/8)$ outperforms the fixed
-gates in all high-decoherence regimes tested.}
+analytical values ($\Delta F = 3 p_{\rm base}/8$). Dephasing
+(per-qubit Pauli-$Z$ with off-diagonal damping $1{-}\gamma$ per qubit,
+equivalent to $p_Z = \gamma/2$) and amplitude-damping (per-qubit
+standard Kraus) rows: Qiskit and Cirq density-matrix simulations agree
+to numerical precision and are reproduced by the analytical formulas
+in \texttt{figures/generate\_tables.py}. Positive values confirm that
+$\URA(\pi/8)$ outperforms the fixed gates in all noise regimes tested.}
 \label{tab:fidelity-all}
 \begin{tabular}{lccc}
 \toprule
 Noise model & $p_{\rm base} = 0.02$ & $p_{\rm base} = 0.05$ & $p_{\rm base} = 0.10$ \\
 \midrule
 Depolarizing    & $+0.0075$ & $+0.0187$ & $+0.0375$ \\
-Dephasing       & $+0.0079$ & $+0.0197$ & $+0.0389$ \\
-Amplitude damp. & $+0.0080$ & $+0.0195$ & $+0.0395$ \\
+Dephasing       & $+0.0079$ & $+0.0196$ & $+0.0385$ \\
+Amplitude damp. & $+0.0080$ & $+0.0198$ & $+0.0393$ \\
 \bottomrule
 \end{tabular}
 \end{table}
