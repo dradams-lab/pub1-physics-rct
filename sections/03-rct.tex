@@ -419,10 +419,17 @@ Proposition~\ref{prop:determination}.
 \begin{enumerate}
   \item[\emph{(i)}] \emph{Purity conservation.}
     $\mathrm{Tr}[\rho_{SE}(t)^2] = 1$ for all $t \geq 0$.
-  \item[\emph{(ii)}] \emph{Mutual information growth.}
-    Under this pointer-basis coupling the quantum mutual information
-    $I(S\!:\!E;\,t) = 2\,S(\rho_S(t))$
-    is non-decreasing, where $S(\cdot)$ is the von Neumann entropy.
+  \item[\emph{(ii)}] \emph{Mutual information growth (Markovian regime).}
+    In the Markovian pure-dephasing limit of
+    Proposition~\ref{prop:determination}~---~equivalently, when the
+    environmental branch overlaps
+    $\lvert\langle E_j(t)\vert E_i(t)\rangle\rvert$ decay monotonically
+    in $t$~---~the quantum mutual information
+    $I(S\!:\!E;\,t) = 2\,S(\rho_S(t))$ is non-decreasing, where
+    $S(\cdot)$ is the von Neumann entropy.
+    For finite non-Markovian environments the branch overlaps can revive
+    and $S(\rho_S(t))$ and $I(S\!:\!E;\,t)$ can decrease (information
+    backflow); the assertion does not extend to that regime.
   \item[\emph{(iii)}] \emph{Coherence transfer.}
     Writing $\vert\psi(t)\rangle = \sum_k c_k\,
     \vert\pi_k\rangle\vert E_k(t)\rangle$ with
@@ -452,16 +459,23 @@ and the result follows.
 For a pure bipartite state $\rho_{SE}$, the Schmidt decomposition
 gives $S(\rho_S) = S(\rho_E)$ and $S(\rho_{SE}) = 0$, hence
 $I(S\!:\!E) = S(\rho_S) + S(\rho_E) - S(\rho_{SE}) = 2\,S(\rho_S)$.
-Under the pointer-basis-coupling Hamiltonian above, the induced channel
-on $\rho_S$ between any two times $t_1 < t_2$ preserves diagonal
-populations in the pointer basis [part~(iii) below; equivalently, in
-the Markovian limit of Prop.~\ref{prop:determination},
-$\sum_k L_k^\dagger L_k = \gamma\,\mathbf{I}$], and is therefore
-unital: it preserves the maximally mixed state.
+In the Markovian regime of
+Proposition~\ref{prop:determination}~---~equivalently, monotonic
+decay of $\lvert\langle E_j(t)\vert E_i(t)\rangle\rvert$~---~the induced
+channel on $\rho_S$ between any two times $t_1 < t_2$ preserves
+diagonal populations in the pointer basis [part~(iii) below; in the
+Markovian limit, $\sum_k L_k^\dagger L_k = \gamma\,\mathbf{I}$], is
+CP-divisible, and is therefore unital: it preserves the maximally
+mixed state.
 Unital channels mix the spectrum in the majorization order,
 $\lambda(\rho_S(t_2)) \prec \lambda(\rho_S(t_1))$~\cite{NielsenChuang2000}.
 Since von Neumann entropy is Schur-concave, $S(\rho_S(t))$ is
 non-decreasing in $t$, and consequently so is $I(S\!:\!E;\,t)$.
+For non-Markovian dynamics the induced channel between $t_1$ and $t_2$
+need not be CP-divisible, the unital-channel argument fails, and
+$S(\rho_S(t))$ can decrease whenever the environmental branch overlaps
+revive; the standard physical signature is information backflow into
+$S$.
 
 \emph{Part (iii).}
 A pointer-basis interaction
