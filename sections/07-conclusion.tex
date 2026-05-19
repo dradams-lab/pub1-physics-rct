@@ -58,10 +58,28 @@ calibratable exchange coupling, and the simulated fidelity advantage
 under gate-time-proportional decoherence is the analytical consequence
 of the gate-time scaling combined with the continuous Weyl-chamber
 trajectory.
+
+The principal technical contribution of this paper is the
+\emph{Coherence-Budget Allocation Theorem} (Sec.~\ref{sec:alloc}), which
+turns the per-gate coherence-budget framing into a layerwise scheduling
+rule with a unique closed-form solution
+$\theta_\ell^\ast = \tfrac{1}{2}\arccos\bigl(\min(1,\tilde\gamma_\ell/(2\lambda^\ast))\bigr)$.
+The theorem yields three falsifiable predictions~---~distribute
+entanglement rather than concentrate it, route entanglement onto
+quieter layers, and skip layers whose effective dephasing rate
+exceeds the global shadow price~---~which a reference scheduler
+(\texttt{figures/rcb\_optimizer.py}) verifies on a multi-layer 2-qubit
+benchmark.
+Against a concentrated full-entangler baseline the optimal schedule
+yields a final-state fidelity advantage of up to $\Delta F = +0.040$ at
+$\gamma = 0.15$, $E_{\rm target}\!=\!1$, $L\!=\!8$; against
+uniform-$\theta$ on heterogeneous noise it yields $\Delta F = +0.025$
+at the same target.
+
 We make no novelty claim for the gate itself, nor for the underlying
-identities of the four propositions; the framework's utility is as a
-$\bar\alpha$-language diagnostic for circuit-level coherence-budget
-reasoning.
+identities of the four propositions; the framework's utility is the
+$\bar\alpha$-language diagnostic and the allocation theorem it
+supports as a circuit-level scheduling rule.
 
 Philosophical implications of the relational reading are deferred to
 the companion paper~\cite{Adams2026Philosophy}.

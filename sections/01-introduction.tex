@@ -79,13 +79,73 @@ entanglers in high-decoherence regimes, consistent with the
 continuous-fSim experimental advantage reported on
 Sycamore~\cite{Foxen2020}.
 
+The technical contribution of this paper is the
+\emph{Coherence-Budget Allocation Theorem} of
+Sec.~\ref{sec:alloc}: under Markovian gate-time-proportional
+decoherence with effective per-layer rates $\tilde\gamma_\ell$ and
+total entangling target
+$E_{\rm target} = \sum_\ell |\sin 2\theta_\ell|$, the unique
+cost-minimizing exchange-angle schedule is
+$\theta_\ell^\ast = \tfrac{1}{2}\arccos\bigl(\min(1,\tilde\gamma_\ell/(2\lambda^\ast))\bigr)$,
+with shadow price $\lambda^\ast$ fixed by the budget.
+The theorem yields three falsifiable predictions: distribute
+entanglement across layers rather than concentrate it (uniform-noise
+case); route entanglement onto quieter layers (heterogeneous case);
+skip layers whose effective rate exceeds the global shadow price.
+A reference scheduler implementing the theorem
+(\texttt{figures/rcb\_optimizer.py}) beats both fixed-gate and
+uniform-$\theta$ baselines in multi-layer density-matrix simulation.
+
+\subsection{From Substance Thinking to Relational-Affinity Thinking}
+\label{sec:substance-to-relational}
+
+The broader purpose of the \RCF~is not to replace standard quantum
+mechanics, nor to deny the validity of Newtonian mechanics in its
+classical domain.
+Rather, it is to displace Newtonian \emph{substance}-thinking as the
+default ontology carried into quantum theory.
+In the Newtonian picture, one begins with separable bodies possessing
+intrinsic properties, and relations are then introduced as secondary
+interactions among already-defined things.
+In the relational-affinity picture developed here, one begins instead
+with interaction, coherence, and environment-relative definiteness;
+what appear classically as separable objects are stable limiting
+patterns produced by decoherence, einselection, and the suppression
+of pointer-basis off-diagonals~\cite{Zurek2003,Schlosshauer2005}.
+
+The scalar affinity $\bar\alpha(S,E)$ is introduced as a diagnostic
+for this transition.
+When $\bar\alpha > 0$, the reduced state $\rho_S$ retains pointer-basis
+coherence and cannot be represented as a classical mixture of definite
+pointer states (Proposition~\ref{prop:indefiniteness}).
+When $\bar\alpha = 0$, $\rho_S$ is diagonal in the pointer basis
+selected by the system--environment coupling, and the classical
+object description becomes valid.
+The \RCF~therefore does not treat classical separability as
+fundamental; it treats separability as the $\bar\alpha \to 0$ limit
+of relational decoherence (Proposition~\ref{prop:determination}).
+
+This reframing is modest but important.
+It does not claim that affinity is a new force, that quantum mechanics
+requires a new dynamical law, or that relational quantum mechanics is
+uniquely selected by Bell-type results.
+Rather, it supplies an operational vocabulary for tracking how quantum
+systems move from relational coherence to classical definiteness.
+Newtonian mechanics remains an excellent approximation for the
+resulting stable patterns, but it is no longer the metaphysical
+starting point.
+The starting point is relation; the object is the emergent limit.
+
 The paper is organized as follows.
 Section~\ref{sec:background} reviews Bell's theorem, RQM, decoherence
 and einselection, and the resource theory of coherence.
 Section~\ref{sec:rct} states and proves the four \RCF~propositions.
 Section~\ref{sec:gate} defines $\URA(\theta)$, locates it in the Weyl
 chamber, and derives its entanglement capability.
-Section~\ref{sec:sim} reports the numerical simulations.
+Section~\ref{sec:sim} reports the per-gate numerical simulations.
+Section~\ref{sec:alloc} introduces the Relational Coherence Cost,
+proves the Coherence-Budget Allocation Theorem, and benchmarks the
+resulting scheduler against fixed-gate and uniform-$\theta$ baselines.
 Sections~\ref{sec:disc} and~\ref{sec:conc} discuss scope, limitations,
 and conclude.
 Full proofs appear in Appendix~\ref{app:rct-proof}.

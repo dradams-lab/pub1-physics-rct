@@ -1,9 +1,9 @@
-# The Relational Coherence Framework
+# Relational Coherence Budgeting for Tunable Exchange Gates
 
 [![DOI](https://zenodo.org/badge/1234283634.svg)](https://doi.org/10.5281/zenodo.20130304)
 [![License: CC BY 4.0](https://img.shields.io/badge/License-CC_BY_4.0-lightgrey.svg)](https://creativecommons.org/licenses/by/4.0/)
 
-**A Pointer-Basis Coherence Budget for Tunable Heisenberg-Exchange Gates**
+**Pointer-Basis Affinity, Decoherence, and Exchange-Angle Coherence Cost**
 
 Author: Dr. Joshua Adams ([ORCID 0000-0002-7185-9125](https://orcid.org/0000-0002-7185-9125)), Independent Researcher
 
@@ -31,8 +31,9 @@ Numerical simulations in Qiskit and Cirq under gate-time-proportional depolarizi
 ```bibtex
 @article{Adams2026RCF,
   author  = {Adams, Joshua},
-  title   = {The Relational Coherence Framework: A Pointer-Basis Coherence
-             Budget for Tunable {Heisenberg}-Exchange Gates},
+  title   = {Relational Coherence Budgeting for Tunable Exchange Gates:
+             Pointer-Basis Affinity, Decoherence, and Exchange-Angle
+             Coherence Cost},
   year    = {2026},
   doi     = {10.5281/zenodo.20130304},
   note    = {Zenodo preprint. Concept DOI (evergreen).}

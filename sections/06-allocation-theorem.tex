@@ -1,0 +1,419 @@
+% ── SECTION: COHERENCE-BUDGET ALLOCATION (~v1.0 new content) ────────────────
+%   New v1.0 contribution: the allocation theorem, scheduling algorithm,
+%   and multi-layer fidelity benchmark.
+%   DRAFT — to be integrated into pub1 as §6 (renumbering §5 → §5 "per-gate
+%   validation"; current §6 Discussion → §7).
+
+\section{Coherence-Budget Allocation for Tunable Exchange Schedules}
+\label{sec:alloc}
+
+The per-gate fidelity comparison of Sec.~\ref{sec:sim} establishes
+that, on hardware with directly calibratable Heisenberg exchange,
+$\URA(\theta)$ at $\theta < \pi/4$ accumulates less coherence-limited
+error than a full maximally entangling primitive at equal entangling
+capability requirement.
+That observation, however, says nothing about how to \emph{allocate}
+entanglement across the gate layers of a circuit whose total
+entanglement target is fixed.
+This section turns the per-gate fidelity statement into a layerwise
+optimization: given a coherence budget and an entanglement target,
+how should a noise-aware compiler distribute exchange angles across
+the circuit?
+
+\subsection{Relational Coherence Cost}
+\label{subsec:cost}
+
+We define the per-layer cost of a tunable exchange gate
+$\URA(\theta_\ell)$ as the local pointer-basis coherence consumed by
+the gate:
+%
+\begin{equation}
+\label{eq:layer-cost}
+C_{\RCF}^{(\ell)} \;\equiv\; \bar\alpha_\ell^{\rm pre} - \bar\alpha_\ell^{\rm post}
+\;=\; \bar\alpha_\ell^{\rm pre}\bigl(1 - e^{-\gamma_\ell \kappa\, \theta_\ell}\bigr),
+\end{equation}
+%
+where $\gamma_\ell$ is the local pointer-basis dephasing rate active
+during layer $\ell$ (which may vary across layers due to hardware
+heterogeneity), $t_\ell = \kappa\, \theta_\ell$ is the exchange-pulse
+duration on the substrate~\cite{Krantz2019}, and the exponential
+form follows from
+Proposition~\ref{prop:determination} in its uniform-rate Markovian
+regime.
+The total circuit cost is
+%
+\begin{equation}
+\label{eq:circuit-cost}
+C_{\RCF}(\mathcal{U}) \;=\; \sum_{\ell=1}^{L} C_{\RCF}^{(\ell)}.
+\end{equation}
+%
+To leading order in $\gamma_\ell \kappa\, \theta_\ell \ll 1$
+(the small-cost regime in which Eq.~\eqref{eq:peff}'s
+gate-time-proportional model itself is justified, Sec.~\ref{sec:sim}),
+%
+\begin{equation}
+\label{eq:linear-cost}
+C_{\RCF}(\mathcal{U}) \;\approx\;
+  \sum_{\ell=1}^{L} \tilde\gamma_\ell\, \theta_\ell,
+  \qquad \tilde\gamma_\ell \equiv \bar\alpha_\ell^{\rm pre}\, \gamma_\ell\, \kappa.
+\end{equation}
+%
+The effective rate $\tilde\gamma_\ell$ folds the substrate's exchange
+time-constant and the layer's residual pre-gate coherence into a
+single per-layer cost coefficient.
+
+\subsection{Proposition~V: Exchange-Angle Coherence Cost}
+\label{subsec:prop5}
+
+The cost per layer admits a sharp closed form for the
+directly-calibrated exchange-gate case treated throughout this paper.
+
+\begin{proposition}[Exchange-angle coherence cost, Markovian regime]
+\label{prop:exchange-cost}
+Under uniform Markovian pointer-basis dephasing at rate $\gamma$ and
+direct exchange-gate duration $t(\theta) = t_{\pi/4}\,\theta/(\pi/4)$
+(Sec.~\ref{sec:sim}), the layerwise scalar-affinity loss induced by
+$\URA(\theta)$ on a layer with input affinity $\bar\alpha_{\rm in}$ is
+%
+\begin{equation}
+\label{eq:exchange-cost}
+\Delta\bar\alpha(\theta)
+  \;=\; \bar\alpha_{\rm in}\!\left[\,
+        1 - \exp\!\left(-\gamma\,t_{\pi/4}\,\frac{\theta}{\pi/4}\right)\right].
+\end{equation}
+%
+In the small-error regime $\gamma\, t_{\pi/4}\,\theta/(\pi/4) \ll 1$,
+%
+\begin{equation}
+\label{eq:exchange-cost-linear}
+\Delta\bar\alpha(\theta)
+  \;\approx\; \gamma\,t_{\pi/4}\,\frac{\theta}{\pi/4}\;\bar\alpha_{\rm in}.
+\end{equation}
+%
+The per-layer coherence cost is therefore first-order linear in the
+exchange angle $\theta$.
+\end{proposition}
+
+\begin{proof}
+By Proposition~\ref{prop:determination} (Markovian regime), the scalar
+affinity decays as
+$\bar\alpha(t) = \bar\alpha_{\rm in}\,e^{-\gamma t}$.
+Substituting $t = t_{\pi/4}\,\theta/(\pi/4)$ gives
+$\bar\alpha^{\rm post} = \bar\alpha_{\rm in}\,\exp(-\gamma\,t_{\pi/4}\,\theta/(\pi/4))$,
+and $\Delta\bar\alpha \equiv \bar\alpha_{\rm in} - \bar\alpha^{\rm post}$
+gives Eq.~\eqref{eq:exchange-cost}.
+The linearization Eq.~\eqref{eq:exchange-cost-linear} follows from
+$1 - e^{-x} = x + O(x^2)$. $\square$
+\end{proof}
+
+\begin{remark}[Linear cost matches Eq.~\eqref{eq:linear-cost}]
+The leading-order form Eq.~\eqref{eq:exchange-cost-linear} reproduces
+the per-layer term in Eq.~\eqref{eq:linear-cost} with effective rate
+$\tilde\gamma_\ell = \bar\alpha_\ell^{\rm pre}\,\gamma_\ell\,t_{\pi/4}/(\pi/4)$;
+the constant $\kappa = t_{\pi/4}/(\pi/4)$ is the substrate's
+exchange-time scale per unit angle.
+The allocation problem of Sec.~\ref{subsec:problem} below is therefore
+the layer-aggregated form of
+Proposition~\ref{prop:exchange-cost}.
+\end{remark}
+
+\subsection{Corollary: Entanglement Efficiency}
+\label{subsec:eff}
+
+Combining Proposition~\ref{prop:exchange-cost} with the
+entanglement-capability formula
+$\mathcal{E}(\theta) = |\sin 2\theta|$ (Sec.~\ref{subsec:entcap})
+yields the per-gate entanglement-per-coherence-cost ratio.
+
+\begin{corollary}[Entanglement efficiency]
+\label{cor:eta}
+In the small-error regime of
+Proposition~\ref{prop:exchange-cost}, the entanglement
+generated per unit of pointer-basis coherence spent on a single
+exchange gate is
+%
+\begin{equation}
+\label{eq:eta}
+\eta(\theta) \;\equiv\;
+  \frac{\mathcal{E}(\theta)}{\Delta\bar\alpha(\theta)}
+  \;\propto\; \frac{\sin 2\theta}{\theta},
+\end{equation}
+%
+suppressing the constant factor
+$\bigl(\gamma\,t_{\pi/4}\,\bar\alpha_{\rm in}/(\pi/4)\bigr)^{-1}$.
+The ratio $\sin(2\theta)/\theta$ is strictly decreasing on
+$(0, \pi/4]$, with $\lim_{\theta\to 0^+}\sin(2\theta)/\theta = 2$
+and $\sin(\pi/2)/(\pi/4) = 4/\pi \approx 1.273$.
+\end{corollary}
+
+\begin{remark}[Efficiency vs.\ capacity]
+Corollary~\ref{cor:eta} formalizes the tension exploited by the
+allocation theorem.
+Small-$\theta$ gates are most \emph{efficient} per unit coherence
+spent (high $\eta$), but produce small absolute entanglement
+$\mathcal{E}(\theta) \approx 2\theta$ per gate.
+Large-$\theta$ gates are less efficient ($\eta \to 4/\pi$ at the
+$\sqrt{\textsc{swap}}$ point) but achieve more capacity per gate.
+The Coherence-Budget Allocation Theorem
+(Sec.~\ref{subsec:thm-alloc}) resolves this tension by distributing
+entanglement across layers when $L > 1$ allows, and concentrates it
+when noise heterogeneity forces a tradeoff.
+\end{remark}
+
+\subsection{The Allocation Problem}
+\label{subsec:problem}
+
+For a circuit with required total entangling capability
+$E_{\rm target}$ accumulated across $L$ exchange layers, each
+contributing $\mathcal{E}(\theta_\ell) = \sin(2\theta_\ell)$
+(Sec.~\ref{subsec:entcap}; we restrict to the entangling half
+$\theta_\ell \in [0, \pi/4]$ on which $\sin(2\theta_\ell)$ is
+increasing), the coherence-optimal schedule solves
+%
+\begin{equation}
+\label{eq:alloc-problem}
+\begin{aligned}
+\text{minimize}\quad & C_{\RCF}(\boldsymbol\theta) \;=\;
+   \sum_{\ell=1}^L \tilde\gamma_\ell\, \theta_\ell \\
+\text{subject to}\quad & \sum_{\ell=1}^L \sin(2\theta_\ell) \;\geq\; E_{\rm target}, \\
+& 0 \leq \theta_\ell \leq \pi/4, \qquad \ell = 1,\dots, L.
+\end{aligned}
+\end{equation}
+%
+The objective is linear (hence convex) and the constraint set is
+convex: $\sum_\ell \sin(2\theta_\ell)$ is concave on
+$[0,\pi/4]^L$ (second derivative $-4\sin 2\theta_\ell \leq 0$
+component-wise), so the superlevel set
+$\{\boldsymbol\theta : \sum_\ell \sin(2\theta_\ell) \geq E_{\rm target}\}$
+is convex.
+Minimizing a linear functional on a convex set yields a unique
+minimizer (interior) or a minimizing face (boundary).
+
+\subsection{The Coherence-Budget Allocation Theorem}
+\label{subsec:thm-alloc}
+
+\begin{theorem}[Coherence-Budget Allocation]
+\label{thm:alloc}
+Let $\tilde\gamma_1,\dots,\tilde\gamma_L > 0$ be the effective
+per-layer dephasing rates of Eq.~\eqref{eq:linear-cost} and let
+$E_{\rm target} \in (0, L)$.
+The unique solution of the convex program
+Eq.~\eqref{eq:alloc-problem} is given layerwise by
+%
+\begin{equation}
+\label{eq:alloc-solution}
+\theta_\ell^{\!*} \;=\;
+  \frac{1}{2}\,\arccos\!\Bigl(
+    \min\!\Bigl(1,\;\tfrac{\tilde\gamma_\ell}{2\lambda^{\!*}}\Bigr)
+  \Bigr),
+  \qquad \ell = 1,\dots,L,
+\end{equation}
+%
+where the shadow price $\lambda^{\!*} > 0$ is the unique
+solution of the budget constraint
+%
+\begin{equation}
+\label{eq:lambda-eq}
+\sum_{\ell=1}^L \sin\!\bigl(2\theta_\ell^{\!*}(\lambda^{\!*})\bigr)
+\;=\; E_{\rm target}.
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+The Lagrangian is
+$\mathcal{L}(\boldsymbol\theta,\lambda,\boldsymbol\mu,\boldsymbol\nu)
+= \sum_\ell \tilde\gamma_\ell\,\theta_\ell
+- \lambda\!\bigl(\sum_\ell \sin 2\theta_\ell - E_{\rm target}\bigr)
+- \sum_\ell \mu_\ell\,\theta_\ell
++ \sum_\ell \nu_\ell\,(\theta_\ell - \tfrac{\pi}{4})$
+with $\lambda,\mu_\ell,\nu_\ell \geq 0$.
+Stationarity $\partial\mathcal{L}/\partial\theta_\ell = 0$ gives
+%
+\begin{equation*}
+\tilde\gamma_\ell - 2\lambda \cos 2\theta_\ell - \mu_\ell + \nu_\ell = 0.
+\end{equation*}
+%
+For an interior layer ($0 < \theta_\ell^* < \pi/4$, complementary
+slackness $\mu_\ell = \nu_\ell = 0$) this reduces to
+$\cos 2\theta_\ell^* = \tilde\gamma_\ell/(2\lambda)$,
+giving Eq.~\eqref{eq:alloc-solution} when the argument is in $[0,1]$.
+For the lower boundary $\theta_\ell^* = 0$ ($\nu_\ell = 0$,
+$\mu_\ell \geq 0$), stationarity requires
+$\tilde\gamma_\ell - 2\lambda \geq 0$, i.e., $\tilde\gamma_\ell \geq 2\lambda$,
+which is exactly the condition $\tilde\gamma_\ell/(2\lambda) \geq 1$
+in Eq.~\eqref{eq:alloc-solution} (the $\min(\cdot)$ clip).
+The upper boundary $\theta_\ell^* = \pi/4$ requires $\tilde\gamma_\ell = 0$,
+excluded by hypothesis.
+
+Existence and uniqueness of $\lambda^{\!*}$:
+$\sin 2\theta_\ell^*(\lambda)$ is monotone non-decreasing and
+continuous in $\lambda$ on $(0,\infty)$, with limits $0$ as $\lambda\to 0^+$
+and $1$ as $\lambda\to\infty$.
+Hence $\Sigma(\lambda) \equiv \sum_\ell \sin 2\theta_\ell^*(\lambda)$
+is continuous and monotone, mapping $(0,\infty)$ onto $(0, L)$;
+$\Sigma(\lambda^{\!*}) = E_{\rm target} \in (0,L)$ has a unique
+solution.
+Global optimality follows from the convexity of the program. $\square$
+\end{proof}
+
+\subsection{Three Falsifiable Predictions}
+\label{subsec:predictions}
+
+Three predictions follow immediately from Eq.~\eqref{eq:alloc-solution}
+and are testable in numerical simulation.
+
+\textbf{P1 (Distribution beats concentration, uniform-$\tilde\gamma$).}
+For $\tilde\gamma_\ell = \tilde\gamma$ uniform, the optimal schedule is
+$\theta_\ell^* = \tfrac{1}{2}\arcsin(E_{\rm target}/L)$ on all layers,
+with total cost
+$C^* = \tilde\gamma\,L\cdot \tfrac{1}{2}\arcsin(E_{\rm target}/L)$.
+By the strict concavity of $\arcsin$,
+$L \arcsin(E_{\rm target}/L) < \arcsin(E_{\rm target})$ for $L > 1$
+and $E_{\rm target} \in (0,1]$;
+hence the optimal distributed schedule strictly beats the cost of
+implementing $E_{\rm target}$ in a single partial entangler.
+
+\textbf{P2 (Quieter qubits receive more entanglement).}
+For heterogeneous $\tilde\gamma_\ell$, layers with smaller
+$\tilde\gamma_\ell$ have smaller $\tilde\gamma_\ell/(2\lambda^{\!*})$,
+hence smaller $\cos 2\theta_\ell^*$, hence larger $\theta_\ell^*$.
+The optimal compiler routes entangling angle toward quieter substrates.
+
+\textbf{P3 (Skip threshold for noisy qubits).}
+Layers with $\tilde\gamma_\ell \geq 2\lambda^{\!*}$ are clipped to
+$\theta_\ell^* = 0$: the optimum spends no coherence on layers whose
+local cost exceeds the shadow price of the global budget constraint,
+provided quieter alternatives suffice to meet $E_{\rm target}$.
+
+P1 is a no-heterogeneity baseline statement;
+P2 and P3 are the practically distinguishing predictions on
+realistic hardware whose dephasing rates vary across qubit pairs.
+
+\subsection{Scheduling Algorithm}
+\label{subsec:algorithm}
+
+The shadow-price equation Eq.~\eqref{eq:lambda-eq} is a monotone
+one-dimensional root-finding problem and admits a Brent-method
+solution in milliseconds for $L \lesssim 10^3$.
+The full algorithm is:
+
+\begin{enumerate}
+  \item Input: layer rates $\{\tilde\gamma_\ell\}_{\ell=1}^L$,
+        entanglement target $E_{\rm target}$.
+  \item Bracket $\lambda$: find $[\lambda_{\rm lo}, \lambda_{\rm hi}]$
+        such that $\Sigma(\lambda_{\rm lo}) < E_{\rm target} < \Sigma(\lambda_{\rm hi})$.
+  \item Solve $\Sigma(\lambda^{\!*}) = E_{\rm target}$ by Brent's method.
+  \item Return $\theta_\ell^* = \tfrac{1}{2}\arccos(\min(1,\tilde\gamma_\ell/(2\lambda^{\!*})))$.
+\end{enumerate}
+
+The reference implementation (\texttt{figures/rcb\_optimizer.py})
+runs in $O(L \log(1/\epsilon))$ time for tolerance $\epsilon$ and is
+included with this paper.
+
+\subsection{Multi-Layer Benchmark}
+\label{subsec:benchmark-alloc}
+
+We test Theorem~\ref{thm:alloc} against two naive scheduling
+baselines on a multi-layer 2-qubit circuit with per-layer independent
+dephasing.
+
+\textbf{Setup.}
+A circuit of $L = 8$ layers applies $\URA(\theta_\ell)$ followed by
+independent per-qubit pointer-basis dephasing at rate $\gamma_\ell$
+for duration $t_\ell = \kappa\,\theta_\ell$, starting from
+$\rho_0 = \ket{+0}\!\bra{+0}$.
+For each entanglement target $E_{\rm target} \in [0.25, 3.5]$, we
+compare three strategies:
+\begin{itemize}
+  \item \textbf{RCB-optimal} schedule per Theorem~\ref{thm:alloc};
+  \item \textbf{Uniform $\theta$}: $\theta_\ell = \tfrac{1}{2}\arcsin(E_{\rm target}/L)$
+        on all layers (the optimal schedule when $\tilde\gamma_\ell$ is uniform);
+  \item \textbf{Concentrated}: place full entanglers
+        $\theta_\ell = \pi/4$ on the $\lfloor E_{\rm target}\rfloor$
+        quietest layers, residual on the next-quietest.
+\end{itemize}
+For each strategy we compute the final reduced-state fidelity
+$F = \mathrm{Tr}[\sqrt{\sqrt{\rho_{\rm noisy}}\,\rho_{\rm ideal}\,\sqrt{\rho_{\rm noisy}}}]^2$
+against the noiseless target unitary.
+
+\textbf{Results.}
+Figure~\ref{fig:rcb-sweep} shows fidelity (top row) and coherence cost
+(bottom row) as $E_{\rm target}$ varies, for three $\gamma$ regimes:
+uniform low ($\gamma = 0.05$), uniform high ($\gamma = 0.15$), and
+heterogeneous ($\gamma \in [0.02, 0.30]$).
+The RCB-optimal schedule meets or exceeds both baselines for every
+$E_{\rm target}$ tested, with the largest fidelity advantage in the
+high-$\gamma$ regime (e.g., $\Delta F = +0.040$ over concentrated at
+$E_{\rm target} = 1$, $\gamma = 0.15$) and a substantial advantage
+over uniform-$\theta$ in the heterogeneous regime
+($\Delta F = +0.025$ at $E_{\rm target} = 1$).
+At representative targets:
+
+\begin{center}
+\small
+\begin{tabular}{lccc}
+\toprule
+Regime & $\Delta F_{\rm opt - conc}$ at $E\!=\!1$ & at $E\!=\!1.5$ & at $E\!=\!2$ \\
+\midrule
+Uniform low ($\gamma\!=\!0.05$) & $+0.014$ & $+0.014$ & $+0.013$ \\
+Uniform high ($\gamma\!=\!0.15$) & $\mathbf{+0.040}$ & $+0.037$ & $+0.033$ \\
+Heterogeneous & $+0.005$ & $+0.004$ & $+0.001$ \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\begin{figure*}[htbp]
+\centering
+\includegraphics[width=0.9\textwidth]{fig3_rcb_sweep}
+\caption{
+  Coherence-Budget Allocation benchmark on an $L\!=\!8$ layer
+  two-qubit circuit with per-layer independent pointer-basis dephasing.
+  \textbf{Top row:} final-state fidelity vs noiseless target, as
+  a function of entanglement target $E_{\rm target}$, for the RCB-optimal
+  schedule (Eq.~\eqref{eq:alloc-solution}, solid),
+  uniform-$\theta$ baseline (dashed), and concentrated full-entangler
+  baseline (dotted).
+  \textbf{Bottom row:} coherence cost
+  $\sum_\ell \tilde\gamma_\ell\,\theta_\ell$ for the same schedules.
+  \textbf{Columns:} uniform low noise
+  ($\gamma\!=\!0.05$), uniform high noise ($\gamma\!=\!0.15$), and
+  heterogeneous noise ($\gamma \in [0.02, 0.30]$).
+  The RCB-optimal schedule equals or exceeds both baselines in
+  fidelity across all $E_{\rm target}$; the largest advantage appears
+  in the high-$\gamma$ regime (Prediction~P1) and in the
+  heterogeneous regime against uniform $\theta$ (Prediction~P2).
+  Generated by \texttt{figures/benchmark\_sweep.py}.
+}
+\label{fig:rcb-sweep}
+\end{figure*}
+
+P1 is visible in the uniform-$\gamma$ columns: distribution always
+beats concentration.
+P2 is visible in the heterogeneous column: RCB-optimal beats
+uniform-$\theta$ by routing entanglement onto the
+$\gamma\!=\!0.02$ layers and zero onto the $\gamma\!=\!0.30$ layer
+(P3 in action).
+The benchmark validates Theorem~\ref{thm:alloc} as a per-circuit,
+not merely per-gate, statement of the coherence-budget framing.
+
+\subsection{Scope of Theorem~\ref{thm:alloc}}
+\label{subsec:alloc-scope}
+
+The allocation theorem holds under the assumptions made explicit in
+Sec.~\ref{sec:sim}: (i)~Markovian pure-dephasing dynamics in the
+einselected pointer basis, with rates that are constant within each
+gate window;
+(ii)~gate-time-proportional coherence-limited error (small-$p$
+leading-order linearization of Eq.~\eqref{eq:peff});
+(iii)~direct exchange calibration so that $\URA(\theta)$ is realized
+as a single tunable pulse rather than decomposed into fixed native
+gates.
+Where (iii) fails, the constant $\kappa$ relating $\theta$ to
+duration in Eq.~\eqref{eq:layer-cost} is replaced by a
+decomposition-depth--dependent factor; the optimization problem and
+its solution form are unchanged but the numerical advantage shrinks
+as in Sec.~\ref{sec:disc}.
+Coherent calibration errors, leakage to non-computational levels, and
+crosstalk are not modelled by Eq.~\eqref{eq:peff} and can shift the
+optimum; their incorporation as additional per-layer cost terms is
+straightforward and preserves the convex-program structure.
