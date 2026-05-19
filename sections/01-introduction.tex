@@ -53,7 +53,13 @@ hardware engineering line: from Loss--DiVincenzo
 spin-qubit exchange~\cite{LossDiVincenzo1998}, through parametric
 entangling gates on transmon platforms~\cite{Caldwell2018}, to the
 continuous fSim/$XY$ families demonstrated on
-Sycamore~\cite{Foxen2020,Abrams2020,Lacroix2020}.
+Sycamore~\cite{Foxen2020,Abrams2020,Lacroix2020} and the
+continuously parameterized $\mathcal{ZZ}$ (M\o{}lmer--S\o{}rensen)
+gates studied for trapped-ion hardware~\cite{Yale2025NoiseAware}.
+Noise-aware compilation exploiting continuous parameterization has
+been demonstrated to improve circuit fidelity by routing heavier
+entangling weight to better-performing gate pairs and removing
+low-impact entangling operations~\cite{Yale2025NoiseAware}.
 Building on this literature, we examine the isotropic Heisenberg-exchange
 unitary
 $\URA(\theta) = \exp[-i\theta(\sigma_x{\otimes}\sigma_x +
@@ -92,6 +98,13 @@ The theorem yields three falsifiable predictions: distribute
 entanglement across layers rather than concentrate it (uniform-noise
 case); route entanglement onto quieter layers (heterogeneous case);
 skip layers whose effective rate exceeds the global shadow price.
+Qualitatively similar angle-routing and gate-removal behaviours have
+been demonstrated empirically through compiler optimizations for
+continuously parameterized $\mathcal{ZZ}$ gates on trapped-ion
+hardware~\cite{Yale2025NoiseAware}; the present work differs by
+deriving these behaviours analytically as the unique solution of a
+convex coherence-budget program grounded in the einselection-derived
+scalar affinity $\bar\alpha$ (Sec.~\ref{subsec:prior-compilation}).
 A reference scheduler implementing the theorem
 (\texttt{figures/rcb\_optimizer.py}) beats both fixed-gate and
 uniform-$\theta$ baselines in multi-layer density-matrix simulation.

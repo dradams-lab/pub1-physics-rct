@@ -86,6 +86,43 @@ The resource-theory monotones quantify static coherence relative to a
 chosen basis; $\bar\alpha$ is a kindred quantifier placed in a
 dynamical, conservation-aware, einselection-grounded setting.
 
+\subsection{Relation to Noise-Aware Compilation for Continuously Parameterized Gates}
+\label{subsec:prior-compilation}
+
+Recent noise-aware compilation work for continuously parameterized two-qubit gates
+has demonstrated hardware-level results qualitatively consistent with the predictions
+of Theorem~\ref{thm:alloc}.
+Yale et al.~\cite{Yale2025NoiseAware} implement noise-aware compilations on a
+trapped-ion QSCOUT processor using continuously parameterized $\mathcal{ZZ}$ gates
+(M\o{}lmer--S\o{}rensen interaction) through the Superstaq compiler platform,
+and show that compiler optimizations can reduce total entangling angle, assign
+heavier $\mathcal{ZZ}$-angle participation to better-performing qubit pairs, and
+remove the least impactful $\mathcal{ZZ}$ operations to improve circuit fidelity.
+These empirical observations correspond qualitatively to Predictions~P2 and~P3
+of Theorem~\ref{thm:alloc}: heavier entangling weight is routed toward quieter
+gate pairs~(P2), and gates whose marginal fidelity contribution is below threshold
+are zeroed out~(P3).
+
+The present work is complementary in both derivation and scope.
+Yale et al.\ begin from calibrated hardware performance data and apply
+compiler heuristics optimized for the trapped-ion $\mathcal{ZZ}$ (Mølmer--Sørensen)
+gateset on QSCOUT; their central result is empirical validation that such
+optimizations improve quantum volume on real hardware.
+The \RCF~begins instead from a pointer-basis coherence-cost functional
+$\mathcal{C}_{\RCF}(\mathcal{U})$ (Eq.~\eqref{eq:circuit-cost}), derived from
+the einselection-grounded scalar affinity $\bar\alpha$ via
+Proposition~\ref{prop:determination}, and derives a \emph{closed-form}
+exchange-angle allocation rule (Eq.~\eqref{eq:alloc-solution}) from
+KKT optimality conditions on that functional.
+To our knowledge, prior noise-aware compilation work for continuously
+parameterized two-qubit gates has arrived at qualitatively similar routing
+and skipping behaviours through compiler search over calibrated hardware metrics.
+The contribution claimed here is not the use of continuous gates, noise-aware
+angle routing, or the omission of low-impact operations~---~all demonstrated
+in~\cite{Yale2025NoiseAware}~---~but the derivation of those behaviours as the
+unique analytic solution to a convex coherence-budget program grounded in
+einselection.
+
 \subsection{The Gate-Time Advantage and its Interpretation}
 
 The simulation results of Sec.~\ref{sec:sim} are an
