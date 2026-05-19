@@ -3,7 +3,7 @@
 [![DOI](https://zenodo.org/badge/1234283634.svg)](https://doi.org/10.5281/zenodo.20130304)
 [![License: CC BY 4.0](https://img.shields.io/badge/License-CC_BY_4.0-lightgrey.svg)](https://creativecommons.org/licenses/by/4.0/)
 
-**Quantum Affinity, Decoherence, and a Coherence-Optimized Two-Qubit Gate**
+**A Pointer-Basis Coherence Budget for Tunable Heisenberg-Exchange Gates**
 
 Author: Dr. Joshua Adams ([ORCID 0000-0002-7185-9125](https://orcid.org/0000-0002-7185-9125)), Independent Researcher
 
@@ -20,7 +20,7 @@ The framework collects four standard identities in the language of ᾱ:
 3. **Coherence–affinity correspondence** — ᾱ ranges continuously over [0,1], with extrema at full pointer-basis decoherence and at the equal-weight pointer-basis pure superposition
 4. **Coherence redistribution** — under closed unitary S–E evolution, local pointer-basis coherence is redistributed into S–E correlations rather than destroyed
 
-Building on existing parametric-gate work, this paper examines the **Relational Affinity Gate** U_RA(θ) = exp[−iθ(σ_x⊗σ_x + σ_y⊗σ_y + σ_z⊗σ_z)/2], a continuously parameterized two-qubit unitary on the Heisenberg-exchange diagonal of the Weyl chamber of SU(4)/[SU(2)⊗SU(2)] with exchange angle θ ∈ [0, π/2]. On platforms where Heisenberg-exchange pulse duration scales linearly with θ, U_RA(π/8) accumulates half the coherence-limited error of a full θ = π/4 entangler.
+Building on existing parametric-gate work, this paper examines the **tunable isotropic-exchange gate** U_RA(θ) = exp[−iθ(σ_x⊗σ_x + σ_y⊗σ_y + σ_z⊗σ_z)/2], a two-qubit unitary on the Heisenberg-exchange diagonal of the Weyl chamber of SU(4)/[SU(2)⊗SU(2)] with exchange angle θ ∈ [0, π/2]. The gate is the standard isotropic-exchange family; within the RCF diagnostic we refer to its use as the relational-affinity parameterization rather than as a new gate primitive. On platforms where Heisenberg-exchange pulse duration scales linearly with θ, U_RA(π/8) accumulates half the coherence-limited error of a full θ = π/4 entangler.
 
 Numerical simulations in Qiskit and Cirq under gate-time-proportional depolarizing, dephasing, and amplitude-damping noise yield a per-gate fidelity advantage of ΔF ∈ [+0.038, +0.039] at p_base = 0.10 over CNOT, iSWAP, and CZ, consistent with the experimental continuous-fSim advantage reported by Foxen et al. on Sycamore. The advantage is contingent on direct exchange calibration; on platforms where U_RA(θ) must be decomposed into fixed native primitives, the advantage may shrink or vanish.
 
@@ -31,8 +31,8 @@ Numerical simulations in Qiskit and Cirq under gate-time-proportional depolarizi
 ```bibtex
 @article{Adams2026RCF,
   author  = {Adams, Joshua},
-  title   = {The Relational Coherence Framework: Quantum Affinity,
-             Decoherence, and a Coherence-Optimized Two-Qubit Gate},
+  title   = {The Relational Coherence Framework: A Pointer-Basis Coherence
+             Budget for Tunable {Heisenberg}-Exchange Gates},
   year    = {2026},
   doi     = {10.5281/zenodo.20130304},
   note    = {Zenodo preprint. Concept DOI (evergreen).}
