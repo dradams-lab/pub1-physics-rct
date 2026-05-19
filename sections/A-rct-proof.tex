@@ -56,10 +56,13 @@ We treat the two cases $d_S = 2$ and $d_S \geq 3$ separately.
 
 \textit{Case $d_S = 2$ (qubit).}
 Suppose, for contradiction, that definite pre-existing values
-$\lambda(A) \in \{+1,-1\}$ exist for all qubit observables.
-For any product state $\ket{\psi_S}\otimes\ket{\psi_E}$ of two qubits
-and measurement directions $\mathbf{a}, \mathbf{a}', \mathbf{b}, \mathbf{b}'$,
-the CHSH combination satisfies
+$A, A', B, B' \in \{+1,-1\}$ exist for all qubit observables and
+depend only on local measurement settings.
+The algebraic identity $|AB - AB' + A'B + A'B'| \leq 2$ holds for any
+four such values, and averaging over the hidden-variable distribution
+preserves the bound: for any joint state of two qubits and measurement
+directions $\mathbf{a}, \mathbf{a}', \mathbf{b}, \mathbf{b}'$, the
+CHSH combination satisfies
 \begin{equation}
   \bigl|\langle\hat{A}\hat{B}\rangle - \langle\hat{A}\hat{B}'\rangle
     + \langle\hat{A}'\hat{B}\rangle + \langle\hat{A}'\hat{B}'\rangle\bigr|
@@ -252,8 +255,10 @@ entanglement. $\square$
 \subsection{Weyl Chamber Coordinates for $\URA(\theta)$}
 
 The local invariants of a two-qubit gate $U \in \mathrm{SU}(4)$ are
-computed from the matrix $M = U^T_B U_B$ in the Bell basis, where
-$U_B = \frac{1}{\sqrt{2}}\begin{pmatrix}1&0&0&i\\0&i&1&0\\0&i&{-1}&0\\1&0&0&{-i}\end{pmatrix}$~\cite{Zhang2003WeylChamber}.
+extracted from the matrix
+$M(U) = m(U)^T m(U)$, where $m(U) = U_B^T\, U\, U_B$ is the gate
+represented in the Bell basis~\cite{Zhang2003WeylChamber} via
+$U_B = \frac{1}{\sqrt{2}}\begin{pmatrix}1&0&0&i\\0&i&1&0\\0&i&{-1}&0\\1&0&0&{-i}\end{pmatrix}$.
 
 For $\URA(\theta)$ defined by Eq.~\eqref{eq:URA}, direct computation gives
 $M = \mathrm{diag}(e^{-i\theta}, e^{i\theta}, e^{i\theta}, e^{-i\theta})$
@@ -278,8 +283,16 @@ All simulations use the following configuration unless otherwise noted.
 \textbf{Qiskit (IBM):} \texttt{qiskit-terra} v0.45, \texttt{qiskit-aer} v0.13.
 Two-qubit system; $10^4$ shots per circuit; state vector simulation for
 process fidelity; density matrix simulation for noise models.
-Gate decomposition: $\URA(\theta)$ compiled via \texttt{transpile} with
-optimization level~3 to the $\{R_Z, \sqrt{X}, \textsc{cx}\}$ native gate set.
+For the noise-model benchmarks reported in
+Tables~\ref{tab:fidelity}--\ref{tab:fidelity-all}, $\URA(\theta)$ is
+applied as a single two-qubit unitary with gate-time-proportional
+effective error rate $p_{\rm eff}(\theta)$ per Eq.~\eqref{eq:peff};
+the closed-form depolarizing values match the simulator output to
+numerical precision under this single-unitary model.
+On real hardware without direct exchange calibration, transpilation to
+a fixed native gate set such as $\{R_Z, \sqrt{X}, \textsc{cx}\}$ would
+introduce decomposition overhead that can attenuate or eliminate the
+fidelity advantage (cf.\ Sec.~\ref{sec:disc}).
 
 \textbf{Cirq (Google):} \texttt{cirq-core} v1.3.
 Same qubit configuration; \texttt{DensityMatrixSimulator} with noise models
