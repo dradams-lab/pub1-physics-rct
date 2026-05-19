@@ -24,16 +24,16 @@ quantity, the
 \emph{scalar affinity} $\bar\alpha(S,E) \in [0,1]$, defined as the
 normalized Hilbert--Schmidt coherence of the reduced state $\rho_S$
 in the einselected pointer basis~\cite{Zurek2003,Schlosshauer2005}.
-The Relational Coherence framework (\RCT) collects four standard
+The Relational Coherence framework (\RCF) collects four standard
 identities involving $\bar\alpha$, suitable as a per-layer
 coherence-budget diagnostic in two-qubit circuits.
-We stress at the outset that the \RCT~does not dispute the predictive
+We stress at the outset that the \RCF~does not dispute the predictive
 record of standard quantum mechanics; it offers a unified notation for
 relating coherence, decoherence, and entanglement dynamics, and our
 mathematical content reduces to standard pointer-basis coherence
 theory~\cite{Baumgratz2014,Streltsov2017Review} grounded by einselection.
 
-The \RCT~comprises four propositions: property indefiniteness (a
+The \RCF~comprises four propositions: property indefiniteness (a
 nonzero $\bar\alpha$ precludes a pointer-basis-diagonal $\rho_S$);
 relational determination ($\bar\alpha$ decays exponentially under
 Markovian dephasing in the pointer basis); coherence--affinity
@@ -64,12 +64,12 @@ $\mathrm{SU}(4)/[\mathrm{SU}(2)\otimes\mathrm{SU}(2)]$~\cite{Zhang2003WeylChambe
 and attains maximum entanglement capability at $\theta = \pi/4$ (the
 $\sqrt{\textsc{swap}}$ point).
 We do not claim novelty for the unitary, which is the well-known
-isotropic-exchange family; what the \RCT~contributes is a coherence-budget
+isotropic-exchange family; what the \RCF~contributes is a coherence-budget
 framing for its parameter selection.
 We emphasize that the gate parameter $\theta$ is a Hamiltonian evolution
 angle, distinct from the scalar affinity $\bar\alpha \in [0,1]$; the
 connection between the two is indirect (Sec.~\ref{sec:gate}), and the
-\RCT~furnishes a conceptual warrant for a continuously tunable exchange
+\RCF~furnishes a conceptual warrant for a continuously tunable exchange
 primitive, not a quantitative identity $\theta = \bar\alpha$.
 We demonstrate via numerical simulation in
 Qiskit~\cite{Qiskit2024} and Cirq~\cite{Cirq2025} that on hardware
@@ -82,7 +82,7 @@ Sycamore~\cite{Foxen2020}.
 The paper is organized as follows.
 Section~\ref{sec:background} reviews Bell's theorem, RQM, decoherence
 and einselection, and the resource theory of coherence.
-Section~\ref{sec:rct} states and proves the four \RCT~propositions.
+Section~\ref{sec:rct} states and proves the four \RCF~propositions.
 Section~\ref{sec:gate} defines $\URA(\theta)$, locates it in the Weyl
 chamber, and derives its entanglement capability.
 Section~\ref{sec:sim} reports the numerical simulations.
