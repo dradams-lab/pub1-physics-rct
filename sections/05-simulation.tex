@@ -65,6 +65,12 @@ at full duration, while $\URA(\theta)$ receives effective rate
   \label{eq:peff}
 \end{equation}
 reflecting shorter physical operation time for $\theta < \pi/4$.
+Equation~\eqref{eq:peff} encodes the small-$p$, leading-order
+linearization in which each channel's per-gate error contribution is
+proportional to physical pulse duration; saturating corrections
+(e.g., the $1 - e^{-t/T_1}$ form of amplitude damping at large
+$t/T_1$) are negligible to the order reported in
+Table~\ref{tab:fidelity-all}.
 This is a modelling assumption appropriate to coherence-limited error on
 direct-exchange hardware; it does not capture coherent calibration
 error, leakage to non-computational levels, or spectator-qubit
@@ -101,9 +107,11 @@ directly from the formula, and the Qiskit/Cirq density-matrix
 simulator notebooks of the release tag (Sec.~\ref{sec:conc}) reproduce
 them to numerical precision under the same channel.
 $\URA(\pi/4)$ (full duration, $\theta = \pi/4$) operates at maximum
-entanglement capability ($\mathcal{E} = 1$) and, as the maximally entangling
-point of the Heisenberg diagonal (Sec.~\ref{subsec:weyl}), matches the
-fidelity of \textsc{iswap} under gate-time-proportional noise at equal duration.
+entanglement capability ($\mathcal{E} = 1$).
+Under the global depolarizing channel~---~which is unitary-invariant~---~the
+average gate fidelity depends only on $p_{\rm eff}$, so $\URA(\pi/4)$ and
+\textsc{iswap} achieve identical $F_{\rm avg}$ at equal duration; the
+partial-exchange advantage we report below is therefore at $\theta < \pi/4$.
 $\URA(\pi/8)$ (half duration, $\theta = \pi/8$) achieves measurable
 advantages: $\Delta F = +0.019$ at $p_{\rm base} = 0.05$ and $+0.038$ at
 $p_{\rm base} = 0.10$ over all three fixed gates under depolarizing noise.
@@ -217,11 +225,13 @@ which $\bar\alpha(0) = 1$ in the four-dimensional computational pointer
 basis (Proposition~\ref{prop:correspondence}\emph{(ii)}).
 The Affinity Tensor decays monotonically from $1$ to $0$, tracking the
 loss of local pointer-basis coherence as the bath selects the classical
-pointer basis. Per
-Proposition~\ref{prop:conservation}, purity transfers from the system
-to $S$-bath correlations: although $\rho_S$ becomes mixed, the joint
-$\mathrm{Tr}[\rho_{S,\mathrm{bath}}^2]$ remains constant in the closed
-$S$+bath description.
+pointer basis.
+The Markovian simulation reported here traces out the bath and follows
+the marginal $\rho_S$ only; in the closed unitary $S$+bath picture of
+Proposition~\ref{prop:conservation}, this loss of marginal coherence
+corresponds not to annihilation but to redistribution into $S$-bath
+correlations, with the joint state remaining pure throughout
+($\mathrm{Tr}[\rho_{S\text{-bath}}^2] = 1$).
 
 \begin{figure}[htbp]
   \centering
