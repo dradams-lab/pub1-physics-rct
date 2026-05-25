@@ -162,6 +162,35 @@ We claim independent simulation consistency with the experimental
 continuous-fSim advantage, not novelty for the underlying hardware
 observation.
 
+\paragraph{Practical shot-count implication.}
+The per-gate fidelity advantage $\Delta F = (3/8)\,p_{\rm base}$
+(Table~\ref{tab:fidelity-all}) compounds across circuit depth.
+For a circuit of $n$ coherently applied exchange layers, the
+final-state success probability scales as $p_s \approx F^n$, and the
+number of measurement shots required to collect $k$ successful
+outcomes is $N_{\rm shots} = k/p_s$.
+The ratio of shots required under the fixed-gate versus RCB-optimal
+schedule is therefore
+%
+\begin{equation}
+\label{eq:shot-ratio}
+\frac{N_{\rm shots}^{\rm fixed}}{N_{\rm shots}^{\rm RCB}}
+  \;=\; \left(\frac{F_{\rm RCB}}{F_{\rm fixed}}\right)^{\!n}.
+\end{equation}
+%
+At $p_{\rm base} = 0.10$ and $n = 8$ layers,
+$F_{\rm RCB} = 0.9625$ and $F_{\rm fixed} = 0.9250$ per gate
+(Table~\ref{tab:fidelity}), giving $F_{\rm RCB}^8 / F_{\rm fixed}^8
+\approx 0.736 / 0.536 \approx 1.37$: the fixed-gate circuit requires
+roughly $37\%$ more measurement shots to achieve the same sampling
+statistics.
+At $p_{\rm base} = 0.05$ the ratio falls to approximately $1.16$.
+These estimates assume multiplicative, gate-time-proportional error
+accumulation (the regime of Eq.~\eqref{eq:peff}) and do not model
+readout error or inter-layer correlations; they restate the fidelity
+advantage of Theorem~\ref{thm:alloc} in resource-accounting terms
+directly relevant to algorithm-level cost benchmarks.
+
 \subsection{Scope and Limitations}
 
 The \RCF~formalizes the relational structure of quantum mechanics
@@ -208,6 +237,54 @@ The relational network $\Gamma_S$ is also treated here as a collection
 of interaction events rather than a weighted graph; coupling-strength
 and event-ordering effects on the multi-environment generalization are
 left to subsequent development (cf.\ Sec.~\ref{sec:rqm}).
+
+\subsection{Decomposition Break-Even for Fixed-Gate Platforms}
+\label{subsec:decomp-breakeven}
+
+On platforms where $\URA(\theta)$ is not directly calibrated but must
+instead be synthesized from a fixed native gateset, the gate-time
+proportionality of Eq.~\eqref{eq:peff} is replaced by a
+decomposition-depth cost.
+For the isotropic Heisenberg family the standard KAK
+decomposition~\cite{VatanWilliams2004} requires exactly
+$N_{\rm CNOT} = 2$ CNOT gates for any $\theta \in (0,\pi/4]$,
+each contributing error $p_{\rm CNOT}$ independently of $\theta$.
+The effective fidelity of the decomposed gate is therefore
+%
+\begin{equation}
+\label{eq:fidelity-decomp}
+F_{\rm decomp}
+  \;\approx\; (1 - p_{\rm CNOT})^2
+  \;\approx\; 1 - 2\,p_{\rm CNOT},
+\end{equation}
+%
+while the directly calibrated $\URA(\theta)$ achieves
+$F_{\rm direct}(\theta) = 1 - \tfrac{3}{4}\,p_{\rm base}\cdot\theta/(\pi/4)$
+(Table~\ref{tab:fidelity}, depolarizing column).
+Setting $F_{\rm direct}(\theta) \geq F_{\rm decomp}$ yields the
+\emph{decomposition break-even condition}: direct calibration retains
+its fidelity advantage over the decomposed implementation if and only if
+%
+\begin{equation}
+\label{eq:breakeven}
+p_{\rm CNOT}
+  \;<\; \frac{3}{8}\cdot\frac{\theta}{\pi/4}\cdot p_{\rm base}.
+\end{equation}
+%
+At the half-entangling point $\theta = \pi/8$ and
+$p_{\rm base} = 0.10$, the threshold is
+$p_{\rm CNOT}^{\rm BE} = (3/16)\times 0.10 = 0.019$.
+Current best-reported two-qubit gate error rates on superconducting
+and trapped-ion hardware range from $p_{\rm CNOT} \approx 0.003$
+to $0.015$~\cite{Krantz2019}, placing present-day devices below this
+threshold: the direct-calibration advantage survives on hardware where
+the exchange coupling can be directly tuned.
+On platforms where $p_{\rm CNOT} > p_{\rm CNOT}^{\rm BE}$~---~older
+devices or highly crosstalk-limited qubit pairs~---~the decomposition
+overhead erases the gate-time saving and the fixed-gate baseline
+should be preferred.
+Equation~\eqref{eq:breakeven} thus converts the qualitative limitation
+noted above into a testable, hardware-specific criterion.
 
 \subsection{Future Directions}
 
