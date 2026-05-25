@@ -17,7 +17,7 @@ treats quantum properties as facts relative to the interacting systems.
 
 The present paper works within the relational reading, without
 claiming that Bell's theorem singles it out among the options above.
-What we contribute is an explicit quantitative formulation of one
+What I contribute is an explicit quantitative formulation of one
 aspect of the relational picture~---~the dynamics of pointer-basis
 coherence under decoherence~---~as a single computable scalar
 quantity, the
@@ -27,9 +27,9 @@ in the einselected pointer basis~\cite{Zurek2003,Schlosshauer2005}.
 The Relational Coherence framework (\RCF) collects four standard
 identities involving $\bar\alpha$, suitable as a per-layer
 coherence-budget diagnostic in two-qubit circuits.
-We stress at the outset that the \RCF~does not dispute the predictive
+I stress at the outset that the \RCF~does not dispute the predictive
 record of standard quantum mechanics; it offers a unified notation for
-relating coherence, decoherence, and entanglement dynamics, and our
+relating coherence, decoherence, and entanglement dynamics, and my
 mathematical content reduces to standard pointer-basis coherence
 theory~\cite{Baumgratz2014,Streltsov2017Review} grounded by einselection.
 
@@ -60,7 +60,7 @@ Noise-aware compilation exploiting continuous parameterization has
 been demonstrated to improve circuit fidelity by routing heavier
 entangling weight to better-performing gate pairs and removing
 low-impact entangling operations~\cite{Yale2025NoiseAware}.
-Building on this literature, we examine the isotropic Heisenberg-exchange
+Building on this literature, I examine the isotropic Heisenberg-exchange
 unitary
 $\URA(\theta) = \exp[-i\theta(\sigma_x{\otimes}\sigma_x +
 \sigma_y{\otimes}\sigma_y + \sigma_z{\otimes}\sigma_z)/2]$,
@@ -69,15 +69,15 @@ $(c_1,c_2,c_3)=(\theta,\theta,\theta)$ of the Weyl chamber of
 $\mathrm{SU}(4)/[\mathrm{SU}(2)\otimes\mathrm{SU}(2)]$~\cite{Zhang2003WeylChamber}
 and attains maximum entanglement capability at $\theta = \pi/4$ (the
 $\sqrt{\textsc{swap}}$ point).
-We do not claim novelty for the unitary, which is the well-known
+I do not claim novelty for the unitary, which is the well-known
 isotropic-exchange family; what the \RCF~contributes is a coherence-budget
 framing for its parameter selection.
-We emphasize that the gate parameter $\theta$ is a Hamiltonian evolution
+I emphasize that the gate parameter $\theta$ is a Hamiltonian evolution
 angle, distinct from the scalar affinity $\bar\alpha \in [0,1]$; the
 connection between the two is indirect (Sec.~\ref{sec:gate}), and the
 \RCF~furnishes a conceptual warrant for a continuously tunable exchange
 primitive, not a quantitative identity $\theta = \bar\alpha$.
-We demonstrate via numerical simulation in
+I demonstrate via numerical simulation in
 Qiskit~\cite{Qiskit2024} and Cirq~\cite{Cirq2025} that on hardware
 with directly calibratable exchange coupling, $\URA(\theta < \pi/4)$
 achieves measurable process-fidelity advantages over fixed-angle

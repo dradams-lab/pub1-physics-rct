@@ -23,7 +23,7 @@ the circuit?
 \subsection{Relational Coherence Cost}
 \label{subsec:cost}
 
-We define the per-layer cost of a tunable exchange gate
+I define the per-layer cost of a tunable exchange gate
 $\URA(\theta_\ell)$ as the local pointer-basis coherence consumed by
 the gate:
 %
@@ -166,7 +166,7 @@ when noise heterogeneity forces a tradeoff.
 For a circuit with required total entangling capability
 $E_{\rm target}$ accumulated across $L$ exchange layers, each
 contributing $\mathcal{E}(\theta_\ell) = \sin(2\theta_\ell)$
-(Sec.~\ref{subsec:entcap}; we restrict to the entangling half
+(Sec.~\ref{subsec:entcap}; I restrict to the entangling half
 $\theta_\ell \in [0, \pi/4]$ on which $\sin(2\theta_\ell)$ is
 increasing), the coherence-optimal schedule solves
 %
@@ -313,7 +313,7 @@ included with this paper.
 \subsection{Multi-Layer Benchmark}
 \label{subsec:benchmark-alloc}
 
-We test Theorem~\ref{thm:alloc} against two naive scheduling
+I test Theorem~\ref{thm:alloc} against two naive scheduling
 baselines on a multi-layer 2-qubit circuit with per-layer independent
 dephasing.
 
@@ -322,7 +322,7 @@ A circuit of $L = 8$ layers applies $\URA(\theta_\ell)$ followed by
 independent per-qubit pointer-basis dephasing at rate $\gamma_\ell$
 for duration $t_\ell = \kappa\,\theta_\ell$, starting from
 $\rho_0 = \ket{+0}\!\bra{+0}$.
-For each entanglement target $E_{\rm target} \in [0.25, 3.5]$, we
+For each entanglement target $E_{\rm target} \in [0.25, 3.5]$, I
 compare three strategies:
 \begin{itemize}
   \item \textbf{RCB-optimal} schedule per Theorem~\ref{thm:alloc};
@@ -332,7 +332,7 @@ compare three strategies:
         $\theta_\ell = \pi/4$ on the $\lfloor E_{\rm target}\rfloor$
         quietest layers, residual on the next-quietest.
 \end{itemize}
-For each strategy we compute the final reduced-state fidelity
+For each strategy I compute the final reduced-state fidelity
 $F = \mathrm{Tr}[\sqrt{\sqrt{\rho_{\rm noisy}}\,\rho_{\rm ideal}\,\sqrt{\rho_{\rm noisy}}}]^2$
 against the noiseless target unitary.
 

@@ -5,7 +5,7 @@
 
 \subsection{Implementation}
 
-We implement $\URA(\theta)$ as a two-qubit unitary operator via the
+I implement $\URA(\theta)$ as a two-qubit unitary operator via the
 explicit matrix form of Eq.~\eqref{eq:URA-matrix} in both
 Qiskit~\cite{Qiskit2024} (IBM) and Cirq~\cite{Cirq2025} (Google).
 Simulation parameters follow Appendix~\ref{app:sim-params}.
@@ -57,7 +57,7 @@ proportion to gate duration~\cite{Krantz2019}, and the
 exchange-angle pulse duration scales linearly with~$\theta$: running at
 $\theta = \pi/8$ takes half the time of a full $\theta = \pi/4$
 ($\sqrt{\textsc{swap}}$) operation.
-We therefore postulate \emph{gate-time-proportional noise}: fixed gates
+I therefore postulate \emph{gate-time-proportional noise}: fixed gates
 (\textsc{cnot}, \textsc{iswap}, \textsc{cz}) receive error rate~$p_{\rm base}$
 at full duration, while $\URA(\theta)$ receives effective rate
 \begin{equation}
@@ -111,7 +111,7 @@ entanglement capability ($\mathcal{E} = 1$).
 Under the global depolarizing channel~---~which is unitary-invariant~---~the
 average gate fidelity depends only on $p_{\rm eff}$, so $\URA(\pi/4)$ and
 \textsc{iswap} achieve identical $F_{\rm avg}$ at equal duration; the
-partial-exchange advantage we report below is therefore at $\theta < \pi/4$.
+partial-exchange advantage I report below is therefore at $\theta < \pi/4$.
 $\URA(\pi/8)$ (half duration, $\theta = \pi/8$) achieves measurable
 advantages: $\Delta F = +0.019$ at $p_{\rm base} = 0.05$ and $+0.038$ at
 $p_{\rm base} = 0.10$ over all three fixed gates under depolarizing noise.
@@ -155,7 +155,7 @@ density-matrix simulation in Qiskit and Cirq with per-qubit Kraus
 channels applied as a post-gate composition at the
 gate-time-scaled rate (see App.~\ref{app:sim-params} for the explicit
 Kraus operators and the application point).
-We emphasize that the near-equality between the depolarizing,
+I emphasize that the near-equality between the depolarizing,
 dephasing, and amplitude-damping rows is not a coincidence: under
 gate-time-proportional, small-$p$, post-gate channels the leading-order
 contribution to $1 - F_{\rm avg}$ is linear in the per-qubit error rate
