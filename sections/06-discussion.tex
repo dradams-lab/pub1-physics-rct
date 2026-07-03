@@ -1,9 +1,9 @@
-% ── SECTION 6: DISCUSSION (~600 words) ───────────────────────────────────────
+% ── SECTION 6: DISCUSSION (~1,200 words) ─────────────────────────────────────
 
 \section{Discussion}
 \label{sec:disc}
 
-\subsection{The Affinity Tensor and Existing Coherence Measures}
+\subsection{The Affinity Operator and Existing Coherence Measures}
 
 The scalar affinity $\bar\alpha(S,E)$ is a measure of \emph{local}
 quantum coherence~---~the off-diagonal magnitude of the reduced state
@@ -26,8 +26,11 @@ Along the dephasing trajectory of Proposition~\ref{prop:determination}
 the two measures are inversely related: as the conditional environmental
 branches in Eq.~\eqref{eq:coherence-transfer} become orthogonal,
 $\bar\alpha(t) \to 0$ while the $S$-$E$ entanglement entropy $S(\rho_S)$
-saturates at $\log d$ (Proposition~\ref{prop:conservation}, parts~(ii)
-and~(iii)).
+saturates at the Shannon entropy of the pointer-basis populations
+$\{\lvert c_k\rvert^2\}$,
+$-\sum_k \lvert c_k\rvert^2 \log \lvert c_k\rvert^2$, which equals
+$\log d$ only for the equal-weight initial state $\bar\alpha(0) = 1$
+(Proposition~\ref{prop:conservation}, parts~(ii) and~(iii)).
 This complementary relationship is what makes $\bar\alpha$ useful as a
 dynamical figure of merit.
 Concurrence and entropy report on a static joint state at one moment;
@@ -60,7 +63,7 @@ vanishes precisely on the incoherent (basis-diagonal) states
 [Prop.~\ref{prop:correspondence}(i)] and attains its maximum on the
 equal-weight basis superposition [Prop.~\ref{prop:correspondence}(ii)],
 the same extremes as $C_{\ell_1}$ and $C_{\rm re}$.
-We do not claim $\bar\alpha$ is a coherence monotone in the strict
+I do not claim $\bar\alpha$ is a coherence monotone in the strict
 sense of~\cite{Baumgratz2014}; the Hilbert--Schmidt quantifier is not
 in general monotone under arbitrary incoherent CPTP maps, and the
 use of $\bar\alpha$ here is as a circuit-level figure of merit
@@ -68,7 +71,7 @@ under physical (Markovian dephasing, gate-time-proportional)
 noise channels, where its monotonic decay
 [Prop.~\ref{prop:determination}] is exact.
 
-What the \RCT~adds that the resource-theory framework does not supply
+What the \RCF~adds that the resource-theory framework does not supply
 on its own is twofold.
 First, the reference basis is not stipulated~---~it is fixed by
 physics: einselection (Sec.~\ref{sec:decoherence}) singles out the
@@ -83,41 +86,131 @@ The resource-theory monotones quantify static coherence relative to a
 chosen basis; $\bar\alpha$ is a kindred quantifier placed in a
 dynamical, conservation-aware, einselection-grounded setting.
 
+This redistribution-rather-than-annihilation reading has recently
+acquired a vivid physical illustration outside the circuit setting.
+Yuksel et al.~\cite{Yuksel2026PhononicDressed} tune a nanomechanical
+resonator into resonance with a single intrinsic two-level
+defect~---~ordinarily regarded as a decoherence channel~---~and recover
+the would-be-lost coherence as a hybridized phononic ``dressed state,''
+so that a single defect that one system--environment partition registers
+as irreversible decoherence another addresses as a coherent relational
+partner.
+I record this as illustration, not evidence: it occupies the
+strong-coupling, non-Markovian regime outside the Markovian,
+einselection-grounded scope in which $\bar\alpha$ is defined here
+(cf.\ the Markovian-dephasing premise of Prop.~\ref{prop:determination}
+and the einselection idealization of Def.~\ref{def:alpha-tensor}), and
+the quantitative claims of the \RCF~are neither confirmed nor
+presupposed by it.
+
+\subsection{Relation to Noise-Aware Compilation for Continuously Parameterized Gates}
+\label{subsec:prior-compilation}
+
+Recent noise-aware compilation work for continuously parameterized two-qubit gates
+has demonstrated hardware-level results qualitatively consistent with the predictions
+of Theorem~\ref{thm:alloc}.
+Yale et al.~\cite{Yale2025NoiseAware} implement noise-aware compilations on a
+trapped-ion QSCOUT processor using continuously parameterized $\mathcal{ZZ}$ gates
+(M\o{}lmer--S\o{}rensen interaction) through the Superstaq compiler platform,
+and show that compiler optimizations can reduce total entangling angle, assign
+heavier $\mathcal{ZZ}$-angle participation to better-performing qubit pairs, and
+remove the least impactful $\mathcal{ZZ}$ operations to improve circuit fidelity.
+These empirical observations correspond qualitatively to Predictions~P2 and~P3
+of Theorem~\ref{thm:alloc}: heavier entangling weight is routed toward quieter
+gate pairs~(P2), and gates whose marginal fidelity contribution is below threshold
+are zeroed out~(P3).
+
+The present work is complementary in both derivation and scope.
+Yale et al.\ begin from calibrated hardware performance data and apply
+compiler heuristics optimized for the trapped-ion $\mathcal{ZZ}$ (Mølmer--Sørensen)
+gateset on QSCOUT; their central result is empirical validation that such
+optimizations improve quantum volume on real hardware.
+The \RCF~begins instead from a pointer-basis coherence-cost functional
+$\mathcal{C}_{\RCF}(\mathcal{U})$ (Eq.~\eqref{eq:circuit-cost}), derived from
+the einselection-grounded scalar affinity $\bar\alpha$ via
+Proposition~\ref{prop:determination}, and derives a \emph{closed-form}
+exchange-angle allocation rule (Eq.~\eqref{eq:alloc-solution}) from
+KKT optimality conditions on that functional.
+To my knowledge, prior noise-aware compilation work for continuously
+parameterized two-qubit gates has arrived at qualitatively similar routing
+and skipping behaviours through compiler search over calibrated hardware metrics.
+The contribution claimed here is not the use of continuous gates, noise-aware
+angle routing, or the omission of low-impact operations~---~all demonstrated
+in~\cite{Yale2025NoiseAware}~---~but the derivation of those behaviours as the
+unique analytic solution to a convex coherence-budget program grounded in
+einselection.
+
 \subsection{The Gate-Time Advantage and its Interpretation}
 
-The simulation results of Sec.~\ref{sec:sim} are an operational
-expression of Proposition~\ref{prop:conservation}.
-On hardware where gate duration scales linearly with the exchange angle,
-$\URA(\theta)$ at $\theta < \pi/4$ accumulates a smaller fraction of the
-per-gate decoherence budget than a fixed maximally entangling primitive
-[Eq.~\eqref{eq:peff}].
-Equivalently, in the language of the \RCT, the gate spends less of the
-local pointer-basis coherence $\bar\alpha$ per operation, redistributing
-a smaller portion of $\bar\alpha$ into $S$-bath correlations.
+The simulation results of Sec.~\ref{sec:sim} are an
+$\bar\alpha$-language expression of a now-established hardware
+observation: on platforms where the two-qubit-gate pulse duration is
+set by the Heisenberg exchange coupling, partial-exchange gates
+accumulate less coherence-limited error than fixed maximally-entangling
+gates, with the fidelity savings demonstrated experimentally for the
+continuous fSim and parametric-exchange families by Foxen,
+Abrams, Lacroix, and others~\cite{Foxen2020,Abrams2020,Lacroix2020,Caldwell2018}.
+My independent simulations recover this in
+$\bar\alpha$-language: at $\theta < \pi/4$, $\URA(\theta)$ accumulates
+a smaller fraction of the per-gate decoherence budget than a fixed
+maximally-entangling primitive [Eq.~\eqref{eq:peff}], equivalently
+redistributing a smaller fraction of the local pointer-basis coherence
+$\bar\alpha$ into $S$--bath correlations.
 The fidelity advantage~---~$\Delta F \in [+0.038,+0.039]$ at
 $p_{\rm base} = 0.10$ across depolarizing, dephasing, and amplitude
 damping noise, growing from $\Delta F \in [+0.019,+0.020]$ at
 $p_{\rm base} = 0.05$ (Table~\ref{tab:fidelity-all})~---~is the
 cumulative result of this per-gate saving over a circuit.
 
-We stress what this result is and is not.
+I stress what this result is and is not.
 It is \emph{not} a quantitative identity between $\theta$ and
 $\bar\alpha$; the exchange angle and the scalar affinity have different
 domains and inverse responses, as discussed in Sec.~\ref{sec:gate}.
-What the \RCT~contributes is the conceptual warrant for designing a
-continuously parameterized exchange gate at all: relational coupling is
-a continuous, conservatively redistributed resource, so the natural
-two-qubit primitive is a continuous angle on the Heisenberg-exchange
-diagonal of the Weyl chamber, not a fixed point.
-Once that warrant is in place, the fidelity advantage follows from the
-gate-time scaling of decoherence on superconducting
-hardware~\cite{Krantz2019} combined with the continuous Weyl-chamber
-trajectory $(c_1,c_2,c_3) = (\theta,\theta,\theta)$ established in
-Sec.~\ref{subsec:weyl}.
+What the \RCF~contributes is the coherence-budget framing for the
+parameter selection: the redistribution structure of
+Proposition~\ref{prop:conservation} renders the per-gate cost of
+partial entanglement explicit as a fraction of $\bar\alpha$ exported into
+$S$--$E$ correlations, and the gate-time-proportional noise model of
+Eq.~\eqref{eq:peff} combined with the continuous Weyl-chamber
+trajectory $(c_1,c_2,c_3)=(\theta,\theta,\theta)$
+(Sec.~\ref{subsec:weyl}) then yields the corresponding average-gate
+fidelity advantage.
+I claim independent simulation consistency with the experimental
+continuous-fSim advantage, not novelty for the underlying hardware
+observation.
+
+\paragraph{Practical shot-count implication.}
+The per-gate fidelity advantage $\Delta F = (3/8)\,p_{\rm base}$
+(Table~\ref{tab:fidelity-all}) compounds across circuit depth.
+For a circuit of $n$ coherently applied exchange layers, the
+final-state success probability scales as $p_s \approx F^n$, and the
+number of measurement shots required to collect $k$ successful
+outcomes is $N_{\rm shots} = k/p_s$.
+The ratio of shots required under the fixed-gate versus RCB-optimal
+schedule is therefore
+%
+\begin{equation}
+\label{eq:shot-ratio}
+\frac{N_{\rm shots}^{\rm fixed}}{N_{\rm shots}^{\rm RCB}}
+  \;=\; \left(\frac{F_{\rm RCB}}{F_{\rm fixed}}\right)^{\!n}.
+\end{equation}
+%
+At $p_{\rm base} = 0.10$ and $n = 8$ layers,
+$F_{\rm RCB} = 0.9625$ and $F_{\rm fixed} = 0.9250$ per gate
+(Table~\ref{tab:fidelity}), giving $F_{\rm RCB}^8 / F_{\rm fixed}^8
+\approx 0.736 / 0.536 \approx 1.37$: the fixed-gate circuit requires
+roughly $37\%$ more measurement shots to achieve the same sampling
+statistics.
+At $p_{\rm base} = 0.05$ the ratio falls to approximately $1.16$.
+These estimates assume multiplicative, gate-time-proportional error
+accumulation (the regime of Eq.~\eqref{eq:peff}) and do not model
+readout error or inter-layer correlations; they restate the fidelity
+advantage of Theorem~\ref{thm:alloc} in resource-accounting terms
+directly relevant to algorithm-level cost benchmarks.
 
 \subsection{Scope and Limitations}
 
-The \RCT~formalizes the relational structure of quantum mechanics
+The \RCF~formalizes the relational structure of quantum mechanics
 established by Bell's theorem~\cite{Bell1964} and relational quantum
 mechanics~\cite{Rovelli1996,Rovelli2021}; it does not resolve the
 quantum measurement problem.
@@ -129,26 +222,86 @@ corollary in App.~\ref{app:rct-proof}), but the question of
 outside the framework's scope, as it does for all no-collapse
 interpretations.
 
-Three further limitations bound the simulation claims.
+Four further limitations bound the simulation claims.
 First, the gate-time-proportional noise model (Eq.~\eqref{eq:peff})
-is appropriate for Heisenberg exchange directly calibrated on
-superconducting hardware~\cite{Krantz2019}.
+captures only the coherence-limited contribution to gate error and is
+appropriate for Heisenberg exchange directly calibrated on suitable
+hardware~\cite{LossDiVincenzo1998,Krantz2019,Caldwell2018,Foxen2020,Abrams2020};
+coherent calibration error, leakage to non-computational levels, and
+spectator-qubit crosstalk can scale differently with $\theta$ and may
+attenuate the advantage at small $\theta$.
 On platforms where $\URA(\theta)$ must be decomposed into fixed native
 gates~\cite{VatanWilliams2004}, the fidelity advantage depends on the
-decomposition depth and may shrink or vanish; a direct hardware
-calibration of the exchange angle, as demonstrated for
-\textsc{iswap}-family gates, is required to realize the full
-advantage.
-Second, the decoherence treatment of Proposition~\ref{prop:determination}
+decomposition depth and may shrink or vanish.
+Second, the calibration overhead of providing $\URA(\theta)$ at
+arbitrary $\theta$~---~either as continuous in-situ tuning or as a
+pre-calibrated lookup~---~is not modelled here and constitutes an
+additional engineering cost that may offset per-gate savings in
+algorithm-level benchmarks~\cite{Foxen2020,Lacroix2020}.
+Third, the decoherence treatment of Proposition~\ref{prop:determination}
 adopts the Markovian approximation; non-Markovian environments introduce
 memory kernels that modify the $e^{-\gamma t}$ decay law without
-qualitatively altering the conservation result of
+qualitatively altering the redistribution result of
 Proposition~\ref{prop:conservation}, but a quantitative extension is
 deferred to future work.
-Third, the relational network $\Gamma_S$ is treated here as a collection
+Fourth, the einselection idealization assumed in
+Definition~\ref{def:alpha-tensor} is sharp only in the limit in which
+the pointer basis has converged; for finite baths and finite times the
+pointer basis is approximate, time-dependent, and partially defined,
+and the basis-dependence of $\bar\alpha$ inherits this
+approximation~\cite{Schlosshauer2005}.
+The relational network $\Gamma_S$ is also treated here as a collection
 of interaction events rather than a weighted graph; coupling-strength
 and event-ordering effects on the multi-environment generalization are
 left to subsequent development (cf.\ Sec.~\ref{sec:rqm}).
+
+\subsection{Decomposition Break-Even for Fixed-Gate Platforms}
+\label{subsec:decomp-breakeven}
+
+On platforms where $\URA(\theta)$ is not directly calibrated but must
+instead be synthesized from a fixed native gateset, the gate-time
+proportionality of Eq.~\eqref{eq:peff} is replaced by a
+decomposition-depth cost.
+For the isotropic Heisenberg family the standard KAK
+decomposition~\cite{VatanWilliams2004} requires exactly
+$N_{\rm CNOT} = 2$ CNOT gates for any $\theta \in (0,\pi/4]$,
+each contributing error $p_{\rm CNOT}$ independently of $\theta$.
+The effective fidelity of the decomposed gate is therefore
+%
+\begin{equation}
+\label{eq:fidelity-decomp}
+F_{\rm decomp}
+  \;\approx\; (1 - p_{\rm CNOT})^2
+  \;\approx\; 1 - 2\,p_{\rm CNOT},
+\end{equation}
+%
+while the directly calibrated $\URA(\theta)$ achieves
+$F_{\rm direct}(\theta) = 1 - \tfrac{3}{4}\,p_{\rm base}\cdot\theta/(\pi/4)$
+(Table~\ref{tab:fidelity}, depolarizing column).
+Setting $F_{\rm direct}(\theta) \geq F_{\rm decomp}$ yields the
+\emph{decomposition break-even condition}: direct calibration retains
+its fidelity advantage over the decomposed implementation if and only if
+%
+\begin{equation}
+\label{eq:breakeven}
+p_{\rm CNOT}
+  \;<\; \frac{3}{8}\cdot\frac{\theta}{\pi/4}\cdot p_{\rm base}.
+\end{equation}
+%
+At the half-entangling point $\theta = \pi/8$ and
+$p_{\rm base} = 0.10$, the threshold is
+$p_{\rm CNOT}^{\rm BE} = (3/16)\times 0.10 = 0.019$.
+Current best-reported two-qubit gate error rates on superconducting
+and trapped-ion hardware range from $p_{\rm CNOT} \approx 0.003$
+to $0.015$~\cite{Krantz2019}, placing present-day devices below this
+threshold: the direct-calibration advantage survives on hardware where
+the exchange coupling can be directly tuned.
+On platforms where $p_{\rm CNOT} > p_{\rm CNOT}^{\rm BE}$~---~older
+devices or highly crosstalk-limited qubit pairs~---~the decomposition
+overhead erases the gate-time saving and the fixed-gate baseline
+should be preferred.
+Equation~\eqref{eq:breakeven} thus converts the qualitative limitation
+noted above into a testable, hardware-specific criterion.
 
 \subsection{Future Directions}
 
@@ -157,7 +310,7 @@ First, experimental implementation of $\URA(\theta)$ on superconducting
 qubit platforms~\cite{Krantz2019} via direct calibration of the
 Heisenberg exchange coupling, bypassing gate-decomposition overhead.
 Second, extension to multi-qubit relational networks: generalizing the
-Affinity Tensor to $n$-qubit systems $\alpha(S,\{E_i\})$ and deriving
+Affinity Operator to $n$-qubit systems $\alpha(S,\{E_i\})$ and deriving
 the corresponding $n$-qubit Relational Affinity unitaries parameterized
 by the full tensor, with attention to the weighted-graph $\Gamma_S$
 deferred above.
@@ -165,7 +318,7 @@ Third, investigation of $\bar\alpha$-aware quantum error correction:
 the local pointer-basis coherence budget may provide a natural
 diagnostic for surface-code threshold behaviour distinct from the usual
 logical-error rate.
-The philosophical implications of the \RCT~---~including the argument
+The philosophical implications of the \RCF~---~including the argument
 that process ontology is formally required (not merely permitted) by
 quantum mechanics~---~are developed in the companion
 paper~\cite{Adams2026Philosophy}.

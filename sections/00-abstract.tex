@@ -1,46 +1,62 @@
 % ── ABSTRACT ──────────────────────────────────────────────────────────────────
-% Target length: ~250 words
-% State: (1) the interpretive problem, (2) the RCT and Affinity Tensor,
-%        (3) the U_RA gate and its predicted advantages.
+% Target length: ~300 words
+% State: (1) the explanatory + operational framing,
+%        (2) the Affinity Operator diagnostic in α-bar-language,
+%        (3) the Coherence-Budget Allocation Theorem and benchmark,
+%        (4) scope and hardware-contingency caveat.
 
-Quantum mechanics has lacked an internally consistent ontological framework
-compatible with Bell's theorem since its formulation.
-Bell's theorem~\cite{Bell1964} eliminates local hidden variables, implying that
-quantum properties are not intrinsic to systems but emerge through relational
-interaction~\cite{Rovelli1996}.
-We formalize this relational structure through the \emph{Relational Coherence
-Theorem} (\RCT), which introduces the \emph{Affinity Tensor}~$\alpha(S,E)$
-as a measure of quantum coherence built from the off-diagonal elements of
-the reduced state $\rho_S$ in the einselected pointer basis, with scalar
-summary $\bar\alpha(S,E) \in [0,1]$.
+The Relational Coherence framework (\RCF) does not alter the
+predictions of quantum mechanics.
+Its contribution is explanatory and operational: it recasts
+decoherence, property definiteness, and tunable entanglement as
+different aspects of a single coherence-budget process, in which
+local relational potential is redistributed into environmental
+correlation.
+Concretely, I (i)~collect four standard identities of pointer-basis
+coherence theory~\cite{Zurek2003,Baumgratz2014,Streltsov2017Review}
+in the language of a normalized Hilbert--Schmidt coherence quantifier
+$\bar\alpha(S,E) \in [0,1]$ grounded by einselection
+(Bell's theorem~\cite{Bell1964} and its loophole-free experimental
+verification~\cite{Aspect1982,Zeilinger2022Nobel} rule out local
+non-contextual hidden-variable completions of quantum mechanics; I
+adopt the relational reading of Rovelli~\cite{Rovelli1996,Rovelli2021}
+as the conceptual setting, without claiming Bell's theorem singles it
+out among the alternatives), and (ii)~derive an allocation theorem
+for tunable Heisenberg-exchange gates~\cite{LossDiVincenzo1998} of
+the form
+\[
+  \URA(\theta) \;=\; \exp\!\Bigl(\!-\tfrac{i\theta}{2}\,\bigl(
+    \sigma_x{\otimes}\sigma_x + \sigma_y{\otimes}\sigma_y
+    + \sigma_z{\otimes}\sigma_z\bigr)\!\Bigr),
+\]
+that turns the per-layer cost
+$\bar\alpha^{\rm pre} - \bar\alpha^{\rm post}$ into a
+compiler-relevant scheduling objective.
 
-The \RCT\ comprises four propositions:
-property indefiniteness (a nonzero $\bar\alpha$ precludes any definite
-pointer-state assignment), relational determination ($\bar\alpha$ decays
-exponentially under Markovian dephasing), coherence--affinity correspondence
-($\bar\alpha = 1$ at the equal-weight pointer-basis superposition,
-$\bar\alpha = 0$ at full pointer-basis decoherence), and conservation of
-relational potential (under closed-system unitary evolution, local coherence
-is redistributed into $S$-$E$ correlations rather than destroyed).
+\textbf{Coherence-Budget Allocation Theorem.}
+Under Markovian gate-time-proportional dephasing with effective
+per-layer rates $\tilde\gamma_\ell$ and an entanglement target
+$E_{\rm target} = \sum_\ell |\sin 2\theta_\ell| \in (0,L)$, the
+unique cost-minimizing exchange-angle schedule is
+\[
+  \theta_\ell^{\!*} \;=\; \tfrac{1}{2}\arccos\!\Bigl(\!\min\!\Bigl(1,
+    \;\tfrac{\tilde\gamma_\ell}{2\lambda^{\!*}}\Bigr)\!\Bigr),
+\]
+with shadow price $\lambda^{\!*}$ fixed by the budget.
+The schedule routes more entanglement onto quieter layers and skips
+layers whose $\tilde\gamma_\ell$ exceeds the global shadow price.
 
-Motivated by the \RCT, we introduce the \emph{Relational Affinity
-Gate}~$\URA(\theta) = \exp[-i\theta(\sigma_x{\otimes}\sigma_x +
-\sigma_y{\otimes}\sigma_y + \sigma_z{\otimes}\sigma_z)/2]$,
-a continuously parameterized two-qubit gate on the Heisenberg-exchange
-diagonal of the Weyl chamber of $\mathrm{SU}(4)/[\mathrm{SU}(2)\otimes\mathrm{SU}(2)]$
-with exchange angle $\theta \in [0,\pi/2]$.
-The novelty is twofold: the conservation law of the \RCT~furnishes a
-conceptual warrant for treating relational coupling as a continuous
-tunable rather than as a fixed entangling primitive, and on
-superconducting hardware whose Heisenberg-exchange duration scales
-linearly with~$\theta$, the gate-time saving at $\theta < \pi/4$
-yields a measurable per-gate fidelity advantage.
-Numerical simulations in Qiskit and Cirq compare~$\URA(\theta)$ against
-\textsc{cnot}, \textsc{iswap}, and \textsc{cz} under depolarizing, dephasing,
-and amplitude damping noise models;
-on hardware with directly calibratable exchange coupling, $\URA(\pi/8)$
-outperforms all three fixed gates by $\Delta F \in [+0.038, +0.039]$
-at $p_{\rm base} = 0.10$ (and $[+0.019, +0.020]$ at $p_{\rm base} = 0.05$),
-consistent across all three noise models~---~an operational expression
-of the \RCT~conservation law that suggests utility in near-term quantum
-devices.
+A reference scheduler implementing this theorem (\texttt{figures/rcb\_optimizer.py})
+beats both fixed-gate and uniform-$\theta$ baselines in multi-layer
+density-matrix simulation: against a concentrated full-entangler
+baseline, the optimal schedule yields a final-state fidelity
+advantage of up to $\Delta F = +0.040$ at $\gamma = 0.15$,
+$E_{\rm target} = 1$, $L = 8$; against uniform-$\theta$ on
+heterogeneous noise it yields $\Delta F = +0.025$ at the same target.
+The framework's per-gate
+predictions~\cite{Foxen2020,Abrams2020,Lacroix2020,Caldwell2018}
+remain consistent with the experimental continuous-fSim advantage on
+Sycamore-class hardware.
+The advantage is contingent on direct exchange calibration; on
+platforms where $\URA(\theta)$ must be decomposed into fixed native
+primitives the advantage may shrink or vanish.

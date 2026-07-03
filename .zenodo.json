@@ -1,6 +1,6 @@
 {
-  "title": "The Relational Coherence Theorem: Quantum Affinity, Decoherence, and a Coherence-Optimized Two-Qubit Gate",
-  "description": "<p>Quantum mechanics has lacked an internally consistent ontological framework compatible with Bell's theorem since its formulation. Bell's theorem eliminates local hidden variables, implying that quantum properties are not intrinsic to systems but emerge through relational interaction. We formalize this relational structure through the Relational Coherence Theorem (RCT), which introduces the Affinity Tensor α(S,E) as a measure of quantum coherence built from the off-diagonal elements of the reduced state ρ_S in the einselected pointer basis, with scalar summary ᾱ(S,E) ∈ [0,1].</p><p>The RCT comprises four propositions: property indefiniteness (a nonzero ᾱ precludes any definite pointer-state assignment), relational determination (ᾱ decays exponentially under Markovian dephasing), coherence–affinity correspondence (ᾱ = 1 at the equal-weight pointer-basis superposition, ᾱ = 0 at full pointer-basis decoherence), and conservation of relational potential (under closed-system unitary evolution, local coherence is redistributed into S–E correlations rather than destroyed).</p><p>Motivated by the RCT, we introduce the Relational Affinity Gate U_RA(θ), a continuously parameterized two-qubit gate on the Heisenberg-exchange diagonal of the Weyl chamber of SU(4)/[SU(2)⊗SU(2)]. The novelty is twofold: the RCT conservation law furnishes a conceptual warrant for treating relational coupling as a continuous tunable rather than a fixed entangling primitive, and on superconducting hardware whose Heisenberg-exchange duration scales linearly with θ, the gate-time saving at θ &lt; π/4 yields a measurable per-gate fidelity advantage. Numerical simulations in Qiskit and Cirq compare U_RA(θ) against CNOT, iSWAP, and CZ under depolarizing, dephasing, and amplitude damping noise models; on hardware with directly calibratable exchange coupling, U_RA(π/8) outperforms all three fixed gates by ΔF = +0.019 to +0.040 at p_base = 0.10 — an operational expression of the RCT conservation law that suggests utility in near-term quantum devices.</p>",
+  "title": "Relational Coherence Budgeting for Tunable Exchange Gates: Pointer-Basis Affinity, Decoherence, and Exchange-Angle Coherence Cost",
+  "description": "<p>Bell's theorem and its loophole-free experimental verification rule out local non-contextual hidden-variable completions of quantum mechanics. The Relational Coherence framework (RCF) responds to this constraint within the relational reading of Rovelli: quantum properties are encoded in interaction histories, not assigned to systems in isolation. The RCF packages one technically explicit aspect of this reading into a normalized Hilbert–Schmidt coherence quantifier ᾱ(S,E) ∈ [0,1] — the scalar affinity — grounded by einselection in the pointer basis fixed by the system–environment Hamiltonian. Four standard identities (property indefiniteness, exponential decay under Markovian dephasing, range and extremal characterization, and coherence redistribution under unitary S–E evolution) are collected in ᾱ-language, suitable as a per-layer coherence-budget diagnostic in two-qubit circuits.</p><p>The technical contribution of this paper is the <strong>Coherence-Budget Allocation Theorem</strong>: under Markovian gate-time-proportional dephasing with effective per-layer rates γ̃_ℓ and an entanglement target E_target = Σ_ℓ |sin 2θ_ℓ| ∈ (0,L), the unique cost-minimizing exchange-angle schedule for the isotropic Heisenberg-exchange unitary U_RA(θ) = exp[−iθ(σ_x⊗σ_x + σ_y⊗σ_y + σ_z⊗σ_z)/2] is θ*_ℓ = ½ arccos(min(1, γ̃_ℓ/(2λ*))), with shadow price λ* fixed by the entanglement budget. The theorem yields three falsifiable predictions: (P1) distributing entanglement across layers beats concentration in the uniform-noise case; (P2) quieter layers receive heavier entangling weight in the heterogeneous case; (P3) layers whose effective rate exceeds the global shadow price are skipped entirely. A reference scheduler implementing the theorem (figures/rcb_optimizer.py) beats both fixed-gate and uniform-θ baselines in multi-layer density-matrix simulation, with fidelity advantages of ΔF = +0.040 over concentrated full-entanglers at γ = 0.15, E_target = 1, L = 8, and ΔF = +0.025 over uniform-θ in the heterogeneous regime.</p><p>Qualitatively similar noise-aware angle-routing and gate-removal behaviours have been demonstrated empirically through compiler optimizations for continuously parameterized ZZ gates on trapped-ion hardware (Yale et al., Phys. Rev. Appl. 24, 024057, 2025). The present work differs by deriving these behaviours as the unique analytic solution of a convex coherence-budget program grounded in einselection, rather than through hardware-calibrated heuristic search. The fidelity advantage of partial-exchange gates is contingent on direct exchange calibration; on platforms where U_RA(θ) must be decomposed into fixed native primitives the advantage may shrink or vanish.</p>",
   "creators": [
     {
       "name": "Adams, Joshua",
@@ -12,18 +12,24 @@
     "quantum mechanics",
     "relational quantum mechanics",
     "decoherence",
+    "einselection",
+    "pointer basis",
     "two-qubit gate",
     "quantum gate fidelity",
+    "quantum circuit compilation",
+    "noise-aware compilation",
+    "coherence budget",
+    "exchange gates",
     "Bell's theorem",
     "process ontology",
     "quantum information",
     "superconducting qubits",
-    "CNOT",
-    "iSWAP",
-    "Affinity Tensor",
-    "Relational Coherence Theorem",
+    "trapped-ion qubits",
+    "Affinity Operator",
+    "Relational Coherence Framework",
     "Weyl chamber",
-    "Heisenberg exchange"
+    "Heisenberg exchange",
+    "NISQ"
   ],
   "license": "CC-BY-4.0",
   "upload_type": "publication",

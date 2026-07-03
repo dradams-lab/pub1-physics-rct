@@ -1,6 +1,6 @@
-% ── APPENDIX A: FULL RCT PROOF ───────────────────────────────────────────────
+% ── APPENDIX A: FULL RCF PROOFS ──────────────────────────────────────────────
 
-\section{Full Proof of the Relational Coherence Theorem}
+\section{Full Proofs for the Relational Coherence Framework}
 \label{app:rct-proof}
 
 \subsection{Mathematical Preliminaries}
@@ -29,21 +29,40 @@ $r = \min(d_S, d_E)$ and all $\lambda_j = 1/r$.
 
 \subsection{Proof of Proposition~\ref{prop:indefiniteness} (Property Indefiniteness)}
 
-\textbf{Claim.} There is no value assignment
+The proposition statement in Sec.~\ref{sec:prop1} is the
+linear-algebraic fact that $\bar\alpha(S,E)>0$ implies a non-diagonal
+$\rho_S$ in the pointer basis, and that proof appears in
+Sec.~\ref{sec:prop1}.
+The Bell / Kochen--Specker material below is the auxiliary
+no-hidden-variables result that supplies the physical content of
+property indefiniteness against \emph{local non-contextual} hidden
+variables; it is not a proof of the proposition as stated, but the
+foundational anchor that justifies reading a non-diagonal $\rho_S$ as
+the absence of a definite outcome rather than as ignorance of one.
+
+\textbf{Auxiliary claim (no local non-contextual hidden variables).}
+There is no \emph{local, non-contextual} value assignment
 $v: \mathcal{O}(\mathcal{H}_S) \to \mathbb{R}$
 mapping each self-adjoint observable $\hat{A}$ on $\mathcal{H}_S$ to a
-definite eigenvalue $v(\hat{A}) \in \mathrm{spec}(\hat{A})$ prior to
-relational interaction, consistently with all quantum predictions.
+definite eigenvalue $v(\hat{A}) \in \mathrm{spec}(\hat{A})$
+consistently with all quantum predictions.
+(Nonlocal hidden-variable theories such as Bohmian
+mechanics~\cite{Bohm1980} evade this conclusion by accepting explicit
+nonlocality; the result below constrains only local non-contextual
+assignments.)
 
 \textbf{Proof.}
-We treat the two cases $d_S = 2$ and $d_S \geq 3$ separately.
+I treat the two cases $d_S = 2$ and $d_S \geq 3$ separately.
 
 \textit{Case $d_S = 2$ (qubit).}
 Suppose, for contradiction, that definite pre-existing values
-$\lambda(A) \in \{+1,-1\}$ exist for all qubit observables.
-For any product state $\ket{\psi_S}\otimes\ket{\psi_E}$ of two qubits
-and measurement directions $\mathbf{a}, \mathbf{a}', \mathbf{b}, \mathbf{b}'$,
-the CHSH combination satisfies
+$A, A', B, B' \in \{+1,-1\}$ exist for all qubit observables and
+depend only on local measurement settings.
+The algebraic identity $|AB - AB' + A'B + A'B'| \leq 2$ holds for any
+four such values, and averaging over the hidden-variable distribution
+preserves the bound: for any joint state of two qubits and measurement
+directions $\mathbf{a}, \mathbf{a}', \mathbf{b}, \mathbf{b}'$, the
+CHSH combination satisfies
 \begin{equation}
   \bigl|\langle\hat{A}\hat{B}\rangle - \langle\hat{A}\hat{B}'\rangle
     + \langle\hat{A}'\hat{B}\rangle + \langle\hat{A}'\hat{B}'\rangle\bigr|
@@ -75,7 +94,7 @@ context, i.e., independently of relational interaction. $\square$
 The dynamical proof~---~the Lindblad calculation showing
 $\bar\alpha(S,E;t) = \bar\alpha(S,E;0)\,e^{-\gamma t}$~---~is given in
 Sec.~\ref{sec:prop2}.
-Here we record an operational corollary that connects the dynamical
+Here I record an operational corollary that connects the dynamical
 decay to the relational reading of measurement outcomes.
 
 \textbf{Operational corollary.}
@@ -143,7 +162,7 @@ entanglement.
 
 \textbf{Proof.}
 This is the proof presented in
-Sec.~\ref{sec:prop3}; we restate it here for completeness.
+Sec.~\ref{sec:prop3}; I restate it here for completeness.
 
 \textit{Range bound.}
 Since $\rho_S\geq 0$ with $\mathrm{Tr}\,\rho_S = 1$, the
@@ -205,10 +224,10 @@ $\mathcal{C}$ probes the entanglement of $\rho_{SE}$. The Bell state
 $\ket{\Phi^+}$ has $\bar\alpha = 0$ while $\mathcal{C} = 1$;
 $\ket{+}_S\otimes\ket{0}_E$ has $\bar\alpha = 1$ while $\mathcal{C} = 0$.
 
-\subsection{Proof of Proposition~\ref{prop:conservation} (Conservation of Relational Potential)}
+\subsection{Proof of Proposition~\ref{prop:conservation} (Coherence Redistribution under Unitary $S$--$E$ Evolution)}
 
 The full three-part proof is given in Sec.~\ref{sec:prop4}.
-We record here only the elementary purity identity that anchors
+I record here only the elementary purity identity that anchors
 part~(i), for completeness.
 
 \textbf{Claim (part (i)).}
@@ -236,9 +255,18 @@ entanglement. $\square$
 \subsection{Weyl Chamber Coordinates for $\URA(\theta)$}
 
 The local invariants of a two-qubit gate $U \in \mathrm{SU}(4)$ are
-computed from the matrix $M = U^T_B U_B$ in the Bell basis, where
-$U_B = \frac{1}{\sqrt{2}}\begin{pmatrix}1&0&0&i\\0&i&1&0\\0&i&{-1}&0\\1&0&0&{-i}\end{pmatrix}$~\cite{Zhang2003WeylChamber}.
-
+extracted from the matrix
+$M(U) = m(U)^T m(U)$, where $m(U) = U_B^T\, U\, U_B$ is the gate
+represented in the Bell basis~\cite{Zhang2003WeylChamber} via
+\begin{equation}
+  U_B = \frac{1}{\sqrt{2}}
+  \begin{pmatrix}
+    1 &  0 &  0 &  i \\
+    0 &  i &  1 &  0 \\
+    0 &  i & -1 &  0 \\
+    1 &  0 &  0 & -i
+  \end{pmatrix}.
+\end{equation}
 For $\URA(\theta)$ defined by Eq.~\eqref{eq:URA}, direct computation gives
 $M = \mathrm{diag}(e^{-i\theta}, e^{i\theta}, e^{i\theta}, e^{-i\theta})$
 in the Bell basis, yielding Weyl coordinates:
@@ -262,8 +290,16 @@ All simulations use the following configuration unless otherwise noted.
 \textbf{Qiskit (IBM):} \texttt{qiskit-terra} v0.45, \texttt{qiskit-aer} v0.13.
 Two-qubit system; $10^4$ shots per circuit; state vector simulation for
 process fidelity; density matrix simulation for noise models.
-Gate decomposition: $\URA(\theta)$ compiled via \texttt{transpile} with
-optimization level~3 to the $\{R_Z, \sqrt{X}, \textsc{cx}\}$ native gate set.
+For the noise-model benchmarks reported in
+Tables~\ref{tab:fidelity}--\ref{tab:fidelity-all}, $\URA(\theta)$ is
+applied as a single two-qubit unitary with gate-time-proportional
+effective error rate $p_{\rm eff}(\theta)$ per Eq.~\eqref{eq:peff};
+the closed-form depolarizing values match the simulator output to
+numerical precision under this single-unitary model.
+On real hardware without direct exchange calibration, transpilation to
+a fixed native gate set such as $\{R_Z, \sqrt{X}, \textsc{cx}\}$ would
+introduce decomposition overhead that can attenuate or eliminate the
+fidelity advantage (cf.\ Sec.~\ref{sec:disc}).
 
 \textbf{Cirq (Google):} \texttt{cirq-core} v1.3.
 Same qubit configuration; \texttt{DensityMatrixSimulator} with noise models

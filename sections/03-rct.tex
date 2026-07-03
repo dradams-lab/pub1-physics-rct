@@ -1,29 +1,36 @@
 % ============================================================
-%  Section III — The Relational Coherence Theorem
-%  "The Relational Coherence Theorem"
+%  Section III — The Relational Coherence Framework
+%  "The Relational Coherence Framework"
 %  Dr. Joshua Adams | 2026
 %
 %  STATUS: Definitions complete. All four propositions developed.
 % ============================================================
 
-\section{\label{sec:rct}The Relational Coherence Theorem}
+\section{\label{sec:rct}The Relational Coherence Framework}
 
-We now formalize the concepts developed in Sec.~\ref{sec:background}.
-The Relational Coherence Theorem (\RCT) is a four-proposition
-framework that unifies the relational ontology of
+I now formalize the concepts developed in Sec.~\ref{sec:background}.
+The Relational Coherence framework (\RCF) collects four
+identities that together unify the relational ontology of
 Sec.~\ref{sec:rqm} with the decoherence dynamics of
 Sec.~\ref{sec:decoherence} through a single quantitative object:
-the Affinity Tensor $\alpha(S,E)$.
+the Affinity Operator $\alpha(S,E)$.
+I retain the label ``Theorem'' for the central
+correspondence (Proposition~\ref{prop:correspondence}); the
+remaining three propositions are standard identities cast in
+$\bar\alpha$-language and are labelled propositions in that
+expository sense rather than as new theorems.
 The four propositions assert, in order: (I)~that a nonzero Affinity
 Tensor signals the absence of any definite pointer-state assignment
-for $S$; (II)~that dephasing drives the scalar affinity to zero
-exponentially, recovering the classical limit; (III)~that the scalar
-affinity ranges continuously over $[0,1]$, attaining its extremes at
-complete decoherence and maximum pointer-basis coherence; and
-(IV)~that this process conserves relational structure globally,
-redistributing local coherence into $S$-$E$ correlations rather than
-annihilating it.
-We begin with the definitions that underpin all four propositions,
+for $S$; (II)~that uniform Markovian dephasing in the pointer basis
+drives the scalar affinity to zero exponentially, recovering the
+classical limit; (III)~that the scalar affinity ranges continuously
+over $[0,1]$, attaining its extremes at complete decoherence and at
+the equal-weight pointer-basis pure superposition; and (IV)~that under
+closed unitary $S$--$E$ evolution the local pointer-basis coherence is
+redistributed into $S$--$E$ correlations rather than destroyed
+(purity conservation, $I(S{:}E)$ growth, and Joos--Zeh / Zurek
+branching, repackaged in $\bar\alpha$-language).
+I begin with the definitions that underpin all four propositions,
 drawing a careful distinction between the full tensorial object
 $\alpha(S,E)$ and the scalar summary $\bar{\alpha}(S,E)$ --- a
 distinction that will be essential in Sec.~\ref{sec:gate}, where the
@@ -50,18 +57,18 @@ the locally accessible state of $S$ after $E$'s degrees of freedom
 are traced out.
 The relational character of the framework enters not through a
 separate notational object but through the construction of the
-Affinity Tensor below: $\alpha(S,E)$ is defined from $\rho_S$ in
+Affinity Operator below: $\alpha(S,E)$ is defined from $\rho_S$ in
 the pointer basis selected by the $S$-$E$ coupling
 (Sec.~\ref{sec:decoherence}), so its value is intrinsically indexed
 to $E$.
 \end{definition}
 
-\begin{definition}[Affinity Tensor]
+\begin{definition}[Affinity Operator]
 \label{def:alpha-tensor}
 Let $\{\vert \pi_k \rangle\}$ be the pointer basis of $S$
 selected by $H_{\mathrm{int}}$ via einselection
 (Sec.~\ref{sec:decoherence}).
-The \emph{Affinity Tensor} is the off-diagonal part of the
+The \emph{Affinity Operator} is the off-diagonal part of the
 reduced density matrix in this basis:
 
 \begin{equation}
@@ -84,7 +91,7 @@ condition of complete decoherence.
 \label{def:alpha-scalar}
 Let $d = \dim \mathcal{H}_S$.
 The \emph{scalar affinity} is the normalized Frobenius norm of
-the Affinity Tensor:
+the Affinity Operator:
 
 \begin{equation}
 \label{eq:alpha-scalar}
@@ -104,6 +111,15 @@ where $\lVert \cdot \rVert_F$ denotes the Frobenius norm.
 The prefactor $\sqrt{d/(d-1)}$ normalizes $\bar{\alpha}$ to the
 unit interval: $\bar{\alpha} \in [0, 1]$ (proven in
 Proposition~\ref{prop:correspondence}).
+Up to this normalization, $\bar\alpha$ coincides with the
+$\ell_2$ (Hilbert--Schmidt) coherence quantifier of the
+basis-dependent coherence resource
+theory~\cite{Baumgratz2014,Streltsov2017Review} when the reference
+basis is taken to be the einselected pointer basis.
+The novelty of the present construction lies not in the quantifier
+itself but in this physical grounding of the reference basis and in
+its role as a dynamical figure of merit, developed in
+Propositions~\ref{prop:determination}--\ref{prop:conservation} below.
 \end{definition}
 
 \begin{remark}[Boundary values of $\bar{\alpha}$]
@@ -121,9 +137,9 @@ A fully decohered mixture $\rho_S = p\,\vert\pi_0\rangle\langle\pi_0\vert
 for all $p$, consistent with the classical limit.
 \end{remark}
 
-\begin{remark}[Tensor vs.\ scalar]
+\begin{remark}[Operator vs.\ scalar]
 \label{rem:tensor-vs-scalar}
-The Affinity Tensor $\alpha(S,E)$ and the scalar affinity
+The Affinity Operator $\alpha(S,E)$ and the scalar affinity
 $\bar{\alpha}(S,E)$ serve distinct roles throughout this paper.
 $\alpha(S,E)$ is a matrix that encodes the full coherence
 structure of $S$ --- the magnitude and phase of every off-diagonal
@@ -151,9 +167,8 @@ evolution variable distinct from the scalar coherence measure
 Let $S$ be a quantum system with pointer basis
 $\{\vert\pi_k\rangle\}$ selected by einselection
 (Sec.~\ref{sec:decoherence}).
-If $\bar{\alpha}(S,E) > 0$, then $\rho_S$ cannot be expressed as
-a convex combination of pointer-basis projectors: no definite
-pointer-state assignment exists for $S$ relative to $E$.
+If $\bar{\alpha}(S,E) > 0$, then $\rho_S$ is not pointer-basis-diagonal:
+no convex combination of pointer-basis projectors represents $\rho_S$.
 \end{proposition}
 
 \begin{proof}
@@ -170,23 +185,28 @@ has at least one nonzero off-diagonal element in the pointer basis
 and therefore cannot be a classical mixture of pointer states.
 \end{proof}
 
-\begin{remark}[Connection to Bell nonlocality]
-Proposition~\ref{prop:indefiniteness} is the quantitative realization
-of the RQM principle of Sec.~\ref{sec:rqm}.
-Bell's theorem (Sec.~\ref{sec:bell}) establishes that quantum
-properties cannot be predetermined independently of a relational
-context; a nonzero $\bar{\alpha}$ measures precisely the residual
-superposition that no environmental observer has yet resolved into
-a definite pointer-state value.
-As $\bar{\alpha}$ approaches zero, the system transitions from the
-fully quantum-relational regime to the classically definite one.
+\begin{remark}[Interpretation within RQM]
+Proposition~\ref{prop:indefiniteness} is a basis-dependent
+linear-algebraic fact about $\rho_S$ and is independent of
+interpretation.
+Within the RQM reading adopted in this work (Sec.~\ref{sec:rqm}), I
+read $\bar\alpha > 0$ as the absence of a definite pointer-state fact
+for $S$ relative to $E$: Bell's theorem
+(Sec.~\ref{sec:bell})~---~which rules out local non-contextual
+hidden-variable completions reproducing quantum predictions~---~motivates
+treating properties as relational facts within the RQM reading, and a
+nonzero $\bar\alpha$ measures the residual superposition not yet
+resolved into a relational fact by~$E$.
+As $\bar\alpha \to 0$, the system transitions from the fully
+quantum-coherent regime to a pointer-basis-diagonal mixture
+representable as a classical distribution over relational facts.
 \end{remark}
 
 % ── III.C  Proposition II ────────────────────────────────────────────────────
 
 \subsection{\label{sec:prop2}Proposition~II: Relational Determination}
 
-\begin{proposition}[Relational Determination]
+\begin{proposition}[Relational Determination, uniform-rate Markovian dephasing]
 \label{prop:determination}
 Under Markovian dephasing [Eq.~\eqref{eq:lindblad}] with uniform
 jump operators $L_k = \sqrt{\gamma}\,\vert\pi_k\rangle\langle\pi_k\vert$
@@ -237,7 +257,9 @@ The loss term gives
   \;=\; -\gamma\,\rho_{ij}.
 \end{equation*}
 Combining, the magnitude obeys
-$\frac{d}{dt}\lvert\rho_{ij}\rvert = -\gamma\,\lvert\rho_{ij}\rvert$,
+\begin{equation*}
+  \frac{d}{dt}\lvert\rho_{ij}\rvert = -\gamma\,\lvert\rho_{ij}\rvert,
+\end{equation*}
 consistent with Eq.~\eqref{eq:decoherence-decay} at uniform rate
 $\Gamma_{ij} = \gamma$, so
 $\lvert\rho_{ij}(t)\rvert = \lvert\rho_{ij}(0)\rvert\,e^{-\gamma t}$ for
@@ -377,9 +399,21 @@ trajectory, which is made precise in Proposition~\ref{prop:conservation}.
 % ── III.E  Proposition IV ────────────────────────────────────────────────────
 
 \subsection{\label{sec:prop4}Proposition~IV:
-            Conservation of Relational Potential}
+            Coherence Redistribution under Unitary $S$--$E$ Evolution}
 
-\begin{proposition}[Conservation of Relational Potential]
+The three identities collected below are standard~---~purity
+conservation under unitary evolution, the
+$I(S{:}E) = 2S(\rho_S)$ identity from the Schmidt
+decomposition~\cite{NielsenChuang2000}, and the Joos--Zeh / Zurek
+branching identity for environment-induced
+decoherence~\cite{JoosZeh1985,Zurek2003}~---~and I do not claim
+novelty for them.
+Their utility here is the explicit packaging in $\bar\alpha$-language,
+which renders the export of local pointer-basis coherence into
+$S$--$E$ correlations as a coherence-budget statement that can be
+read off layer by layer in a quantum circuit.
+
+\begin{proposition}[Coherence redistribution under unitary $S$--$E$ evolution]
 \label{prop:conservation}
 Let $S{+}E$ be a closed system evolving unitarily from a pure initial
 product state $\rho_{SE}(0)
@@ -388,13 +422,23 @@ under a pointer-basis-coupling Hamiltonian
 $H_{\mathrm{int}} = \sum_k\vert\pi_k\rangle\langle\pi_k\vert\otimes B_k$
 that yields the pure-dephasing dynamics of
 Proposition~\ref{prop:determination}.
+Parts (i) and (iii) hold generally under this closed-system unitary
+hypothesis; part (ii) additionally requires the Markovian regime, as
+stated explicitly in its own itemization below.
 \begin{enumerate}
   \item[\emph{(i)}] \emph{Purity conservation.}
     $\mathrm{Tr}[\rho_{SE}(t)^2] = 1$ for all $t \geq 0$.
-  \item[\emph{(ii)}] \emph{Mutual information growth.}
-    Under this pointer-basis coupling the quantum mutual information
-    $I(S\!:\!E;\,t) = 2\,S(\rho_S(t))$
-    is non-decreasing, where $S(\cdot)$ is the von Neumann entropy.
+  \item[\emph{(ii)}] \emph{Mutual information growth (Markovian regime).}
+    In the Markovian pure-dephasing limit of
+    Proposition~\ref{prop:determination}~---~equivalently, when the
+    environmental branch overlaps
+    $\lvert\langle E_j(t)\vert E_i(t)\rangle\rvert$ decay monotonically
+    in $t$~---~the quantum mutual information
+    $I(S\!:\!E;\,t) = 2\,S(\rho_S(t))$ is non-decreasing, where
+    $S(\cdot)$ is the von Neumann entropy.
+    For finite non-Markovian environments the branch overlaps can revive
+    and $S(\rho_S(t))$ and $I(S\!:\!E;\,t)$ can decrease (information
+    backflow); the assertion does not extend to that regime.
   \item[\emph{(iii)}] \emph{Coherence transfer.}
     Writing $\vert\psi(t)\rangle = \sum_k c_k\,
     \vert\pi_k\rangle\vert E_k(t)\rangle$ with
@@ -424,16 +468,23 @@ and the result follows.
 For a pure bipartite state $\rho_{SE}$, the Schmidt decomposition
 gives $S(\rho_S) = S(\rho_E)$ and $S(\rho_{SE}) = 0$, hence
 $I(S\!:\!E) = S(\rho_S) + S(\rho_E) - S(\rho_{SE}) = 2\,S(\rho_S)$.
-Under the pointer-basis-coupling Hamiltonian above, the induced channel
-on $\rho_S$ between any two times $t_1 < t_2$ preserves diagonal
-populations in the pointer basis [part~(iii) below; equivalently, in
-the Markovian limit of Prop.~\ref{prop:determination},
-$\sum_k L_k^\dagger L_k = \gamma\,\mathbf{I}$], and is therefore
-unital: it preserves the maximally mixed state.
+In the Markovian regime of
+Proposition~\ref{prop:determination}~---~equivalently, monotonic
+decay of $\lvert\langle E_j(t)\vert E_i(t)\rangle\rvert$~---~the induced
+channel on $\rho_S$ between any two times $t_1 < t_2$ preserves
+diagonal populations in the pointer basis [part~(iii) below; in the
+Markovian limit, $\sum_k L_k^\dagger L_k = \gamma\,\mathbf{I}$], is
+CP-divisible, and is therefore unital: it preserves the maximally
+mixed state.
 Unital channels mix the spectrum in the majorization order,
 $\lambda(\rho_S(t_2)) \prec \lambda(\rho_S(t_1))$~\cite{NielsenChuang2000}.
 Since von Neumann entropy is Schur-concave, $S(\rho_S(t))$ is
 non-decreasing in $t$, and consequently so is $I(S\!:\!E;\,t)$.
+For non-Markovian dynamics the induced channel between $t_1$ and $t_2$
+need not be CP-divisible, the unital-channel argument fails, and
+$S(\rho_S(t))$ can decrease whenever the environmental branch overlaps
+revive; the standard physical signature is information backflow into
+$S$.
 
 \emph{Part (iii).}
 A pointer-basis interaction

@@ -1,7 +1,7 @@
 % ============================================================
 %  Publication 1 — Physics / Quantum Information
-%  "The Relational Coherence Theorem: Quantum Affinity,
-%   Decoherence, and a Coherence-Optimized Two-Qubit Gate"
+%  "Relational Coherence Budgeting for Tunable Exchange Gates:
+%   Pointer-Basis Affinity, Decoherence, and Exchange-Angle Coherence Cost"
 %
 %  SUBMISSION VERSION: Quantum journal
 %  Class: quantumarticle (https://quantum-journal.org)
@@ -39,13 +39,14 @@
 \hypersetup{colorlinks=true, linkcolor=blue, citecolor=blue, urlcolor=blue}
 
 % ── Custom commands ───────────────────────────────────────
-\newcommand{\RCT}{\textsc{rct}}
+\newcommand{\RCF}{\textsc{rcf}}
 \newcommand{\URA}{U_{\!\mathrm{RA}}}
 \newcommand{\rhoSE}{\rho_{SE}}
 
 % ── Theorem environments ──────────────────────────────────
 \newtheorem{theorem}{Theorem}
 \newtheorem{proposition}{Proposition}
+\newtheorem{corollary}{Corollary}
 \newtheorem{definition}{Definition}
 \newtheorem{remark}{Remark}
 
@@ -53,10 +54,11 @@
 \begin{document}
 % =============================================================
 
-\title{The Relational Coherence Theorem: Quantum Affinity, Decoherence,
-       and a Coherence-Optimized Two-Qubit Gate}
+\title{Relational Coherence Budgeting for Tunable Exchange Gates:
+       Pointer-Basis Affinity, Decoherence, and Exchange-Angle
+       Coherence Cost}
 
-\author{Joshua Adams}
+\author{Dr. Joshua Adams}
 \affiliation{Independent Researcher}
 \email{contact@joshuaadams.dev}
 \orcid{0000-0002-7185-9125}
@@ -65,7 +67,7 @@
 
 \begin{abstract}
 \input{sections/00-abstract}
-\end{abstract}
+\end{abstract}\newpage
 
 % ── Body sections ─────────────────────────────────────────
 \input{sections/01-introduction}
@@ -73,6 +75,7 @@
 \input{sections/03-rct}
 \input{sections/04-ura-gate}
 \input{sections/05-simulation}
+\input{sections/06-allocation-theorem}
 \input{sections/06-discussion}
 \input{sections/07-conclusion}
 
