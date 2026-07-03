@@ -161,10 +161,8 @@ gate-time-proportional, small-$p$, post-gate channels the leading-order
 contribution to $1 - F_{\rm avg}$ is linear in the per-qubit error rate
 and identical across the three channels up to channel-specific
 constants of order unity, with the closed-form depolarizing value
-$\Delta F = 3\,p_{\rm base}/8$ serving as a tight reference.
-The advantage is therefore not a discovery of robustness across noise
-models so much as a quantitative consequence of the gate-time scaling
-of Eq.~\eqref{eq:peff} in the small-noise regime.
+$\Delta F = 3\,p_{\rm base}/8$ serving as a tight reference
+(Table~\ref{tab:fidelity-all} caption).
 With that interpretation in mind, the simulations confirm that the
 gate-time-saving translates to a per-gate fidelity advantage of
 $\Delta F \in [+0.038, +0.039]$ at $p_{\rm base} = 0.10$ across all
@@ -181,7 +179,11 @@ equivalent to $p_Z = \gamma/2$) and amplitude-damping (per-qubit
 standard Kraus) rows: Qiskit and Cirq density-matrix simulations agree
 to numerical precision and are reproduced by the analytical formulas
 in \texttt{figures/generate\_tables.py}. Positive values confirm that
-$\URA(\pi/8)$ outperforms the fixed gates in all noise regimes tested.}
+$\URA(\pi/8)$ outperforms the fixed gates in all noise regimes tested.
+The near-equality across rows is not a discovery of cross-channel
+robustness; it is a quantitative consequence of the gate-time scaling
+of Eq.~\eqref{eq:peff} in the small-noise regime (see discussion
+below).}
 \label{tab:fidelity-all}
 \begin{tabular}{lccc}
 \toprule
@@ -222,7 +224,7 @@ superposition
 $\ket{++} = \tfrac{1}{2}(\ket{00}+\ket{01}+\ket{10}+\ket{11})$, for
 which $\bar\alpha(0) = 1$ in the four-dimensional computational pointer
 basis (Proposition~\ref{prop:correspondence}\emph{(ii)}).
-The Affinity Tensor decays monotonically from $1$ to $0$, tracking the
+The Affinity Operator decays monotonically from $1$ to $0$, tracking the
 loss of local pointer-basis coherence as the bath selects the classical
 pointer basis.
 The Markovian simulation reported here traces out the bath and follows
@@ -235,7 +237,7 @@ correlations, with the joint state remaining pure throughout
 \begin{figure}[htbp]
   \centering
   \includegraphics[width=0.85\columnwidth]{alpha-dynamics}
-  \caption{Affinity Tensor dynamics $\bar\alpha(t)$ for the two-qubit
+  \caption{Affinity Operator dynamics $\bar\alpha(t)$ for the two-qubit
     initial state $\ket{++}$ under independent per-qubit dephasing
     ($\gamma = 0.10$). The monotonic decay from $\bar\alpha = 1$ (maximal
     local pointer-basis coherence) to $\bar\alpha = 0$ (pointer-basis

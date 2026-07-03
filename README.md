@@ -11,7 +11,7 @@ Author: Dr. Joshua Adams ([ORCID 0000-0002-7185-9125](https://orcid.org/0000-000
 
 ## Abstract
 
-Bell's theorem and its loophole-free experimental verification rule out local non-contextual hidden-variable completions of quantum mechanics. A natural response, on which this work builds, is the relational reading of Rovelli, on which quantum properties are not assigned to systems in isolation but are encoded in their interaction histories. This paper packages one technically explicit aspect of that reading into the **Relational Coherence framework** (RCF), centred on the **Affinity Tensor** α(S,E) — the off-diagonal part of the reduced state ρ_S in the einselected pointer basis — whose normalized Frobenius norm ᾱ(S,E) ∈ [0,1] is the Hilbert–Schmidt coherence quantifier of ρ_S in that basis.
+Bell's theorem and its loophole-free experimental verification rule out local non-contextual hidden-variable completions of quantum mechanics. A natural response, on which this work builds, is the relational reading of Rovelli, on which quantum properties are not assigned to systems in isolation but are encoded in their interaction histories. This paper packages one technically explicit aspect of that reading into the **Relational Coherence framework** (RCF), centred on the **Affinity Operator** α(S,E) — the off-diagonal part of the reduced state ρ_S in the einselected pointer basis — whose normalized Frobenius norm ᾱ(S,E) ∈ [0,1] is the Hilbert–Schmidt coherence quantifier of ρ_S in that basis.
 
 The framework collects four standard identities in the language of ᾱ:
 

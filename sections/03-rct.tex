@@ -13,7 +13,7 @@ The Relational Coherence framework (\RCF) collects four
 identities that together unify the relational ontology of
 Sec.~\ref{sec:rqm} with the decoherence dynamics of
 Sec.~\ref{sec:decoherence} through a single quantitative object:
-the Affinity Tensor $\alpha(S,E)$.
+the Affinity Operator $\alpha(S,E)$.
 I retain the label ``Theorem'' for the central
 correspondence (Proposition~\ref{prop:correspondence}); the
 remaining three propositions are standard identities cast in
@@ -57,18 +57,18 @@ the locally accessible state of $S$ after $E$'s degrees of freedom
 are traced out.
 The relational character of the framework enters not through a
 separate notational object but through the construction of the
-Affinity Tensor below: $\alpha(S,E)$ is defined from $\rho_S$ in
+Affinity Operator below: $\alpha(S,E)$ is defined from $\rho_S$ in
 the pointer basis selected by the $S$-$E$ coupling
 (Sec.~\ref{sec:decoherence}), so its value is intrinsically indexed
 to $E$.
 \end{definition}
 
-\begin{definition}[Affinity Tensor]
+\begin{definition}[Affinity Operator]
 \label{def:alpha-tensor}
 Let $\{\vert \pi_k \rangle\}$ be the pointer basis of $S$
 selected by $H_{\mathrm{int}}$ via einselection
 (Sec.~\ref{sec:decoherence}).
-The \emph{Affinity Tensor} is the off-diagonal part of the
+The \emph{Affinity Operator} is the off-diagonal part of the
 reduced density matrix in this basis:
 
 \begin{equation}
@@ -91,7 +91,7 @@ condition of complete decoherence.
 \label{def:alpha-scalar}
 Let $d = \dim \mathcal{H}_S$.
 The \emph{scalar affinity} is the normalized Frobenius norm of
-the Affinity Tensor:
+the Affinity Operator:
 
 \begin{equation}
 \label{eq:alpha-scalar}
@@ -137,9 +137,9 @@ A fully decohered mixture $\rho_S = p\,\vert\pi_0\rangle\langle\pi_0\vert
 for all $p$, consistent with the classical limit.
 \end{remark}
 
-\begin{remark}[Tensor vs.\ scalar]
+\begin{remark}[Operator vs.\ scalar]
 \label{rem:tensor-vs-scalar}
-The Affinity Tensor $\alpha(S,E)$ and the scalar affinity
+The Affinity Operator $\alpha(S,E)$ and the scalar affinity
 $\bar{\alpha}(S,E)$ serve distinct roles throughout this paper.
 $\alpha(S,E)$ is a matrix that encodes the full coherence
 structure of $S$ --- the magnitude and phase of every off-diagonal
@@ -422,6 +422,9 @@ under a pointer-basis-coupling Hamiltonian
 $H_{\mathrm{int}} = \sum_k\vert\pi_k\rangle\langle\pi_k\vert\otimes B_k$
 that yields the pure-dephasing dynamics of
 Proposition~\ref{prop:determination}.
+Parts (i) and (iii) hold generally under this closed-system unitary
+hypothesis; part (ii) additionally requires the Markovian regime, as
+stated explicitly in its own itemization below.
 \begin{enumerate}
   \item[\emph{(i)}] \emph{Purity conservation.}
     $\mathrm{Tr}[\rho_{SE}(t)^2] = 1$ for all $t \geq 0$.

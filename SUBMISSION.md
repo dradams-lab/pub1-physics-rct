@@ -31,7 +31,7 @@ The canonical pre-print version lives on `main` and uses the standard `revtex4-2
 ## Submission checklist
 
 - [ ] Recompile in Overleaf to verify clean build
-- [ ] Check abstract length (Quantum prefers ≤ 350 words)
+- [x] Check abstract length (Quantum prefers ≤ 350 words) — confirmed 337 words
 - [ ] Verify all figures render correctly
 - [ ] Check that bibliography compiles with `quantum.bst` (some entries may need format tweaks for the BST)
 - [ ] Generate a fresh PDF

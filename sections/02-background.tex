@@ -17,7 +17,7 @@ of environmental decoherence~\cite{Zurek2003}, which governs how that
 relational structure evolves toward the classical limit.
 This section reviews each pillar in turn, concluding with Zurek's
 theory of einselection~\cite{Zurek2003}, which supplies the physical
-grounding for the pointer basis in which the Affinity Tensor is later
+grounding for the pointer basis in which the Affinity Operator is later
 defined.
 
 % ── II.A ─────────────────────────────────────────────────────────────────────
@@ -90,13 +90,13 @@ and reduced density-operator notation $\rho_{SE}$ and
 $\rho_S = \mathrm{Tr}_E[\rho_{SE}]$ (Sec.~\ref{sec:rct},
 Definition~\ref{def:rho}); the relational indexing enters not through
 a separate notational object but through the einselected pointer basis
-in which the Affinity Tensor is defined.
+in which the Affinity Operator is defined.
 The relational network $\Gamma_S$ encodes the set of systems
 with which $S$ has exchanged interactions, and it is this network that
 determines which properties of $S$ are actualized and for whom.
 In the present work $\Gamma_S$ is treated as a collection of
 interaction events rather than a full graph-theoretic structure: the
-Affinity Tensor and its scalar summary defined in
+Affinity Operator and its scalar summary defined in
 Sec.~\ref{sec:rct} depend on the joint state $\rho_{SE}$ at the time
 of evaluation together with the pointer basis fixed by the
 $S$-$E$ Hamiltonian, so the temporal ordering of prior interaction
@@ -169,7 +169,7 @@ times are short compared to the system's coherence time --- is standard
 for superconducting qubit platforms operating at dilution-refrigerator
 temperatures~\cite{Krantz2019}, and is adopted throughout this work.
 Non-Markovian corrections introduce memory kernels that would complicate
-the Affinity Tensor dynamics without qualitatively altering the
+the Affinity Operator dynamics without qualitatively altering the
 coherence-loss mechanism the \RCF~characterizes; their treatment is
 deferred to future work.
 
@@ -213,7 +213,7 @@ without a physical mechanism that singles out a preferred basis the
 off-diagonal-decay statement is ambiguous.
 Zurek's theory of \emph{einselection} (environment-induced
 superselection)~\cite{Zurek2003} answers this from first principles
-and is essential to grounding the Affinity Tensor defined in
+and is essential to grounding the Affinity Operator defined in
 Sec.~\ref{sec:rct}.
 
 For the dephasing model simulated in Sec.~\ref{sec:sim}, the
@@ -242,7 +242,7 @@ is selected through a predictability sieve in which residual
 non-pointer-basis off-diagonals decay
 faster~\cite{Schlosshauer2005,Zurek2003}.
 I work in the idealization in which einselection has converged on a
-sharp pointer basis; the basis-dependence of the Affinity Tensor below
+sharp pointer basis; the basis-dependence of the Affinity Operator below
 (Sec.~\ref{sec:rct}) is then grounded by this idealization, and a more
 careful treatment for non-Markovian or multi-bath situations is left
 to future work.
@@ -266,7 +266,7 @@ Einselection has two consequences essential to the present work.
 First, it provides a physically grounded, basis-independent definition
 of classicality: a state is classical relative to environment $E$
 precisely when it is a mixture of pointer states of $H_{\mathrm{int}}$.
-Second, it specifies the natural basis for the Affinity Tensor
+Second, it specifies the natural basis for the Affinity Operator
 $\alpha(S, E)$: rather than an arbitrary computational basis,
 I define $\alpha(S, E)$ in the pointer basis singled out by the
 $S$-$E$ coupling (Sec.~\ref{sec:rct}).
@@ -313,5 +313,5 @@ for tracking how much local pointer-basis coherence remains in
 $\rho_S$ at any moment in a circuit's execution, distinct from
 quantities such as concurrence or $S$-$E$ entanglement entropy that
 characterize the joint state.
-The Affinity Tensor tracks exactly this trajectory, and the
+The Affinity Operator tracks exactly this trajectory, and the
 Relational Coherence framework formalizes it.
