@@ -1,0 +1,34 @@
+% ── ABSTRACT, Foundations of Physics variant ──────────────────────────────
+% Foundations of Physics requires: 150-250 words, NO equations, NO citations.
+% Trimmed/rewritten from sections/00-abstract.tex (the Quantum-journal
+% abstract, ~319 words with 2 display equations and 6 citations) to meet
+% this constraint. Canonical main.tex abstract is untouched.
+
+The Relational Coherence Framework (\RCF) does not alter the
+predictions of quantum mechanics. Its contribution is explanatory and
+operational: it recasts decoherence, property definiteness, and tunable
+entanglement as aspects of a single coherence-budget process, in which
+local relational potential is redistributed into environmental
+correlation. This paper (i)~collects four standard identities of
+pointer-basis coherence theory in the language of a normalized
+Hilbert--Schmidt coherence quantifier grounded by einselection, adopting a
+relational reading of quantum mechanics as the conceptual setting without
+claiming it is singled out among the alternatives, and (ii)~derives an
+allocation theorem for tunable Heisenberg-exchange gates that turns the
+per-layer coherence cost into a compiler-relevant scheduling objective.
+
+The central result, the Coherence-Budget Allocation Theorem, gives the
+unique cost-minimizing exchange-angle schedule under Markovian
+gate-time-proportional dephasing with a fixed entanglement target: the
+schedule routes more entanglement onto quieter layers and skips layers
+whose noise rate exceeds a global shadow price set by the budget.
+
+A reference scheduler implementing this theorem beats both fixed-gate and
+uniform-angle baselines in multi-layer density-matrix simulation, yielding
+fidelity advantages of up to 0.040 against a concentrated full-entangler
+baseline and 0.025 against a uniform-angle schedule on heterogeneous noise.
+The framework's per-gate predictions remain consistent with experimental
+continuous-tunable-gate results on superconducting hardware. The advantage
+is contingent on direct exchange calibration; on platforms where the gate
+must be decomposed into fixed native primitives, the advantage may shrink
+or vanish.

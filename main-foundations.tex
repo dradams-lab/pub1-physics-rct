@@ -1,0 +1,99 @@
+% ============================================================
+%  Publication 1 — Physics / Quantum Information
+%  "Relational Coherence Budgeting for Tunable Exchange Gates:
+%   Pointer-Basis Affinity, Decoherence, and Exchange-Angle
+%   Coherence Cost"
+%
+%  SUBMISSION VERSION: Foundations of Physics (Springer Nature)
+%  Class: sn-jnl with sn-basic (numbered) bibliography, matching
+%  the plain \cite{} usage already in sections/*.tex
+%  Compiler: pdflatex (Overleaf)
+%  Dr. Joshua Adams | 2026
+% ============================================================
+
+% Springer Nature journal class.
+% sn-basic = Basic Springer Nature Reference Style (numbered),
+% matching the \cite{} (not \citep/\citet) commands used throughout
+% pub1's section files -- do not switch to sn-mathphys without also
+% converting every \cite to \citep/\citet.
+\documentclass[pdflatex,sn-basic]{sn-jnl}
+
+% ── Encoding ──────────────────────────────────────────────
+% sn-jnl loads its own font/encoding setup; do not re-load fontenc.
+\usepackage[utf8]{inputenc}
+
+% ── Mathematics ───────────────────────────────────────────
+% sn-jnl loads amsmath; pub1's sections additionally need amssymb,
+% amsthm, mathtools, braket, and physics.
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{mathtools}
+\usepackage{braket}          % \Bra{}, \Ket{}, \Braket{}
+\usepackage{physics}         % \tr{}, \norm{}, \comm{}{}
+
+% ── Quantum circuits ──────────────────────────────────────
+\usepackage{quantikz}        % quantum circuit diagrams
+
+% ── Tables & figures ──────────────────────────────────────
+% sn-jnl loads graphicx, booktabs, tabularx, longtable already.
+\graphicspath{{figures/}}
+
+% ── Custom commands ───────────────────────────────────────
+\newcommand{\RCF}{\textsc{rcf}}
+\newcommand{\URA}{U_{\!\mathrm{RA}}}
+\newcommand{\rhoSE}{\rho_{SE}}
+
+% ── Theorem environments ──────────────────────────────────
+% sn-jnl already provides \newtheorem infrastructure via amsthm;
+% pub1's sections use plain \newtheorem, kept as-is.
+\newtheorem{theorem}{Theorem}
+\newtheorem{proposition}{Proposition}
+\newtheorem{corollary}{Corollary}
+\newtheorem{definition}{Definition}
+\newtheorem{remark}{Remark}
+
+% ── ORCID ─────────────────────────────────────────────────
+\usepackage{orcidlink}
+
+% =============================================================
+\begin{document}
+% =============================================================
+
+\title[Relational Coherence Budgeting for Tunable Exchange Gates]{Relational
+       Coherence Budgeting for Tunable Exchange Gates: Pointer-Basis
+       Affinity, Decoherence, and Exchange-Angle Coherence Cost}
+
+\author*[1]{\fnm{Joshua} \sur{Adams}\orcidlink{0000-0002-7185-9125}}
+\email{contact@joshuaadams.dev}
+
+\affil*[1]{\orgname{Independent Researcher}}
+
+% ── Abstract ──────────────────────────────────────────────
+% Foundations of Physics: 150-250 words, no equations, no citations.
+\abstract{\input{sections/00-abstract-foundations}}
+
+\keywords{quantum coherence, decoherence, tunable exchange gates,
+Heisenberg exchange, pointer basis, coherence budgeting, quantum
+information, einselection}
+
+\maketitle
+
+% ── Body ──────────────────────────────────────────────────
+\input{sections/01-introduction}
+\input{sections/02-background}
+\input{sections/03-rct}
+\input{sections/04-ura-gate}
+\input{sections/05-simulation}
+\input{sections/06-allocation-theorem}
+\input{sections/06-discussion}
+\input{sections/07-conclusion}
+
+% ── Appendix ──────────────────────────────────────────────
+\begin{appendices}
+\input{sections/A-rct-proof}
+\end{appendices}
+
+% ── Bibliography ──────────────────────────────────────────
+\bibliography{references}
+
+\end{document}
