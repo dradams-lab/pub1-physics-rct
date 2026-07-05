@@ -44,9 +44,9 @@ Numerical simulations in Qiskit and Cirq under gate-time-proportional depolarizi
 
 ## Companion publications
 
-- **Pub2 — Philosophy**: [Three Paths to One Structure](https://github.com/adams-research/pub2-philosophy) — [DOI: 10.5281/zenodo.20130289](https://doi.org/10.5281/zenodo.20130289)
-- **Pub3 — Bahá'í Studies**: [Mahabbat and the Affinity Tensor](https://github.com/adams-research/pub3-bahai-studies) (forthcoming Zenodo DOI)
-- **Book**: [The Physics of Love](https://github.com/adams-research/book-physics-of-love) (in preparation)
+- **Pub2 — Philosophy**: [Three Paths to One Structure](https://github.com/dradams-lab/pub2-philosophy) — [DOI: 10.5281/zenodo.20130289](https://doi.org/10.5281/zenodo.20130289)
+- **Pub3 — Bahá'í Studies**: [Mahabbat and the Affinity Tensor](https://github.com/dradams-lab/pub3-bahai-studies) — [DOI: 10.5281/zenodo.20388678](https://doi.org/10.5281/zenodo.20388678)
+- **Book**: [The Physics of Love](https://github.com/dradams-lab/book-physics-of-love) (in preparation)
 
 ---
 
@@ -61,7 +61,7 @@ pdflatex main.tex
 pdflatex main.tex
 ```
 
-The PDF is also attached to each [GitHub release](https://github.com/adams-research/pub1-physics-rct/releases) and archived on Zenodo via the DOI above.
+The PDF is also attached to each [GitHub release](https://github.com/dradams-lab/pub1-physics-rct/releases) and archived on Zenodo via the DOI above.
 
 ---
 
