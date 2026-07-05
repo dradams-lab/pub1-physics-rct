@@ -53,7 +53,15 @@
 \newtheorem{remark}{Remark}
 
 % ── ORCID ─────────────────────────────────────────────────
-\usepackage{orcidlink}
+% sn-jnl.cls already \gdef's \orcidlogo and \orcid{} itself (relying on a
+% bundled Orcidlogo.eps file that is not distributed with this conda-forge
+% texlive package and was not part of Springer's own class bundle either).
+% DO NOT \usepackage{orcidlink} here -- it redefines \orcidlogo too and
+% collides with the class's own definition ("Command \orcidlogo already
+% defined" LaTeX error, confirmed by an actual Editorial Manager compile
+% attempt). Instead, override \orcidlogo with a simple text glyph that
+% needs no external image file, and use the class's own \orcid{URL} macro.
+\def\orcidlogo{\textsuperscript{\scriptsize iD}}
 
 % =============================================================
 \begin{document}
@@ -63,7 +71,7 @@
        Coherence Budgeting for Tunable Exchange Gates: Pointer-Basis
        Affinity, Decoherence, and Exchange-Angle Coherence Cost}
 
-\author*[1]{\fnm{Joshua} \sur{Adams}\orcidlink{0000-0002-7185-9125}}
+\author*[1]{\fnm{Joshua} \sur{Adams}\orcid{https://orcid.org/0000-0002-7185-9125}}
 \email{contact@joshuaadams.dev}
 
 \affil*[1]{\orgname{Independent Researcher}}

@@ -37,29 +37,40 @@ cat > "$TMP" <<'EOF'
 
 EOF
 
-# Walk through main.tex line by line, inlining \input{sections/X} occurrences.
+# Walk through main.tex line by line, inlining \input{sections/X}
+# occurrences -- INCLUDING when \input{...} is nested inside another
+# command on the same line (e.g. \abstract{\input{sections/00-abstract}}),
+# which a whole-line-only match would silently skip, leaving a dangling
+# \input in the flattened file that Editorial Manager's compiler cannot
+# resolve (it has no sections/ directory -- confirmed by an actual failed
+# compile: "File `sections/00-abstract-foundations.tex' not found").
 while IFS= read -r line; do
-  # Match \input{sections/something} or \input{sections/something.tex}
-  if [[ "$line" =~ ^[[:space:]]*\\input\{sections/([^}]+)\}[[:space:]]*$ ]]; then
+  out_line="$line"
+  # Repeatedly substitute each \input{sections/NAME} found anywhere in the
+  # line (there may be more than one, though in practice at most one).
+  while [[ "$out_line" =~ \\input\{sections/([^}]+)\} ]]; do
     section_name="${BASH_REMATCH[1]}"
-    # Try .tex suffix and bare name
     section_path="sections/${section_name}"
     if [[ ! -f "$section_path" && -f "${section_path}.tex" ]]; then
       section_path="${section_path}.tex"
     fi
     if [[ -f "$section_path" ]]; then
-      echo "% ─── Inlined from $section_path ───" >> "$TMP"
-      cat "$section_path" >> "$TMP"
-      echo "" >> "$TMP"
-      echo "% ─── End of $section_path ───" >> "$TMP"
-      echo "" >> "$TMP"
+      section_content="$(cat "$section_path")"
+      # Replace only the first occurrence of this exact \input{...} token.
+      match="\\input{sections/${section_name}}"
+      prefix="${out_line%%"$match"*}"
+      suffix="${out_line#*"$match"}"
+      out_line="${prefix}
+% ─── Inlined from ${section_path} ───
+${section_content}
+% ─── End of ${section_path} ───
+${suffix}"
     else
-      echo "WARNING: section file not found for: $line" >&2
-      echo "$line" >> "$TMP"
+      echo "WARNING: section file not found for: $section_name (line: $line)" >&2
+      break
     fi
-  else
-    echo "$line" >> "$TMP"
-  fi
+  done
+  echo "$out_line" >> "$TMP"
 done < "$INPUT"
 
 mv "$TMP" "$OUTPUT"
