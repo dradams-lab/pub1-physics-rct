@@ -35,7 +35,7 @@ The canonical pre-print version lives on `main` and uses the standard `revtex4-2
 - [ ] Verify all figures render correctly
 - [ ] Check that bibliography compiles with `quantum.bst` (some entries may need format tweaks for the BST)
 - [ ] Generate a fresh PDF
-- [ ] Submit via [Quantum's submission system](https://quantum-journal.org/submission/) — they use ScholarOne
+- [ ] Submit via Quantum's Scholastica-based system at [quantum-journal.scholasticahq.com](https://quantum-journal.scholasticahq.com/for-authors) (NOT ScholarOne — corrected after verification). Submission requires an arXiv reference (posted to or cross-listed with quant-ph); the paper cannot be submitted to Quantum before its arXiv deposit is live. No submission fee.
 - [ ] Cover letter mentions the Zenodo pre-print: `https://doi.org/10.5281/zenodo.20130304`
 - [ ] Suggest reviewers (Quantum's submission system asks for 3–5)
 
