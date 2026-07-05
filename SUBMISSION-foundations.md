@@ -14,7 +14,7 @@ The **Foundations of Physics**-formatted version of the manuscript lives on `mai
 |---|---|---|
 | Document class | `quantumarticle` (a4paper, onecolumn, 11pt) | `sn-jnl` (`pdflatex,sn-basic`) |
 | Author block syntax | `\author{Dr. Joshua Adams}` + `\affiliation{}` + `\email{}` + `\orcid{}` | Springer's structured `\fnm{Joshua} \sur{Adams}` + `\affil*[1]{\orgname{Independent Researcher}}` |
-| Abstract | `\begin{abstract}...\end{abstract}`, ~319 words, 2 display equations, 6 citations | `\abstract{...}` command, new file `sections/00-abstract-foundations.tex`, 247 words (confirmed via Springer's own submission-guidelines page: **150-250 words required**), rewritten with no equations/citations as a safe default (that specific restriction is not independently confirmed — see toolchain note) |
+| Abstract | `\begin{abstract}...\end{abstract}`, ~319 words, 2 display equations, 6 citations | `\abstract{...}` command, new file `sections/00-abstract-foundations.tex`, 227 words (confirmed via Springer's own submission-guidelines page: **150-250 words required**), rewritten with no equations/citations as a safe default (that specific restriction is not independently confirmed — see toolchain note) |
 | Keywords | not present | `\keywords{...}` (Springer expects this; 8 keywords added) |
 | Bibliography style | `quantum.bst` | `sn-basic.bst` (numbered, matches existing `\cite{}` usage) |
 | Appendix | `\appendix` | `\begin{appendices}...\end{appendices}` (sn-jnl's own environment) |
@@ -40,7 +40,7 @@ Submit `main-foundations-flat.tex` (renamed to whatever you prefer) along with `
 ## Springer-specific things to verify before submitting
 
 - [ ] Recompile in Overleaf to verify clean build (sn-jnl can be picky about package conflicts, e.g. `quantikz`/`physics`/`braket` alongside its own math setup) — **NOT YET DONE**; this file was authored in a sandbox without a working LaTeX toolchain (see note below)
-- [x] Abstract length: rewritten to 247 words, meeting Springer's confirmed 150-250 word requirement (verified against the journal's own submission-guidelines page). Also rewritten with no equations/citations as a safe convention-following default, though that specific sub-rule was not independently confirmed in the same source.
+- [x] Abstract length: rewritten to 227 words (229 counting `~` non-breaking-space markers as word breaks), meeting Springer's confirmed 150-250 word requirement (verified against the journal's own submission-guidelines page). Also rewritten with no equations/citations as a safe convention-following default, though that specific sub-rule was not independently confirmed in the same source.
 - [x] Keyword count: 8 keywords added (Springer prefers 4–8)
 - [ ] Section numbering: ensure no double-numbering issues (Springer auto-numbers)
 - [ ] Bibliography: verify `sn-basic.bst` formatting is acceptable for all 41 entries (some entry types may need tweaks)
