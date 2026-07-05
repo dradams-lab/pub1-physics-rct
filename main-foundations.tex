@@ -35,8 +35,30 @@
 \usepackage{quantikz}        % quantum circuit diagrams
 
 % ── Tables & figures ──────────────────────────────────────
-% sn-jnl loads graphicx, booktabs, tabularx, longtable already.
+% Correction (previously wrongly assumed sn-jnl.cls loads booktabs -- it
+% does NOT, and must NOT be \usepackage'd here): the class defines its own
+% \toprule/\midrule (they already work; confirmed by grep and by the fact
+% Editorial Manager's compiler did NOT flag them) plus its own bottom-rule
+% macro under the name \botrule (Springer's own naming, not the standard
+% booktabs name). pub1's section files use the standard booktabs spelling
+% \bottomrule, which the class simply never defines under that name --
+% hence "Undefined control sequence \bottomrule" from the real compile.
+% Loading the full booktabs package would REDEFINE \toprule/\midrule too
+% and collide with the class's own definitions (the same class of bug as
+% the earlier \orcidlogo conflict) -- so alias the one missing name
+% instead of loading the package.
+\let\bottomrule\botrule
 \graphicspath{{figures/}}
+
+% ── Footnote hook dependency ──────────────────────────────
+% sn-jnl.cls's \AtBeginDocument hook calls \SetFootnoteHook and
+% \DeclareNewFootnote (both from the bigfoot/manyfoot package) but never
+% \RequirePackage{bigfoot} itself -- an unmet dependency in the class file,
+% confirmed by grep, and the direct cause of the "Undefined control
+% sequence \__hook begindocument" cascade reported at \begin{document}.
+% Load bigfoot explicitly, BEFORE hyperref-dependent packages, so those
+% commands exist when the class's \AtBeginDocument hook fires.
+\usepackage{bigfoot}
 
 % ── Custom commands ───────────────────────────────────────
 \newcommand{\RCF}{\textsc{rcf}}
