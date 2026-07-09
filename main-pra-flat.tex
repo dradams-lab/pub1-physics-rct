@@ -69,6 +69,11 @@
 % default for the referee PDF (APS convention), links still active.
 \usepackage{hyperref}
 
+% ── ORCID iD in author line ───────────────────────────────
+% Loaded AFTER hyperref (and after quantikz, which provides tikz) because
+% orcidlink depends on both. Provides \orcidlink{iD}; see author line below.
+\usepackage{orcidlink}
+
 % ── Custom commands ───────────────────────────────────────
 \newcommand{\RCF}{\textsc{rcf}}
 \newcommand{\URA}{U_{\!\mathrm{RA}}}
@@ -89,7 +94,17 @@
        Pointer-Basis Affinity, Decoherence, and Exchange-Angle
        Coherence Cost}
 
-\author{Joshua Adams}
+% ORCID: REVTeX 4.2 provides NO \orcid command of its own (a bare
+% \orcid{...} is an undefined-control-sequence error). The documented,
+% RevTeX-specific mechanism is the orcidlink package's \orcidlink{iD}
+% placed in the author's name argument (orcidlink's own manual uses a
+% RevTeX \author line as its worked example). Unlike the Foundations
+% variant's \orcidlogo collision, there is no clash here: revtex4-2.cls
+% does not define \orcidlink or \orcidlogo, so loading orcidlink is safe.
+% orcidlink needs hyperref + tikz; tikz is already pulled in by quantikz
+% and hyperref is loaded above, so orcidlink is loaded AFTER both.
+% ORCID is ALSO entered in the submission-portal author metadata.
+\author{Joshua Adams\,\orcidlink{0000-0002-7185-9125}}
 \email{contact@joshuaadams.dev}
 \affiliation{Independent Researcher}
 

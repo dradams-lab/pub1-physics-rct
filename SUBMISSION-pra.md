@@ -34,9 +34,14 @@ provide REVTeX; including your own copy can conflict with theirs.
   section file needed a PRA-specific edit.
 - **`apsrev4-2.bst` (numbered).** Matches the plain `\cite{}` used
   throughout `sections/*.tex` — no `\citep`/`\citet`, so no natbib needed.
-- **No `\orcid` macro in the .tex.** REVTeX 4.2 does not define `\orcid`
-  (using it = "undefined control sequence"). Enter your ORCID in the
-  submission portal's author metadata instead.
+- **ORCID via the `orcidlink` package.** REVTeX 4.2 has no native
+  `\orcid` command (a bare `\orcid{}` = "undefined control sequence"). The
+  documented RevTeX mechanism is `\orcidlink{iD}` in the author's name
+  argument, provided by `\usepackage{orcidlink}` (loaded after hyperref +
+  tikz, both of which it needs). Also enter your ORCID in the submission
+  portal's author metadata. **Note:** `orcidlink` must be present in the
+  Overleaf/APS TeX tree — it is in TeX Live and on Overleaf, so this is
+  fine, but it is one more package the Overleaf compile will confirm.
 - **No PACS codes.** APS dropped the PACS requirement years ago.
 - **No length limit.** Unlike PRL's 4-page cap, a regular PRA article has
   no strict length limit.
@@ -79,12 +84,31 @@ provide REVTeX; including your own copy can conflict with theirs.
 
 ## Note on the previous (Foundations of Physics) rejection
 
-pub1 was desk-rejected by *Foundations of Physics* — most plausibly a
-scope/fit issue (a practical gate-scheduling result is not the conceptual/
-ontological work that journal selects for), not a quality or novelty
-deficit. PRA's experimental-physics ethos is a better fit for a
-gate-fidelity result. If the actual decision letter says otherwise (e.g.
-a quality/novelty concern), revisit the framing before resubmitting.
+pub1 was rejected by *Foundations of Physics*. **The actual decision
+letter has not been read** (it went to contact@joshuaadams.dev; the
+status portal only showed "rejected"), so the cause is not confirmed.
+Three possibilities, none yet ruled out:
+
+1. **Technical / compile failure.** The Foundations manuscript was never
+   compiled locally (the sandbox LaTeX toolchain is broken), and the first
+   Editorial-Manager attempts *did* throw real compile errors
+   (`\orcidlogo` collision, missing `bigfoot`, `\bottomrule` undefined,
+   dropped abstract file) that were fixed over two rounds. An uncompiled
+   document or an unverified bibliography style is a very plausible source
+   of a Technical Check flag. **This must be ruled out for PRA: compile
+   `main-pra-flat.tex` on Overleaf before uploading (see above).**
+2. **Editorial scope/fit.** A practical gate-scheduling result is not the
+   conceptual/ontological work *Foundations of Physics* typically selects
+   for; PRA's experimental-physics ethos fits a gate-fidelity result
+   better. This is *a* plausible reason but is **not confirmed** and should
+   not be treated as the established cause.
+3. **Quality / novelty concern.** Also not ruled out.
+
+**Action:** read the decision letter before assuming (2). If it cites a
+technical/format problem, the fix is a clean compile, not a new journal;
+if it cites scope/fit, PRA is well-justified; if it cites quality/novelty,
+revisit the argument (note the §6.6 CNOT-count correction made this
+session already strengthens the paper's rigor).
 
 ## Math-verification status (this session)
 
