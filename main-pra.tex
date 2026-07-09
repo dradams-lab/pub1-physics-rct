@@ -1,0 +1,113 @@
+% ============================================================
+%  Publication 1 — Physics / Quantum Information
+%  "Relational Coherence Budgeting for Tunable Exchange Gates:
+%   Pointer-Basis Affinity, Decoherence, and Exchange-Angle
+%   Coherence Cost"
+%
+%  SUBMISSION VERSION: Physical Review A (APS)
+%  Class: revtex4-2 with [aps,pra,preprint]
+%  Compiler: pdflatex (Overleaf)
+%  Dr. Joshua Adams | 2026
+% ============================================================
+%
+% NOTES ON THIS VARIANT (read before editing):
+%  * REVTeX 4.2 ships with TeX Live / Overleaf / the APS submission
+%    system -- unlike sn-jnl.cls (Foundations variant), the class file
+%    does NOT need to be bundled in the submission zip. APS compiles it.
+%  * "preprint" = one-column, wide-margin, single-spaced-ish REFEREE
+%    format, which APS PREFERS for submission (the two-column "reprint"
+%    is the published-page look). One-column also means the shared
+%    section files' \begin{table}/\begin{figure} do not overflow a
+%    column, so NONE of sections/*.tex needs a PRA-specific edit.
+%  * apsrev4-2.bst (numbered) matches the plain \cite{} usage already in
+%    sections/*.tex -- same reasoning as the Foundations sn-basic choice.
+%  * The abstract (sections/00-abstract.tex) is multi-paragraph and
+%    contains displayed equations and citations. APS style prefers a
+%    single paragraph without displayed math; this compiles as-is, but
+%    consider trimming to a single paragraph before final submission.
+
+\documentclass[aps,pra,preprint,amsmath,amssymb,superscriptaddress,nofootinbib]{revtex4-2}
+\pdfoutput=1
+
+% ── Encoding & fonts ──────────────────────────────────────
+% revtex4-2 sets up fonts; utf8 input is safe to declare.
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+
+% ── Mathematics ───────────────────────────────────────────
+% revtex4-2 loads amsmath/amssymb via class options above; add the rest.
+\usepackage{amsthm}
+\usepackage{mathtools}
+\usepackage{braket}          % \Bra{}, \Ket{}, \Braket{}
+\usepackage{physics}         % \tr{}, \norm{}, \comm{}{}
+
+% ── Quantum circuits ──────────────────────────────────────
+\usepackage{quantikz}        % quantum circuit diagrams
+
+% ── Graphics & tables ─────────────────────────────────────
+\usepackage{graphicx}
+\usepackage{booktabs}        % \toprule/\midrule/\bottomrule -- REVTeX
+                             % does NOT load booktabs and, unlike
+                             % sn-jnl.cls, does NOT predefine \toprule
+                             % etc. under any name, so load the real
+                             % package here (no alias hack needed, and
+                             % no class-macro collision to worry about).
+\usepackage{array}
+\graphicspath{{figures/}}
+
+% ── Hyperlinks ────────────────────────────────────────────
+% hyperref last. REVTeX is hyperref-aware; colorlinks kept off by
+% default for the referee PDF (APS convention), links still active.
+\usepackage{hyperref}
+
+% ── Custom commands ───────────────────────────────────────
+\newcommand{\RCF}{\textsc{rcf}}
+\newcommand{\URA}{U_{\!\mathrm{RA}}}
+\newcommand{\rhoSE}{\rho_{SE}}
+
+% ── Theorem environments ──────────────────────────────────
+\newtheorem{theorem}{Theorem}
+\newtheorem{proposition}{Proposition}
+\newtheorem{corollary}{Corollary}
+\newtheorem{definition}{Definition}
+\newtheorem{remark}{Remark}
+
+% =============================================================
+\begin{document}
+% =============================================================
+
+\title{Relational Coherence Budgeting for Tunable Exchange Gates:
+       Pointer-Basis Affinity, Decoherence, and Exchange-Angle
+       Coherence Cost}
+
+\author{Joshua Adams}
+\email{contact@joshuaadams.dev}
+\affiliation{Independent Researcher}
+
+\date{\today}
+
+\begin{abstract}
+\input{sections/00-abstract}
+\end{abstract}
+
+\maketitle
+
+% ── Body sections ─────────────────────────────────────────
+\input{sections/01-introduction}
+\input{sections/02-background}
+\input{sections/03-rct}
+\input{sections/04-ura-gate}
+\input{sections/05-simulation}
+\input{sections/06-allocation-theorem}
+\input{sections/06-discussion}
+\input{sections/07-conclusion}
+
+% ── Appendix ──────────────────────────────────────────────
+\appendix
+\input{sections/A-rct-proof}
+
+% ── Bibliography ──────────────────────────────────────────
+\bibliographystyle{apsrev4-2}
+\bibliography{references}
+
+\end{document}
