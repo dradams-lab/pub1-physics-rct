@@ -42,7 +42,7 @@ def simulate(gamma: float, t_grid: np.ndarray, n_qubits: int = 2) -> np.ndarray:
     for k, t in enumerate(t_grid):
         decay = np.exp(-gamma * H * t)            # diagonal entries get exp(0) = 1
         rho_t = rho0 * decay                       # element-wise: pure dephasing
-        # Affinity tensor: zero out diagonal, keep off-diagonal coherences.
+        # Affinity Operator: zero out diagonal, keep off-diagonal coherences.
         alpha = rho_t - np.diag(np.diag(rho_t))
         frob_sq = np.sum(np.abs(alpha) ** 2).real
         alpha_bar[k] = np.sqrt(d / (d - 1) * frob_sq)
@@ -91,7 +91,7 @@ def main() -> None:
     ax.set_ylim(-0.02, 1.05)
     ax.legend(frameon=False, loc="upper right")
     ax.set_title(
-        r"Affinity tensor dynamics: independent dephasing of $|{+}{+}\rangle$",
+        r"Scalar affinity under independent dephasing of $|{+}{+}\rangle$",
         fontsize=10,
     )
     fig.tight_layout()
