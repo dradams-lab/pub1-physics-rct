@@ -52,12 +52,8 @@ provide REVTeX; including your own copy can conflict with theirs.
 
 ## BEFORE you submit — must do
 
-1. **Compile `main-pra-flat.tex` on Overleaf** (Integrations → GitHub →
-   pull, then set Settings → Main document → `main-pra-flat.tex`,
-   Recompile, and switch back afterwards). As of 2026-09-29 the PRA and
-   Quantum builds were clean (0 errors, 0 overfull boxes) at `f092abe`;
-   the §3/§4 correction (`cf3b32e`) and the Acknowledgments/AI disclosure
-   added after it still need one compile.
+1. ~~Compile `main-pra-flat.tex` on Overleaf~~ — done 2026-09-29 at
+   `403f7a2`: 0 errors (the Quantum `main.tex` build is also clean).
 
 2. **Read the Foundations of Physics decision letter** (see note below)
    before uploading.
