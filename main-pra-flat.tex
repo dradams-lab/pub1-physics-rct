@@ -268,6 +268,22 @@ baseline in multi-layer density-matrix simulation, and beats a
 uniform-$\theta$ baseline when per-layer noise is heterogeneous (under
 uniform noise the two schedules coincide, as the theorem requires).
 
+The practical stakes are simple to state.
+Present-day quantum processors run without full error correction, so
+how quickly they lose coherence limits the depth of any useful
+computation~\cite{Preskill2018NISQ}.
+The applications most often cited for these devices, such as
+simulating molecules and materials for chemistry and materials
+design~\cite{Bauer2020ChemRev}, need circuits that stay coherent longer
+than current hardware allows.
+Until fault-tolerant machines are available, gains that come from
+scheduling alone, with no change to the hardware, are worth having.
+The gains reported here are modest: a few percent in final-state
+fidelity, in simulation, and only where exchange angles can be
+calibrated directly.
+Their main value is that compilers get a provably optimal rule, not a
+heuristic, for where to spend a limited coherence budget.
+
 \subsection{From Substance Thinking to Relational-Affinity Thinking}
 \label{sec:substance-to-relational}
 
