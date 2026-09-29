@@ -1190,14 +1190,24 @@ Because decoherence transfers, rather than destroys, relational
 structure, the local pointer-basis coherence
 $\bar{\alpha}(t) = \bar{\alpha}(0)\,e^{-\gamma t}$ available at time $t$
 is a finite, monotonically depleting budget.
-A two-qubit entangling operation expends a portion of this budget per
-gate by redistributing local coherence into $S$-$E$ correlations
-[Eq.~\eqref{eq:coherence-transfer}]; an operation acting below its
-maximum entanglement capability expends a smaller portion, leaving more
-coherence available for downstream layers.
-The conservation law also sets a hard upper bound: no unitary acting on
-$S$ alone (without access to $E$) can increase $\bar{\alpha}(t)$ above
-its current value, so the coherence-preservation strategy is to
+Each two-qubit gate spends part of this budget: for as long as the
+gate pulse lasts, the environment keeps recording the pointer states,
+so local coherence continues to be redistributed into $S$-$E$
+correlations [Eq.~\eqref{eq:coherence-transfer}].
+A gate run below its maximum entanglement capability is shorter and
+spends less, leaving more coherence available for downstream layers
+(Sec.~\ref{sec:alloc}).
+Local operations cannot undo this.
+A unitary acting on $S$ alone preserves the purity
+$\mathrm{Tr}\,\rho_S^2$, and $\bar\alpha$ never exceeds the ceiling that
+the purity sets,
+$\bar\alpha \le \bigl[(d\,\mathrm{Tr}\,\rho_S^2 - 1)/(d-1)\bigr]^{1/2}$,
+since $\sum_i \rho_{ii}^2 \ge 1/d$.
+A local unitary can raise $\bar\alpha$ below that ceiling (a Hadamard
+takes $\ket{0}$ from $\bar\alpha = 0$ to $\bar\alpha = 1$), but
+decoherence lowers the purity and with it the ceiling, and no operation
+on $S$ alone can recover coherence that has been transferred to $E$.
+The coherence-preservation strategy is therefore to
 \emph{spend less per gate}, not to attempt local recovery.
 This is the operational content the $\URA(\theta)$ gate of
 Sec.~\ref{sec:gate} exploits.
@@ -1273,11 +1283,16 @@ $\bar\alpha(S,E)$ measures the local pointer-basis coherence remaining in
 the reduced state $\rho_S$ (Definition~\ref{def:alpha-scalar}), whereas
 $\theta$ parameterizes the coupling strength of a unitary applied to a
 two-qubit system; the two have different domains
-($\bar\alpha \in [0,1]$ versus $\theta \in [0,\pi/2]$) and respond
-inversely along a decoherence trajectory: as $\theta$ increases toward
-$\pi/4$, the gate generates more $S$-$S'$ entanglement, and the
-post-gate marginal $\rho_S$ moves toward the maximally mixed state with
-$\bar\alpha \to 0$ (cf.\ Proposition~\ref{prop:conservation}, part~(iii)
+($\bar\alpha \in [0,1]$ versus $\theta \in [0,\pi/2]$), and the
+gate does not set $\bar\alpha$ directly.
+As $\theta$ increases toward $\pi/4$ the gate can generate more
+$S$-$S'$ entanglement, which lowers the purity of the marginal
+$\rho_S$ and with it the ceiling on $\bar\alpha$; how far $\bar\alpha$
+actually moves depends on the input.
+For $\ket{01}$ the marginal becomes maximally mixed while $\bar\alpha$
+stays at $0$ throughout; for $\ket{+}\ket{0}$, $\bar\alpha$ of the first
+qubit falls from $1$ to $1/\sqrt{2}$ at $\theta = \pi/4$
+(cf.\ Proposition~\ref{prop:conservation}, part~(iii)
 and the Affinity-vs.-Entanglement remark in Sec.~\ref{sec:prop3}).
 What the \RCF~contributes is the conceptual warrant for a continuously
 parameterized exchange gate~--- namely, that relational coupling is

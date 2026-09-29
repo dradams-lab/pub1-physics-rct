@@ -65,11 +65,16 @@ $\bar\alpha(S,E)$ measures the local pointer-basis coherence remaining in
 the reduced state $\rho_S$ (Definition~\ref{def:alpha-scalar}), whereas
 $\theta$ parameterizes the coupling strength of a unitary applied to a
 two-qubit system; the two have different domains
-($\bar\alpha \in [0,1]$ versus $\theta \in [0,\pi/2]$) and respond
-inversely along a decoherence trajectory: as $\theta$ increases toward
-$\pi/4$, the gate generates more $S$-$S'$ entanglement, and the
-post-gate marginal $\rho_S$ moves toward the maximally mixed state with
-$\bar\alpha \to 0$ (cf.\ Proposition~\ref{prop:conservation}, part~(iii)
+($\bar\alpha \in [0,1]$ versus $\theta \in [0,\pi/2]$), and the
+gate does not set $\bar\alpha$ directly.
+As $\theta$ increases toward $\pi/4$ the gate can generate more
+$S$-$S'$ entanglement, which lowers the purity of the marginal
+$\rho_S$ and with it the ceiling on $\bar\alpha$; how far $\bar\alpha$
+actually moves depends on the input.
+For $\ket{01}$ the marginal becomes maximally mixed while $\bar\alpha$
+stays at $0$ throughout; for $\ket{+}\ket{0}$, $\bar\alpha$ of the first
+qubit falls from $1$ to $1/\sqrt{2}$ at $\theta = \pi/4$
+(cf.\ Proposition~\ref{prop:conservation}, part~(iii)
 and the Affinity-vs.-Entanglement remark in Sec.~\ref{sec:prop3}).
 What the \RCF~contributes is the conceptual warrant for a continuously
 parameterized exchange gate~--- namely, that relational coupling is
