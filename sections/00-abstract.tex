@@ -47,7 +47,8 @@ The schedule routes more entanglement onto quieter layers and skips
 layers whose $\tilde\gamma_\ell$ exceeds the global shadow price.
 
 A reference scheduler implementing this theorem (\texttt{figures/rcb\_optimizer.py})
-beats both fixed-gate and uniform-$\theta$ baselines in multi-layer
+beats a concentrated fixed-gate baseline and, when per-layer noise is
+heterogeneous, a uniform-$\theta$ baseline in multi-layer
 density-matrix simulation: against a concentrated full-entangler
 baseline, the optimal schedule yields a final-state fidelity
 advantage of up to $\Delta F = +0.040$ at $\gamma = 0.15$,

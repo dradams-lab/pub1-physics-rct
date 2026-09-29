@@ -222,7 +222,7 @@ corollary in App.~\ref{app:rct-proof}), but the question of
 outside the framework's scope, as it does for all no-collapse
 interpretations.
 
-Four further limitations bound the simulation claims.
+Five further limitations bound the simulation claims.
 First, the gate-time-proportional noise model (Eq.~\eqref{eq:peff})
 captures only the coherence-limited contribution to gate error and is
 appropriate for Heisenberg exchange directly calibrated on suitable
@@ -254,6 +254,26 @@ The relational network $\Gamma_S$ is also treated here as a collection
 of interaction events rather than a weighted graph; coupling-strength
 and event-ordering effects on the multi-environment generalization are
 left to subsequent development (cf.\ Sec.~\ref{sec:rqm}).
+Fifth, the scalar affinity enters the allocation program of
+Theorem~\ref{thm:alloc} only through the effective rates
+$\tilde\gamma_\ell = \bar\alpha_\ell^{\rm pre}\gamma_\ell\kappa$
+(Eq.~\eqref{eq:linear-cost}), and the optimal schedule
+Eq.~\eqref{eq:alloc-solution} is invariant under a common rescaling
+$\tilde\gamma_\ell \to c\,\tilde\gamma_\ell$ ($c>0$), which is absorbed
+exactly by the shadow price $\lambda^{\!*} \to c\,\lambda^{\!*}$.
+Consequently, when the pre-gate affinity is the same on every layer,
+$\bar\alpha$ drops out of the argmin and the schedule depends only on
+the dephasing rates $\gamma_\ell$ and on $E_{\rm target}$.
+The benchmarks of Sec.~\ref{subsec:benchmark-alloc} are run in this
+regime (the reference scheduler takes the rates $\gamma_\ell$ directly),
+so the present numerics do not discriminate between the \RCF~cost
+functional and a cost built from the dephasing rates alone.
+The two differ only when $\bar\alpha_\ell^{\rm pre}$ varies across
+layers~---~for example, as residual coherence decays through a deep
+circuit~---~in which case the \RCF~schedule shifts entangling weight
+toward layers that retain more pointer-basis coherence.
+Testing that layer-dependent regime, in which the einselection-derived
+affinity is operationally load-bearing, is left to future work.
 
 \subsection{Decomposition Break-Even for Fixed-Gate Platforms}
 \label{subsec:decomp-breakeven}

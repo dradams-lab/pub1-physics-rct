@@ -106,8 +106,10 @@ deriving these behaviours analytically as the unique solution of a
 convex coherence-budget program grounded in the einselection-derived
 scalar affinity $\bar\alpha$ (Sec.~\ref{subsec:prior-compilation}).
 A reference scheduler implementing the theorem
-(\texttt{figures/rcb\_optimizer.py}) beats both fixed-gate and
-uniform-$\theta$ baselines in multi-layer density-matrix simulation.
+(\texttt{figures/rcb\_optimizer.py}) beats a concentrated fixed-gate
+baseline in multi-layer density-matrix simulation, and beats a
+uniform-$\theta$ baseline when per-layer noise is heterogeneous (under
+uniform noise the two schedules coincide, as the theorem requires).
 
 \subsection{From Substance Thinking to Relational-Affinity Thinking}
 \label{sec:substance-to-relational}

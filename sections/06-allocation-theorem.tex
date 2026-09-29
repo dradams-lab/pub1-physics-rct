@@ -265,7 +265,9 @@ For $\tilde\gamma_\ell = \tilde\gamma$ uniform, the optimal schedule is
 $\theta_\ell^* = \tfrac{1}{2}\arcsin(E_{\rm target}/L)$ on all layers,
 with total cost
 $C^* = \tilde\gamma\,L\cdot \tfrac{1}{2}\arcsin(E_{\rm target}/L)$.
-By the strict concavity of $\arcsin$,
+Since $\arcsin$ is strictly convex on $[0,1]$ with $\arcsin 0 = 0$,
+the ratio $\arcsin(x)/x$ is strictly increasing on $(0,1]$; setting
+$x = E_{\rm target}/L < E_{\rm target}$ gives
 $L \arcsin(E_{\rm target}/L) < \arcsin(E_{\rm target})$ for $L > 1$
 and $E_{\rm target} \in (0,1]$;
 hence the optimal distributed schedule strictly beats the cost of

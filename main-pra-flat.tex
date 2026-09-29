@@ -162,7 +162,8 @@ The schedule routes more entanglement onto quieter layers and skips
 layers whose $\tilde\gamma_\ell$ exceeds the global shadow price.
 
 A reference scheduler implementing this theorem (\texttt{figures/rcb\_optimizer.py})
-beats both fixed-gate and uniform-$\theta$ baselines in multi-layer
+beats a concentrated fixed-gate baseline and, when per-layer noise is
+heterogeneous, a uniform-$\theta$ baseline in multi-layer
 density-matrix simulation: against a concentrated full-entangler
 baseline, the optimal schedule yields a final-state fidelity
 advantage of up to $\Delta F = +0.040$ at $\gamma = 0.15$,
@@ -292,8 +293,10 @@ deriving these behaviours analytically as the unique solution of a
 convex coherence-budget program grounded in the einselection-derived
 scalar affinity $\bar\alpha$ (Sec.~\ref{subsec:prior-compilation}).
 A reference scheduler implementing the theorem
-(\texttt{figures/rcb\_optimizer.py}) beats both fixed-gate and
-uniform-$\theta$ baselines in multi-layer density-matrix simulation.
+(\texttt{figures/rcb\_optimizer.py}) beats a concentrated fixed-gate
+baseline in multi-layer density-matrix simulation, and beats a
+uniform-$\theta$ baseline when per-layer noise is heterogeneous (under
+uniform noise the two schedules coincide, as the theorem requires).
 
 \subsection{From Substance Thinking to Relational-Affinity Thinking}
 \label{sec:substance-to-relational}
@@ -1971,7 +1974,9 @@ For $\tilde\gamma_\ell = \tilde\gamma$ uniform, the optimal schedule is
 $\theta_\ell^* = \tfrac{1}{2}\arcsin(E_{\rm target}/L)$ on all layers,
 with total cost
 $C^* = \tilde\gamma\,L\cdot \tfrac{1}{2}\arcsin(E_{\rm target}/L)$.
-By the strict concavity of $\arcsin$,
+Since $\arcsin$ is strictly convex on $[0,1]$ with $\arcsin 0 = 0$,
+the ratio $\arcsin(x)/x$ is strictly increasing on $(0,1]$; setting
+$x = E_{\rm target}/L < E_{\rm target}$ gives
 $L \arcsin(E_{\rm target}/L) < \arcsin(E_{\rm target})$ for $L > 1$
 and $E_{\rm target} \in (0,1]$;
 hence the optimal distributed schedule strictly beats the cost of
@@ -2349,7 +2354,7 @@ corollary in App.~\ref{app:rct-proof}), but the question of
 outside the framework's scope, as it does for all no-collapse
 interpretations.
 
-Four further limitations bound the simulation claims.
+Five further limitations bound the simulation claims.
 First, the gate-time-proportional noise model (Eq.~\eqref{eq:peff})
 captures only the coherence-limited contribution to gate error and is
 appropriate for Heisenberg exchange directly calibrated on suitable
@@ -2381,6 +2386,26 @@ The relational network $\Gamma_S$ is also treated here as a collection
 of interaction events rather than a weighted graph; coupling-strength
 and event-ordering effects on the multi-environment generalization are
 left to subsequent development (cf.\ Sec.~\ref{sec:rqm}).
+Fifth, the scalar affinity enters the allocation program of
+Theorem~\ref{thm:alloc} only through the effective rates
+$\tilde\gamma_\ell = \bar\alpha_\ell^{\rm pre}\gamma_\ell\kappa$
+(Eq.~\eqref{eq:linear-cost}), and the optimal schedule
+Eq.~\eqref{eq:alloc-solution} is invariant under a common rescaling
+$\tilde\gamma_\ell \to c\,\tilde\gamma_\ell$ ($c>0$), which is absorbed
+exactly by the shadow price $\lambda^{\!*} \to c\,\lambda^{\!*}$.
+Consequently, when the pre-gate affinity is the same on every layer,
+$\bar\alpha$ drops out of the argmin and the schedule depends only on
+the dephasing rates $\gamma_\ell$ and on $E_{\rm target}$.
+The benchmarks of Sec.~\ref{subsec:benchmark-alloc} are run in this
+regime (the reference scheduler takes the rates $\gamma_\ell$ directly),
+so the present numerics do not discriminate between the \RCF~cost
+functional and a cost built from the dephasing rates alone.
+The two differ only when $\bar\alpha_\ell^{\rm pre}$ varies across
+layers~---~for example, as residual coherence decays through a deep
+circuit~---~in which case the \RCF~schedule shifts entangling weight
+toward layers that retain more pointer-basis coherence.
+Testing that layer-dependent regime, in which the einselection-derived
+affinity is operationally load-bearing, is left to future work.
 
 \subsection{Decomposition Break-Even for Fixed-Gate Platforms}
 \label{subsec:decomp-breakeven}
