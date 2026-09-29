@@ -2373,7 +2373,9 @@ functional and a cost built from the dephasing rates alone.
 The two differ only when $\bar\alpha_\ell^{\rm pre}$ varies across
 layers~---~for example, as residual coherence decays through a deep
 circuit~---~in which case the \RCF~schedule shifts entangling weight
-toward layers that retain more pointer-basis coherence.
+toward layers that retain \emph{less} pointer-basis coherence, since a
+larger $\bar\alpha_\ell^{\rm pre}$ raises that layer's effective rate
+$\tilde\gamma_\ell$.
 Testing that layer-dependent regime, in which the einselection-derived
 affinity is operationally load-bearing, is left to future work.
 
