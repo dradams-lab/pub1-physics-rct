@@ -12,22 +12,24 @@ the shadow price determined by the budget constraint.
 import numpy as np
 from scipy.optimize import brentq
 
-def theta_star(gamma_l, lam):
-    """Optimal angle on layer ℓ at shadow price λ."""
+def theta_star(gamma_l, lam, theta_max=np.pi / 4):
+    """Optimal angle on layer ℓ at shadow price λ. With an upper bound
+    θ ≤ θ_max < π/4 the KKT solution is the unbounded one clipped at θ_max."""
     if lam <= 0:
         return 0.0
     cos2t = min(1.0, gamma_l / (2.0 * lam))
-    return 0.5 * np.arccos(cos2t)
+    return min(theta_max, 0.5 * np.arccos(cos2t))
 
-def total_entanglement(gammas, lam):
+def total_entanglement(gammas, lam, theta_max=np.pi / 4):
     """Σ_ℓ sin(2 θ_ℓ*(λ))."""
-    return sum(np.sin(2.0 * theta_star(g, lam)) for g in gammas)
+    return sum(np.sin(2.0 * theta_star(g, lam, theta_max)) for g in gammas)
 
-def rcb_schedule(gammas, E_target, tol=1e-10):
+def rcb_schedule(gammas, E_target, tol=1e-10, theta_max=np.pi / 4):
     """
     Compute the optimal exchange-angle schedule.
     gammas : array-like, per-layer effective dephasing rates
     E_target : required total entangling capability
+    theta_max : optional per-layer angle cap (default π/4 = no extra cap)
     Returns dict with θ schedule, shadow price λ, total cost, etc.
     """
     gammas = np.asarray(gammas, dtype=float)
@@ -36,20 +38,21 @@ def rcb_schedule(gammas, E_target, tol=1e-10):
         thetas = np.zeros(L)
         return {'thetas': thetas, 'lambda': 0.0,
                 'cost': 0.0, 'E_achieved': 0.0}
-    if E_target >= L:
-        raise ValueError(f"E_target={E_target} exceeds maximum {L}")
+    E_max = L * np.sin(2.0 * theta_max)
+    if E_target >= E_max:
+        raise ValueError(f"E_target={E_target} exceeds maximum {E_max:.4g}")
 
     # Find λ via root-finding: total_entanglement(λ) = E_target.
     # At λ → ∞, cos(2θ) → 0, θ → π/4, sin(2θ) → 1 per layer, sum → L.
     # At λ → 0+, cos(2θ) → ∞ (clipped to 1), θ → 0, sum → 0.
     lam_lo, lam_hi = 1e-12, 1.0
-    while total_entanglement(gammas, lam_hi) < E_target:
+    while total_entanglement(gammas, lam_hi, theta_max) < E_target:
         lam_hi *= 2.0
         if lam_hi > 1e12:
             raise RuntimeError("Failed to bracket λ")
-    lam = brentq(lambda L_: total_entanglement(gammas, L_) - E_target,
+    lam = brentq(lambda L_: total_entanglement(gammas, L_, theta_max) - E_target,
                  lam_lo, lam_hi, xtol=tol)
-    thetas = np.array([theta_star(g, lam) for g in gammas])
+    thetas = np.array([theta_star(g, lam, theta_max) for g in gammas])
     cost = float(np.sum(gammas * thetas))
     E_achieved = float(np.sum(np.sin(2.0 * thetas)))
     return {'thetas': thetas, 'lambda': lam,

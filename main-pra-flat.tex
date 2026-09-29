@@ -2423,8 +2423,39 @@ elements.
 The affinity is therefore operationally relevant, and the direction in
 which it moves the schedule is right, but the linear-in-$\bar\alpha$
 cost of Eq.~\eqref{eq:layer-cost} is not the best way to use it.
-A cost that is quadratic in the affinity and that keeps the schedule
-inside the small-angle regime is the natural next step.
+
+I tried the obvious repair: weight each layer by
+$(\bar\alpha_\ell^{\rm pre})^2$ instead of $\bar\alpha_\ell^{\rm pre}$,
+and add the bound $\theta_\ell \le \theta_{\max}$ to
+Eq.~\eqref{eq:alloc-problem}.
+The bound leaves Theorem~\ref{thm:alloc} intact; the optimal angle is
+simply Eq.~\eqref{eq:alloc-solution} clipped at $\theta_{\max}$.
+I chose $\theta_{\max} = \pi/12$ on a separate calibration set of 150
+random circuits and then fixed it for the 300 reported above.
+Of the two changes, the bound does most of the work.
+In the case where the affinity jumps between layers, the capped
+quadratic schedule gains $\Delta F = +0.019$ ($E_{\rm target} = 1$)
+and $+0.027$ ($E_{\rm target} = 2$) where the linear schedule lost
+$0.035$ and $0.039$; with steady decay it gives up a little
+($+0.020$ and $+0.026$ instead of $+0.022$ and $+0.038$); and with
+heterogeneous rates it gains $+0.011$ and $+0.012$.
+Over the random circuits at $E_{\rm target} = 1$ it gains
+$\Delta F = +0.013 \pm 0.002$, three times the linear schedule, recovers
+43\% of the gap to the optimum instead of 14\%, and its worst single
+loss falls from $0.11$ to $0.06$.
+At $E_{\rm target} = 0.5$ the bound never binds and squaring the
+weight adds little ($+0.003$).
+At $E_{\rm target} = 2$ a fixed $\theta_{\max} = \pi/12$ is too
+tight: meeting the target then forces angle onto at least four layers,
+including noisy ones, and the gain falls to $+0.006$.
+Squaring the weight without the bound barely changes the average and
+makes the worst cases worse.
+The lesson is that the coherence cost needs to stay inside the regime
+in which it was derived, and that the bound should scale with
+$E_{\rm target}/L$ rather than be fixed.
+Even the best of these schedules recovers well under half of what
+direct numerical optimization achieves, so a per-layer linear cost of
+this kind, however it is weighted, remains an approximation.
 
 \begin{figure*}[htbp]
 \centering
@@ -2435,8 +2466,10 @@ inside the small-angle regime is the natural next step.
   Gray bars: $\bar\alpha_\ell^{\rm pre}$ along the rate-only schedule.
   Lines: exchange angles $\theta_\ell$ for the rate-only schedule,
   the \RCF\ schedule ($\tilde\gamma_\ell \propto
-  \bar\alpha_\ell^{\rm pre}\gamma_\ell$), the first-order-infidelity
-  weighting, and the numerical optimum, with final-state fidelities
+  \bar\alpha_\ell^{\rm pre}\gamma_\ell$), the capped quadratic
+  schedule ($\tilde\gamma_\ell \propto
+  (\bar\alpha_\ell^{\rm pre})^2\gamma_\ell$,
+  $\theta_\ell \le \pi/12$), and the numerical optimum, with final-state fidelities
   in the legends.
   \textbf{A:} uniform $\gamma = 0.15$, coherence decaying through idle
   dephasing.
