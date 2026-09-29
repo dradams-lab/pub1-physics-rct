@@ -44,7 +44,7 @@ Numerical simulations in Qiskit and Cirq under gate-time-proportional depolarizi
 
 ## Companion publications
 
-- **Pub2 — Philosophy**: [Three Paths to One Structure](https://github.com/dradams-lab/pub2-philosophy) — [DOI: 10.5281/zenodo.20130289](https://doi.org/10.5281/zenodo.20130289)
+- **Pub2 — Philosophy**: [Three Paths to One Structure](https://github.com/dradams-lab/pub2-philosophy) — [DOI: 10.5281/zenodo.23047204](https://doi.org/10.5281/zenodo.23047204) (v0.6.2)
 - **Pub3 — Bahá'í Studies**: [Mahabbat and the Two Wings](https://github.com/dradams-lab/pub3-bahai-studies) — [DOI: 10.5281/zenodo.23046022](https://doi.org/10.5281/zenodo.23046022) (v0.4.4)
 - **Book**: [The Physics of Love](https://github.com/dradams-lab/book-physics-of-love) (in preparation)
 
