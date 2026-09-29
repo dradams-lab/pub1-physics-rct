@@ -37,7 +37,7 @@ In eight-layer density-matrix simulations with unit target, the schedule improve
 
 ## Companion publications
 
-- **Pub2 — Philosophy**: [Three Paths to One Structure](https://github.com/dradams-lab/pub2-philosophy) — [DOI: 10.5281/zenodo.23047204](https://doi.org/10.5281/zenodo.23047204) (v0.6.2)
+- **Pub2 — Philosophy**: [Three Paths to One Structure](https://github.com/dradams-lab/pub2-philosophy) — [DOI: 10.5281/zenodo.23048193](https://doi.org/10.5281/zenodo.23048193) (v0.6.3)
 - **Pub3 — Bahá'í Studies**: [Mahabbat and the Two Wings](https://github.com/dradams-lab/pub3-bahai-studies) — [DOI: 10.5281/zenodo.23047977](https://doi.org/10.5281/zenodo.23047977) (v0.4.5)
 - **Book**: [The Physics of Love](https://github.com/dradams-lab/book-physics-of-love) (in preparation)
 
