@@ -1,0 +1,152 @@
+% ============================================================
+%  Publication 1 — Physics / Quantum Information
+%  "Relational Coherence Budgeting for Tunable Exchange Gates:
+%   Pointer-Basis Affinity, Decoherence, and Exchange-Angle
+%   Coherence Cost"
+%
+%  SUBMISSION VERSION: International Journal of Theoretical Physics
+%  (Springer Nature). Built from main-foundations.tex (same publisher
+%  template), keeping every fix from the Foundations of Physics
+%  Editorial Manager compiles; adds a Springer "Declarations" section.
+%  Class: sn-jnl with sn-basic (numbered) bibliography, matching
+%  the plain \cite{} usage already in sections/*.tex
+%  Compiler: pdflatex (Overleaf)
+%  Dr. Joshua Adams | 2026
+% ============================================================
+
+% Springer Nature journal class.
+% sn-basic = Basic Springer Nature Reference Style (numbered),
+% matching the \cite{} (not \citep/\citet) commands used throughout
+% pub1's section files -- do not switch to sn-mathphys without also
+% converting every \cite to \citep/\citet.
+\documentclass[pdflatex,sn-basic]{sn-jnl}
+
+% ── Encoding ──────────────────────────────────────────────
+% sn-jnl loads its own font/encoding setup; do not re-load fontenc.
+\usepackage[utf8]{inputenc}
+
+% ── Mathematics ───────────────────────────────────────────
+% sn-jnl loads amsmath; pub1's sections additionally need amssymb,
+% amsthm, mathtools, braket, and physics.
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{mathtools}
+\usepackage{braket}          % \Bra{}, \Ket{}, \Braket{}
+\usepackage{physics}         % \tr{}, \norm{}, \comm{}{}
+
+% ── Quantum circuits ──────────────────────────────────────
+\usepackage{quantikz}        % quantum circuit diagrams
+
+% ── Tables & figures ──────────────────────────────────────
+% Correction (previously wrongly assumed sn-jnl.cls loads booktabs -- it
+% does NOT, and must NOT be \usepackage'd here): the class defines its own
+% \toprule/\midrule (they already work; confirmed by grep and by the fact
+% Editorial Manager's compiler did NOT flag them) plus its own bottom-rule
+% macro under the name \botrule (Springer's own naming, not the standard
+% booktabs name). pub1's section files use the standard booktabs spelling
+% \bottomrule, which the class simply never defines under that name --
+% hence "Undefined control sequence \bottomrule" from the real compile.
+% Loading the full booktabs package would REDEFINE \toprule/\midrule too
+% and collide with the class's own definitions (the same class of bug as
+% the earlier \orcidlogo conflict) -- so alias the one missing name
+% instead of loading the package.
+\let\bottomrule\botrule
+\graphicspath{{figures/}}
+
+% ── Footnote hook dependency ──────────────────────────────
+% sn-jnl.cls's \AtBeginDocument hook calls \SetFootnoteHook and
+% \DeclareNewFootnote (both from the bigfoot/manyfoot package) but never
+% \RequirePackage{bigfoot} itself -- an unmet dependency in the class file,
+% confirmed by grep, and the direct cause of the "Undefined control
+% sequence \__hook begindocument" cascade reported at \begin{document}.
+% Load bigfoot explicitly, BEFORE hyperref-dependent packages, so those
+% commands exist when the class's \AtBeginDocument hook fires.
+\usepackage{bigfoot}
+
+% ── Custom commands ───────────────────────────────────────
+\newcommand{\RCF}{\textsc{rcf}}
+\newcommand{\URA}{U_{\!\mathrm{RA}}}
+\newcommand{\rhoSE}{\rho_{SE}}
+
+% ── Theorem environments ──────────────────────────────────
+% sn-jnl already provides \newtheorem infrastructure via amsthm;
+% pub1's sections use plain \newtheorem, kept as-is.
+\newtheorem{theorem}{Theorem}
+\newtheorem{proposition}{Proposition}
+\newtheorem{corollary}{Corollary}
+\newtheorem{definition}{Definition}
+\newtheorem{remark}{Remark}
+
+% ── ORCID ─────────────────────────────────────────────────
+% sn-jnl.cls already \gdef's \orcidlogo and \orcid{} itself (relying on a
+% bundled Orcidlogo.eps file that is not distributed with this conda-forge
+% texlive package and was not part of Springer's own class bundle either).
+% DO NOT \usepackage{orcidlink} here -- it redefines \orcidlogo too and
+% collides with the class's own definition ("Command \orcidlogo already
+% defined" LaTeX error, confirmed by an actual Editorial Manager compile
+% attempt). Instead, override \orcidlogo with a simple text glyph that
+% needs no external image file, and use the class's own \orcid{URL} macro.
+\def\orcidlogo{\textsuperscript{\scriptsize iD}}
+
+% =============================================================
+\begin{document}
+% =============================================================
+
+\title[Relational Coherence Budgeting for Tunable Exchange Gates]{Relational
+       Coherence Budgeting for Tunable Exchange Gates: Pointer-Basis
+       Affinity, Decoherence, and Exchange-Angle Coherence Cost}
+
+\author*[1]{\fnm{Joshua} \sur{Adams}\orcid{https://orcid.org/0000-0002-7185-9125}}
+\email{contact@joshuaadams.dev}
+
+\affil*[1]{\orgname{Independent Researcher}}
+
+% ── Abstract ──────────────────────────────────────────────
+% Reuses the Springer abstract written for Foundations of Physics
+% (~210 words, no equations, no citations); Springer's usual limit is
+% 150-250 words -- confirm on IJTP's submission-guidelines page.
+\abstract{\input{sections/00-abstract-foundations}}
+
+\keywords{quantum coherence, decoherence, tunable exchange gates,
+Heisenberg exchange, pointer basis, coherence budgeting, quantum
+information, einselection}
+
+\maketitle
+
+% ── Body ──────────────────────────────────────────────────
+\input{sections/01-introduction}
+\input{sections/02-background}
+\input{sections/03-rct}
+\input{sections/04-ura-gate}
+\input{sections/05-simulation}
+\input{sections/06-allocation-theorem}
+\input{sections/06-discussion}
+\input{sections/07-conclusion}
+
+\bmhead{Acknowledgements}
+\input{sections/08-acknowledgments}
+
+% ── Declarations (Springer Nature requirement) ────────────
+% CONFIRM before submitting: funding and competing-interests statements.
+\section*{Declarations}
+
+\bmhead{Funding} The author received no funding for this work.
+
+\bmhead{Competing interests} The author has no competing interests to declare.
+
+\bmhead{Data and code availability} All simulation and figure-generation
+scripts are listed in the Code and Data Availability section, are available in
+the public GitHub repository \url{https://github.com/dradams-lab/pub1-physics-rct},
+and are archived on Zenodo (concept DOI \url{https://doi.org/10.5281/zenodo.20130304}).
+
+\bmhead{Author contributions} The author is the sole contributor to this work.
+
+% ── Appendix ──────────────────────────────────────────────
+\begin{appendices}
+\input{sections/A-rct-proof}
+\end{appendices}
+
+% ── Bibliography ──────────────────────────────────────────
+\bibliography{references}
+
+\end{document}
