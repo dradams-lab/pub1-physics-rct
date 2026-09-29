@@ -1,63 +1,33 @@
 % ── ABSTRACT ──────────────────────────────────────────────────────────────────
-% Target length: ~300 words
-% State: (1) the explanatory + operational framing,
-%        (2) the Affinity Operator diagnostic in α-bar-language,
-%        (3) the Coherence-Budget Allocation Theorem and benchmark,
-%        (4) scope and hardware-contingency caveat.
+% Shared by main.tex (Quantum) and main-pra.tex (PRA). No citations or
+% display equations (APS abstract convention). Numbers must match
+% Sec. 6.5 / Table and the conclusion: +0.040 (uniform gamma = 0.15),
+% +0.025 (heterogeneous gamma in [0.02, 0.30]), E_target = 1, L = 8.
 
-The Relational Coherence framework (\RCF) does not alter the
-predictions of quantum mechanics.
-Its contribution is explanatory and operational: it recasts
-decoherence, property definiteness, and tunable entanglement as
-different aspects of a single coherence-budget process, in which
-local relational potential is redistributed into environmental
-correlation.
-Concretely, I (i)~collect four standard identities of pointer-basis
-coherence theory~\cite{Zurek2003,Baumgratz2014,Streltsov2017Review}
-in the language of a normalized Hilbert--Schmidt coherence quantifier
-$\bar\alpha(S,E) \in [0,1]$ grounded by einselection
-(Bell's theorem~\cite{Bell1964} and its loophole-free experimental
-verification~\cite{Aspect1982,Zeilinger2022Nobel} rule out local
-non-contextual hidden-variable completions of quantum mechanics; I
-adopt the relational reading of Rovelli~\cite{Rovelli1996,Rovelli2021}
-as the conceptual setting, without claiming Bell's theorem singles it
-out among the alternatives), and (ii)~derive an allocation theorem
-for tunable Heisenberg-exchange gates~\cite{LossDiVincenzo1998} of
-the form
-\[
-  \URA(\theta) \;=\; \exp\!\Bigl(\!-\tfrac{i\theta}{2}\,\bigl(
-    \sigma_x{\otimes}\sigma_x + \sigma_y{\otimes}\sigma_y
-    + \sigma_z{\otimes}\sigma_z\bigr)\!\Bigr),
-\]
-that turns the per-layer cost
-$\bar\alpha^{\rm pre} - \bar\alpha^{\rm post}$ into a
-compiler-relevant scheduling objective.
-
-\textbf{Coherence-Budget Allocation Theorem.}
-Under Markovian gate-time-proportional dephasing with effective
-per-layer rates $\tilde\gamma_\ell$ and an entanglement target
-$E_{\rm target} = \sum_\ell |\sin 2\theta_\ell| \in (0,L)$, the
-unique cost-minimizing exchange-angle schedule is
-\[
-  \theta_\ell^{\!*} \;=\; \tfrac{1}{2}\arccos\!\Bigl(\!\min\!\Bigl(1,
-    \;\tfrac{\tilde\gamma_\ell}{2\lambda^{\!*}}\Bigr)\!\Bigr),
-\]
-with shadow price $\lambda^{\!*}$ fixed by the budget.
-The schedule routes more entanglement onto quieter layers and skips
-layers whose $\tilde\gamma_\ell$ exceeds the global shadow price.
-
-A reference scheduler implementing this theorem (\texttt{figures/rcb\_optimizer.py})
-beats a concentrated fixed-gate baseline and, when per-layer noise is
-heterogeneous, a uniform-$\theta$ baseline in multi-layer
-density-matrix simulation: against a concentrated full-entangler
-baseline, the optimal schedule yields a final-state fidelity
-advantage of up to $\Delta F = +0.040$ at $\gamma = 0.15$,
-$E_{\rm target} = 1$, $L = 8$; against uniform-$\theta$ on
-heterogeneous noise it yields $\Delta F = +0.025$ at the same target.
-The framework's per-gate
-predictions~\cite{Foxen2020,Abrams2020,Lacroix2020,Caldwell2018}
-remain consistent with the experimental continuous-fSim advantage on
-Sycamore-class hardware.
-The advantage is contingent on direct exchange calibration; on
-platforms where $\URA(\theta)$ must be decomposed into fixed native
-primitives the advantage may shrink or vanish.
+Decoherence theory already explains why system properties become
+definite. This paper asks what that explanation is worth to someone who
+can tune the strength of an entangling gate. The Relational Coherence
+framework (\RCF) restates four standard identities of pointer-basis
+coherence theory in terms of a normalized Hilbert--Schmidt quantifier
+$\bar\alpha(S,E)\in[0,1]$, fixed by einselection, and treats the drop
+$\bar\alpha^{\rm pre}-\bar\alpha^{\rm post}$ across a circuit layer as a
+cost. None of this changes the predictions of quantum mechanics.
+Rovelli's relational interpretation serves as the conceptual setting;
+I do not argue that Bell's theorem singles it out.
+For tunable Heisenberg-exchange gates $\URA(\theta)$ under Markovian
+dephasing proportional to gate time, with per-layer rates
+$\tilde\gamma_\ell$ and a fixed entanglement target
+$\sum_\ell|\sin 2\theta_\ell|$, I prove that the cost-minimizing
+schedule is unique:
+$\theta_\ell^{*}=\tfrac12\arccos[\min(1,\tilde\gamma_\ell/2\lambda^{*})]$,
+where the multiplier $\lambda^{*}$ is set by the target. Quiet layers
+receive more entanglement, and any layer with
+$\tilde\gamma_\ell\ge 2\lambda^{*}$ receives none. In eight-layer
+density-matrix simulations with unit target, the schedule improves
+final-state fidelity by up to 0.040 over a single full entangler
+($\gamma=0.15$) and by 0.025 over equal angles when per-layer noise
+ranges from 0.02 to 0.30. The per-gate behavior agrees with published
+continuous-fSim results on Sycamore-class processors. These gains
+assume the exchange angle can be calibrated directly; where
+$\URA(\theta)$ has to be built from fixed native gates, they may shrink
+or disappear.

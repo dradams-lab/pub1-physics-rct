@@ -10,31 +10,27 @@
 % abstract, ~319 words with 2 display equations and 6 citations). Canonical
 % main.tex abstract is untouched.
 
-The Relational Coherence Framework (\RCF) does not alter the
-predictions of quantum mechanics. Its contribution is explanatory and
-operational: it recasts decoherence, property definiteness, and tunable
-entanglement as aspects of a single coherence-budget process, in which
-local relational potential is redistributed into environmental
-correlation. This paper (i)~collects four standard identities of
-pointer-basis coherence theory in the language of a normalized
-Hilbert--Schmidt coherence quantifier grounded by einselection, adopting a
-relational reading of quantum mechanics as the conceptual setting without
-claiming it is singled out among the alternatives, and (ii)~derives an
-allocation theorem for tunable Heisenberg-exchange gates that turns the
-per-layer coherence cost into a compiler-relevant scheduling objective.
+Decoherence theory already explains why system properties become
+definite. This paper asks what that explanation is worth to someone who
+can tune the strength of an entangling gate. The Relational Coherence
+Framework (\RCF) restates four standard identities of pointer-basis
+coherence theory in terms of a normalized Hilbert--Schmidt coherence
+quantifier fixed by einselection, and treats the coherence lost across
+a circuit layer as a cost. None of this changes the predictions of
+quantum mechanics. A relational reading of quantum mechanics serves as
+the conceptual setting; I do not claim it is singled out among the
+alternatives.
 
-The central result, the Coherence-Budget Allocation Theorem, gives the
-unique cost-minimizing exchange-angle schedule under Markovian
-gate-time-proportional dephasing with a fixed entanglement target: the
-schedule routes more entanglement onto quieter layers and skips layers
-whose noise rate exceeds a global shadow price set by the budget.
+For tunable Heisenberg-exchange gates under Markovian dephasing
+proportional to gate time, with a fixed entanglement target, I prove
+that the cost-minimizing schedule of exchange angles is unique and has
+closed form. Quiet layers receive more entanglement, and layers whose
+noise rate passes a threshold set by the target receive none.
 
-A reference scheduler implementing this theorem outperforms a concentrated
-full-entangler baseline and, on heterogeneous noise, a uniform-angle schedule
-in multi-layer density-matrix simulation, yielding fidelity advantages of up
-to 0.040 and 0.025 respectively.
-The framework's per-gate predictions remain consistent with experimental
-continuous-tunable-gate results on superconducting hardware. The advantage
-is contingent on direct exchange calibration; on platforms where the gate
-must be decomposed into fixed native primitives, the advantage may shrink
-or vanish.
+In eight-layer density-matrix simulations, this schedule improves
+final-state fidelity by up to 0.040 over a single full entangler and by
+0.025 over equal angles when noise varies between layers. The per-gate
+behavior agrees with published continuous-gate results on
+superconducting hardware. These gains assume the exchange angle can be
+calibrated directly; where the gate has to be built from fixed native
+gates, they may shrink or disappear.
