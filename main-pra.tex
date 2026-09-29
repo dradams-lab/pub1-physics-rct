@@ -65,6 +65,12 @@
 % orcidlink depends on both. Provides \orcidlink{iD}; see author line below.
 \usepackage{orcidlink}
 
+% ── Line breaking ─────────────────────────────────────────
+% Let TeX loosen a line slightly before letting long inline math
+% overflow the margin. Only affects paragraphs that would otherwise
+% produce an overfull box.
+\setlength{\emergencystretch}{2em}
+
 % ── Custom commands ───────────────────────────────────────
 \newcommand{\RCF}{\textsc{rcf}}
 \newcommand{\URA}{U_{\!\mathrm{RA}}}

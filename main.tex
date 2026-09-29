@@ -38,6 +38,12 @@
 \usepackage{hyperref}
 \hypersetup{colorlinks=true, linkcolor=blue, citecolor=blue, urlcolor=blue}
 
+% ── Line breaking ─────────────────────────────────────────
+% Let TeX loosen a line slightly before letting long inline math
+% overflow the margin. Only affects paragraphs that would otherwise
+% produce an overfull box.
+\setlength{\emergencystretch}{2em}
+
 % ── Custom commands ───────────────────────────────────────
 \newcommand{\RCF}{\textsc{rcf}}
 \newcommand{\URA}{U_{\!\mathrm{RA}}}
