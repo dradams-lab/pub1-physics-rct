@@ -175,8 +175,8 @@ treats quantum properties as facts relative to the interacting systems.
 The present paper works within the relational reading, without
 claiming that Bell's theorem singles it out among the options above.
 What I contribute is an explicit quantitative formulation of one
-aspect of the relational picture~---~the dynamics of pointer-basis
-coherence under decoherence~---~as a single computable scalar
+aspect of the relational picture~--- the dynamics of pointer-basis
+coherence under decoherence~--- as a single computable scalar
 quantity, the
 \emph{scalar affinity} $\bar\alpha(S,E) \in [0,1]$, defined as the
 normalized Hilbert--Schmidt coherence of the reduced state $\rho_S$
@@ -263,7 +263,7 @@ deriving these behaviours analytically as the unique solution of a
 convex coherence-budget program grounded in the einselection-derived
 scalar affinity $\bar\alpha$ (Sec.~\ref{subsec:prior-compilation}).
 A reference scheduler implementing the theorem
-(\texttt{figures/rcb\_optimizer.py}) beats a concentrated fixed-gate
+(\texttt{figures/\allowbreak rcb\_\allowbreak optimizer.py}) beats a concentrated fixed-gate
 baseline in multi-layer density-matrix simulation, and beats a
 uniform-$\theta$ baseline when per-layer noise is heterogeneous (under
 uniform noise the two schedules coincide, as the theorem requires).
@@ -401,7 +401,7 @@ The physical content of these results is a theorem-level constraint:
 no theory of local, non-contextual hidden variables can reproduce the
 quantum-mechanical predictions.
 Viable ontologies must respond to this constraint.
-As noted in Sec.~\ref{sec:intro}, four programmes do so~---~Bohmian
+As noted in Sec.~\ref{sec:intro}, four programmes do so~--- Bohmian
 mechanics~\cite{Bohm1980}, many-worlds~\cite{Wallace2012},
 QBism~\cite{FMS2014}, and relational quantum mechanics.
 The present work adopts the relational reading because it provides
@@ -628,8 +628,8 @@ pointer-state outcomes~\cite{Zurek2003}.
 I distinguish two quantities along this trajectory, and the
 distinction is essential to what follows.
 The scalar affinity $\bar{\alpha}$ measures the \emph{internal
-relational potential} of $S$~---~the magnitude of coherent superposition
-locally available in $\rho_S$ for relational determination~---~whereas
+relational potential} of $S$~--- the magnitude of coherent superposition
+locally available in $\rho_S$ for relational determination~--- whereas
 the $S$-$E$ entanglement measures the \emph{actualized relational
 connection} already encoded in the joint state $\rho_{SE}$.
 At $\bar{\alpha} = 1$ the potential is maximal and the connection
@@ -856,8 +856,8 @@ interpretation.
 Within the RQM reading adopted in this work (Sec.~\ref{sec:rqm}), I
 read $\bar\alpha > 0$ as the absence of a definite pointer-state fact
 for $S$ relative to $E$: Bell's theorem
-(Sec.~\ref{sec:bell})~---~which rules out local non-contextual
-hidden-variable completions reproducing quantum predictions~---~motivates
+(Sec.~\ref{sec:bell})~--- which rules out local non-contextual
+hidden-variable completions reproducing quantum predictions~--- motivates
 treating properties as relational facts within the RQM reading, and a
 nonzero $\bar\alpha$ measures the residual superposition not yet
 resolved into a relational fact by~$E$.
@@ -1065,12 +1065,12 @@ trajectory, which is made precise in Proposition~\ref{prop:conservation}.
 \subsection{\label{sec:prop4}Proposition~IV:
             Coherence Redistribution under Unitary $S$--$E$ Evolution}
 
-The three identities collected below are standard~---~purity
+The three identities collected below are standard~--- purity
 conservation under unitary evolution, the
 $I(S{:}E) = 2S(\rho_S)$ identity from the Schmidt
 decomposition~\cite{NielsenChuang2000}, and the Joos--Zeh / Zurek
 branching identity for environment-induced
-decoherence~\cite{JoosZeh1985,Zurek2003}~---~and I do not claim
+decoherence~\cite{JoosZeh1985,Zurek2003}~--- and I do not claim
 novelty for them.
 Their utility here is the explicit packaging in $\bar\alpha$-language,
 which renders the export of local pointer-basis coherence into
@@ -1094,10 +1094,10 @@ stated explicitly in its own itemization below.
     $\mathrm{Tr}[\rho_{SE}(t)^2] = 1$ for all $t \geq 0$.
   \item[\emph{(ii)}] \emph{Mutual information growth (Markovian regime).}
     In the Markovian pure-dephasing limit of
-    Proposition~\ref{prop:determination}~---~equivalently, when the
+    Proposition~\ref{prop:determination}~--- equivalently, when the
     environmental branch overlaps
     $\lvert\langle E_j(t)\vert E_i(t)\rangle\rvert$ decay monotonically
-    in $t$~---~the quantum mutual information
+    in $t$~--- the quantum mutual information
     $I(S\!:\!E;\,t) = 2\,S(\rho_S(t))$ is non-decreasing, where
     $S(\cdot)$ is the von Neumann entropy.
     For finite non-Markovian environments the branch overlaps can revive
@@ -1133,8 +1133,8 @@ For a pure bipartite state $\rho_{SE}$, the Schmidt decomposition
 gives $S(\rho_S) = S(\rho_E)$ and $S(\rho_{SE}) = 0$, hence
 $I(S\!:\!E) = S(\rho_S) + S(\rho_E) - S(\rho_{SE}) = 2\,S(\rho_S)$.
 In the Markovian regime of
-Proposition~\ref{prop:determination}~---~equivalently, monotonic
-decay of $\lvert\langle E_j(t)\vert E_i(t)\rangle\rvert$~---~the induced
+Proposition~\ref{prop:determination}~--- equivalently, monotonic
+decay of $\lvert\langle E_j(t)\vert E_i(t)\rangle\rvert$~--- the induced
 channel on $\rho_S$ between any two times $t_1 < t_2$ preserves
 diagonal populations in the pointer basis [part~(iii) below; in the
 Markovian limit, $\sum_k L_k^\dagger L_k = \gamma\,\mathbf{I}$], is
@@ -1214,18 +1214,18 @@ $[0,1]$ (Proposition~\ref{prop:correspondence}), decays continuously
 under decoherence (Proposition~\ref{prop:determination}), and is
 redistributed into $S$--$E$ correlations rather than destroyed
 under unitary $S$--$E$ evolution (Proposition~\ref{prop:conservation}).
-The corresponding hardware engineering picture~---~that the natural
+The corresponding hardware engineering picture~--- that the natural
 two-qubit primitive should expose a continuous coupling angle, tunable
 to the coherence budget of the substrate rather than fixed to a
-particular entanglement capability~---~is by now well established.
+particular entanglement capability~--- is by now well established.
 Continuously parameterized two-qubit exchange gates are realized as
 the native primitive on Loss--DiVincenzo spin
 qubits~\cite{LossDiVincenzo1998}, as parametric entangling gates on
 transmon platforms~\cite{Caldwell2018}, and as the continuous fSim/$XY$
 families demonstrated on Sycamore-class
 hardware~\cite{Foxen2020,Abrams2020,Lacroix2020}.
-The contribution of the present section is not the unitary itself~---~it
-is the standard isotropic Heisenberg-exchange family~---~but the
+The contribution of the present section is not the unitary itself~--- it
+is the standard isotropic Heisenberg-exchange family~--- but the
 coherence-budget framing of its parameter selection through the
 $\bar\alpha$-language of Sec.~\ref{sec:rct}.
 
@@ -1240,9 +1240,9 @@ I denote by
   \label{eq:URA}
 \end{equation}
 the two-qubit unitary on the isotropic Heisenberg-exchange axis,
-where $\theta \in [0, \pi/2]$ is the \emph{exchange angle}~---~the
+where $\theta \in [0, \pi/2]$ is the \emph{exchange angle}~--- the
 Hamiltonian evolution parameter (coupling$\,\times\,$time) along this
-axis~---~and $\sigma_{x,y,z}$ are the Pauli matrices acting on
+axis~--- and $\sigma_{x,y,z}$ are the Pauli matrices acting on
 $\mathbb{C}^2$.
 Within the \RCF{} coherence-budget diagnostic of Sec.~\ref{sec:rct} I
 refer to this use of the isotropic-exchange family as the
@@ -1275,8 +1275,8 @@ post-gate marginal $\rho_S$ moves toward the maximally mixed state with
 $\bar\alpha \to 0$ (cf.\ Proposition~\ref{prop:conservation}, part~(iii)
 and the Affinity-vs.-Entanglement remark in Sec.~\ref{sec:prop3}).
 What the \RCF~contributes is the conceptual warrant for a continuously
-parameterized exchange gate~---~namely, that relational coupling is
-itself continuous and conservatively redistributed~---~not a
+parameterized exchange gate~--- namely, that relational coupling is
+itself continuous and conservatively redistributed~--- not a
 quantitative identity $\theta = \bar\alpha$.
 
 In the computational basis $\{\ket{00}, \ket{01}, \ket{10}, \ket{11}\}$,
@@ -1326,8 +1326,8 @@ consistent with the entanglement capability peak at $\theta = \pi/4$
 (Sec.~\ref{subsec:entcap}).
 The global phase $e^{i\pi/8}$ is physically unobservable.
 
-States lying entirely within the triplet sector~---~$\ket{00}$, $\ket{11}$,
-and $\ket{\Psi^+}$~---~each acquire only the phase $e^{-i\theta/2}$ under
+States lying entirely within the triplet sector~--- $\ket{00}$, $\ket{11}$,
+and $\ket{\Psi^+}$~--- each acquire only the phase $e^{-i\theta/2}$ under
 $\URA(\theta)$ and remain unentangled.
 Entanglement generation therefore requires an input state with nonzero
 singlet weight $\langle\Psi^-\vert\psi_{\rm in}\rangle \neq 0$.
@@ -1361,11 +1361,11 @@ The trajectory $(c_1, c_2, c_3) = (\theta, \theta, \theta)$ lies along the
 main diagonal of the Weyl chamber, tracing the \emph{Heisenberg family} from the
 identity ($\theta = 0$, corner $O$) to the \textsc{swap} point ($\theta = \pi/2$).
 The maximally entangling point $\theta = \pi/4$ sits at Weyl coordinates
-$(\pi/4, \pi/4, \pi/4)$~---~the interior midpoint of this diagonal~---~and is
+$(\pi/4, \pi/4, \pi/4)$~--- the interior midpoint of this diagonal~--- and is
 not locally equivalent to any of the standard fixed gates.
 
 This trajectory is significant: fixed standard gates occupy single
-\emph{points} in the Weyl chamber~---~\textsc{cnot} at $(\pi/2, 0, 0)$,
+\emph{points} in the Weyl chamber~--- \textsc{cnot} at $(\pi/2, 0, 0)$,
 \textsc{iswap} at $(\pi/2, \pi/2, 0)$, \textsc{cz} at $(\pi/2, 0, 0)$
 (locally equivalent to \textsc{cnot}).
 The gate $\URA(\theta)$ instead traces a \emph{continuous path} parameterized
@@ -1448,8 +1448,8 @@ The circuit representation is:
 \end{center}
 
 \noindent
-Performance is benchmarked against three fixed two-qubit gates~---~\textsc{cnot},
-\textsc{iswap}, and \textsc{cz}~---~which are the standard entangling
+Performance is benchmarked against three fixed two-qubit gates~--- \textsc{cnot},
+\textsc{iswap}, and \textsc{cz}~--- which are the standard entangling
 primitives on IBM and Google hardware respectively.
 The key distinction is that these fixed gates always operate at full
 entanglement capability ($\mathcal{E} = 1$), whereas $\URA(\theta)$
@@ -1478,9 +1478,9 @@ decoherence mechanisms in near-term superconducting qubit devices:
 A critical physical consideration governs the comparison.
 On hardware where the two-qubit-gate pulse duration is set by the
 Heisenberg exchange coupling and the gate is directly calibrated as a
-single continuous parameter~---~spin-qubit exchange platforms, certain
+single continuous parameter~--- spin-qubit exchange platforms, certain
 parametric transmon architectures, and Sycamore-class tunable
-couplers~\cite{LossDiVincenzo1998,Caldwell2018,Foxen2020,Abrams2020}~---~the
+couplers~\cite{LossDiVincenzo1998,Caldwell2018,Foxen2020,Abrams2020}~--- the
 coherence-limited contribution to two-qubit gate error accumulates in
 proportion to gate duration~\cite{Krantz2019}, and the
 exchange-angle pulse duration scales linearly with~$\theta$: running at
@@ -1529,15 +1529,15 @@ reduces to the closed-form expression
 $F_{\rm avg} = 1 - 3\,p_{\rm eff}/4$.
 The values in Table~\ref{tab:fidelity} are this analytical expression
 evaluated at the gate-specific $p_{\rm eff}$ of
-Eq.~\eqref{eq:peff}~---~i.e., the depolarizing column is closed-form
+Eq.~\eqref{eq:peff}~--- i.e., the depolarizing column is closed-form
 rather than simulator-derived.
-The script \texttt{figures/generate\_tables.py} computes these values
+The script \texttt{figures/\allowbreak generate\_\allowbreak tables.py} computes these values
 directly from the formula, and the Qiskit/Cirq density-matrix
 simulator notebooks of the release tag (Sec.~\ref{sec:conc}) reproduce
 them to numerical precision under the same channel.
 $\URA(\pi/4)$ (full duration, $\theta = \pi/4$) operates at maximum
 entanglement capability ($\mathcal{E} = 1$).
-Under the global depolarizing channel~---~which is unitary-invariant~---~the
+Under the global depolarizing channel~--- which is unitary-invariant~--- the
 average gate fidelity depends only on $p_{\rm eff}$, so $\URA(\pi/4)$ and
 \textsc{iswap} achieve identical $F_{\rm avg}$ at equal duration; the
 partial-exchange advantage I report below is therefore at $\theta < \pi/4$.
@@ -1607,7 +1607,7 @@ analytical values ($\Delta F = 3 p_{\rm base}/8$). Dephasing
 equivalent to $p_Z = \gamma/2$) and amplitude-damping (per-qubit
 standard Kraus) rows: Qiskit and Cirq density-matrix simulations agree
 to numerical precision and are reproduced by the analytical formulas
-in \texttt{figures/generate\_tables.py}. Positive values confirm that
+in \texttt{figures/\allowbreak generate\_\allowbreak tables.py}. Positive values confirm that
 $\URA(\pi/8)$ outperforms the fixed gates in all noise regimes tested.
 The near-equality across rows is not a discovery of cross-channel
 robustness; it is a quantitative consequence of the gate-time scaling
@@ -1634,7 +1634,7 @@ with the bath, accumulating less decoherence per operation.
 Operationally, this means a smaller fraction of the local pointer-basis
 coherence budget $\bar\alpha$ (Definition~\ref{def:alpha-scalar}) is
 expended into $S$-bath correlations during the gate, leaving more
-coherence available for downstream layers~---~exactly the redistribution
+coherence available for downstream layers~--- exactly the redistribution
 quantified by Eq.~\eqref{eq:coherence-transfer}.
 For circuits requiring partial entanglement, or in which entanglement
 is built incrementally across layers, $\URA(\theta)$ can therefore be
@@ -1686,7 +1686,7 @@ correlations, with the joint state remaining pure throughout
     (single-qubit marginals $= \mathbf{I}/2$, intra-$S$ entanglement
     maximal) yields $\bar\alpha(0) = \sqrt{2/3}$ in the four-dimensional
     computational pointer basis, not $1$.
-    Generated by \texttt{figures/generate\_fig2.py}.}
+    Generated by \texttt{figures/\allowbreak generate\_\allowbreak fig2.py}.}
   \label{fig:alpha-dynamics}
 \end{figure}
 % ─── End of sections/05-simulation.tex ───
@@ -2001,7 +2001,7 @@ The full algorithm is:
   \item Return $\theta_\ell^* = \tfrac{1}{2}\arccos(\min(1,\tilde\gamma_\ell/(2\lambda^{\!*})))$.
 \end{enumerate}
 
-The reference implementation (\texttt{figures/rcb\_optimizer.py})
+The reference implementation (\texttt{figures/\allowbreak rcb\_\allowbreak optimizer.py})
 runs in $O(L \log(1/\epsilon))$ time for tolerance $\epsilon$ and is
 included with this paper.
 
@@ -2077,7 +2077,7 @@ Heterogeneous & $+0.005$ & $+0.004$ & $+0.001$ \\
   fidelity across all $E_{\rm target}$; the largest advantage appears
   in the high-$\gamma$ regime (Prediction~P1) and in the
   heterogeneous regime against uniform $\theta$ (Prediction~P2).
-  Generated by \texttt{figures/benchmark\_sweep.py}.
+  Generated by \texttt{figures/\allowbreak benchmark\_\allowbreak sweep.py}.
 }
 \label{fig:rcb-sweep}
 \end{figure*}
@@ -2124,8 +2124,8 @@ straightforward and preserves the convex-program structure.
 \subsection{The Affinity Operator and Existing Coherence Measures}
 
 The scalar affinity $\bar\alpha(S,E)$ is a measure of \emph{local}
-quantum coherence~---~the off-diagonal magnitude of the reduced state
-$\rho_S$ in the einselected pointer basis~---~and it is therefore a
+quantum coherence~--- the off-diagonal magnitude of the reduced state
+$\rho_S$ in the einselected pointer basis~--- and it is therefore a
 distinct object from standard bipartite entanglement measures.
 Concurrence~\cite{Wootters1998} and von Neumann
 entropy~\cite{vonNeumann1932} quantify the entanglement of the joint
@@ -2154,9 +2154,9 @@ dynamical figure of merit.
 Concurrence and entropy report on a static joint state at one moment;
 $\bar\alpha(t)$ reports on the time-evolving local coherence budget that
 remains available to a unitary acting on $S$ alone.
-For circuit-level coherence accounting~---~quantifying how much
+For circuit-level coherence accounting~--- quantifying how much
 pointer-basis coherence a gate consumes, layer by layer, before the
-bath records it~---~the appropriate observable is $\bar\alpha$, not
+bath records it~--- the appropriate observable is $\bar\alpha$, not
 concurrence.
 
 \subsection{Relation to the Resource Theory of Coherence}
@@ -2191,7 +2191,7 @@ noise channels, where its monotonic decay
 
 What the \RCF~adds that the resource-theory framework does not supply
 on its own is twofold.
-First, the reference basis is not stipulated~---~it is fixed by
+First, the reference basis is not stipulated~--- it is fixed by
 physics: einselection (Sec.~\ref{sec:decoherence}) singles out the
 pointer basis from the $S$-$E$ Hamiltonian, so the basis-dependence of
 $\bar\alpha$ is grounded in the dynamics rather than chosen by
@@ -2208,7 +2208,7 @@ This redistribution-rather-than-annihilation reading has recently
 acquired a vivid physical illustration outside the circuit setting.
 Yuksel et al.~\cite{Yuksel2026PhononicDressed} tune a nanomechanical
 resonator into resonance with a single intrinsic two-level
-defect~---~ordinarily regarded as a decoherence channel~---~and recover
+defect~--- ordinarily regarded as a decoherence channel~--- and recover
 the would-be-lost coherence as a hybridized phononic ``dressed state,''
 so that a single defect that one system--environment partition registers
 as irreversible decoherence another addresses as a coherent relational
@@ -2253,8 +2253,8 @@ To my knowledge, prior noise-aware compilation work for continuously
 parameterized two-qubit gates has arrived at qualitatively similar routing
 and skipping behaviours through compiler search over calibrated hardware metrics.
 The contribution claimed here is not the use of continuous gates, noise-aware
-angle routing, or the omission of low-impact operations~---~all demonstrated
-in~\cite{Yale2025NoiseAware}~---~but the derivation of those behaviours as the
+angle routing, or the omission of low-impact operations~--- all demonstrated
+in~\cite{Yale2025NoiseAware}~--- but the derivation of those behaviours as the
 unique analytic solution to a convex coherence-budget program grounded in
 einselection.
 
@@ -2274,10 +2274,10 @@ a smaller fraction of the per-gate decoherence budget than a fixed
 maximally-entangling primitive [Eq.~\eqref{eq:peff}], equivalently
 redistributing a smaller fraction of the local pointer-basis coherence
 $\bar\alpha$ into $S$--bath correlations.
-The fidelity advantage~---~$\Delta F \in [+0.038,+0.039]$ at
+The fidelity advantage~--- $\Delta F \in [+0.038,+0.039]$ at
 $p_{\rm base} = 0.10$ across depolarizing, dephasing, and amplitude
 damping noise, growing from $\Delta F \in [+0.019,+0.020]$ at
-$p_{\rm base} = 0.05$ (Table~\ref{tab:fidelity-all})~---~is the
+$p_{\rm base} = 0.05$ (Table~\ref{tab:fidelity-all})~--- is the
 cumulative result of this per-gate saving over a circuit.
 
 I stress what this result is and is not.
@@ -2352,8 +2352,8 @@ On platforms where $\URA(\theta)$ must be decomposed into fixed native
 gates~\cite{VatanWilliams2004}, the fidelity advantage depends on the
 decomposition depth and may shrink or vanish.
 Second, the calibration overhead of providing $\URA(\theta)$ at
-arbitrary $\theta$~---~either as continuous in-situ tuning or as a
-pre-calibrated lookup~---~is not modelled here and constitutes an
+arbitrary $\theta$~--- either as continuous in-situ tuning or as a
+pre-calibrated lookup~--- is not modelled here and constitutes an
 additional engineering cost that may offset per-gate savings in
 algorithm-level benchmarks~\cite{Foxen2020,Lacroix2020}.
 Third, the decoherence treatment of Proposition~\ref{prop:determination}
@@ -2387,14 +2387,14 @@ regime (the reference scheduler takes the rates $\gamma_\ell$ directly),
 so the present numerics do not discriminate between the \RCF~cost
 functional and a cost built from the dephasing rates alone.
 The two differ only when $\bar\alpha_\ell^{\rm pre}$ varies across
-layers~---~for example, as residual coherence decays through a deep
-circuit~---~in which case the \RCF~schedule shifts entangling weight
+layers~--- for example, as residual coherence decays through a deep
+circuit~--- in which case the \RCF~schedule shifts entangling weight
 toward layers that retain \emph{less} pointer-basis coherence, since a
 larger $\bar\alpha_\ell^{\rm pre}$ raises that layer's effective rate
 $\tilde\gamma_\ell$.
 
 I tested that regime directly (Fig.~\ref{fig:alpha-varying},
-\texttt{figures/benchmark\_alpha\_varying.py}).
+\texttt{figures/\allowbreak benchmark\_\allowbreak alpha\_\allowbreak varying.py}).
 The circuits are the two-qubit, $L = 8$ circuits of
 Sec.~\ref{subsec:benchmark-alloc}, with two additions that make
 $\bar\alpha_\ell^{\rm pre}$ differ between layers: fixed single-qubit
@@ -2495,7 +2495,7 @@ this kind, however it is weighted, remains an approximation.
   with idle dephasing.
   \textbf{Right:} mean fidelity gain over the rate-only schedule
   across 300 random circuits (error bars: standard error).
-  Generated by \texttt{figures/benchmark\_alpha\_varying.py}.
+  Generated by \texttt{figures/\allowbreak benchmark\_\allowbreak alpha\_\allowbreak varying.py}.
 }
 \label{fig:alpha-varying}
 \end{figure*}
@@ -2561,9 +2561,9 @@ linearly with $\theta$, so smaller exchange angles shrink the safe
 range further (e.g.\ at $\theta = \pi/16$, the threshold falls to
 $0.00625$, already below most reported hardware error rates).
 On platforms or operating points where $p_{\rm CNOT} > p_{\rm
-CNOT}^{\rm BE}(\theta)$~---~which now includes a meaningful fraction of
+CNOT}^{\rm BE}(\theta)$~--- which now includes a meaningful fraction of
 present-day devices at partial-exchange operating points, not only
-older or crosstalk-limited hardware~---~the decomposition overhead
+older or crosstalk-limited hardware~--- the decomposition overhead
 erases the gate-time saving and the fixed-gate baseline should be
 preferred.
 Equation~\eqref{eq:breakeven} thus converts the qualitative limitation
@@ -2586,9 +2586,9 @@ Third, investigation of $\bar\alpha$-aware quantum error correction:
 the local pointer-basis coherence budget may provide a natural
 diagnostic for surface-code threshold behaviour distinct from the usual
 logical-error rate.
-The philosophical implications of the \RCF~---~including the argument
+The philosophical implications of the \RCF~--- including the argument
 that process ontology is formally required (not merely permitted) by
-quantum mechanics~---~are developed in the companion
+quantum mechanics~--- are developed in the companion
 paper~\cite{Adams2026Philosophy}.
 % ─── End of sections/06-discussion.tex ───
 
@@ -2602,13 +2602,13 @@ paper~\cite{Adams2026Philosophy}.
 I have introduced the Relational Coherence framework (\RCF), a
 formal packaging of the relational reading of quantum
 mechanics~\cite{Bell1964,Rovelli1996,Rovelli2021} into a single
-computable scalar quantity~---~the scalar affinity
+computable scalar quantity~--- the scalar affinity
 $\bar\alpha(S,E)$, the normalized Hilbert--Schmidt coherence of
 $\rho_S$ in the einselected pointer
 basis~\cite{Zurek2003,Baumgratz2014,Streltsov2017Review}.
-The \RCF~comprises four propositions~---~property indefiniteness,
+The \RCF~comprises four propositions~--- property indefiniteness,
 relational determination, coherence--affinity correspondence, and
-coherence redistribution under unitary $S$--$E$ evolution~---~each of
+coherence redistribution under unitary $S$--$E$ evolution~--- each of
 which rests on standard quantum-mechanical machinery (Cauchy--Schwarz
 bounds, Lindblad calculation, Schmidt decomposition, Joos--Zeh / Zurek
 branching) packaged in $\bar\alpha$-language; the framework's
@@ -2660,11 +2660,11 @@ The principal technical contribution of this paper is the
 turns the per-gate coherence-budget framing into a layerwise scheduling
 rule with a unique closed-form solution
 $\theta_\ell^\ast = \tfrac{1}{2}\arccos\bigl(\min(1,\tilde\gamma_\ell/(2\lambda^\ast))\bigr)$.
-The theorem yields three falsifiable predictions~---~distribute
+The theorem yields three falsifiable predictions~--- distribute
 entanglement rather than concentrate it, route entanglement onto
 quieter layers, and skip layers whose effective dephasing rate
-exceeds the global shadow price~---~which a reference scheduler
-(\texttt{figures/rcb\_optimizer.py}) verifies on a multi-layer 2-qubit
+exceeds the global shadow price~--- which a reference scheduler
+(\texttt{figures/\allowbreak rcb\_\allowbreak optimizer.py}) verifies on a multi-layer 2-qubit
 benchmark.
 Against a concentrated full-entangler baseline the optimal schedule
 yields a final-state fidelity advantage of up to $\Delta F = +0.040$ at
@@ -2791,7 +2791,7 @@ consistent with the quantum predictions for all projection-valued
 measures on $\mathcal{H}_S$.
 (A non-contextual assignment would give the same value to a projector
 $\hat{P}$ regardless of which complete set of commuting observables it
-is measured alongside~---~precisely the assignment required by any
+is measured alongside~--- precisely the assignment required by any
 hidden variable theory seeking to recover quantum predictions.)
 No such assignment exists.
 
@@ -2800,8 +2800,8 @@ context, i.e., independently of relational interaction. $\square$
 
 \subsection{Proof of Proposition~\ref{prop:determination} (Relational Determination)}
 
-The dynamical proof~---~the Lindblad calculation showing
-$\bar\alpha(S,E;t) = \bar\alpha(S,E;0)\,e^{-\gamma t}$~---~is given in
+The dynamical proof~--- the Lindblad calculation showing
+$\bar\alpha(S,E;t) = \bar\alpha(S,E;0)\,e^{-\gamma t}$~--- is given in
 Sec.~\ref{sec:prop2}.
 Here I record an operational corollary that connects the dynamical
 decay to the relational reading of measurement outcomes.
@@ -2955,7 +2955,7 @@ $\mathrm{Tr}[\rho_{SE}(t)^2] = \mathrm{Tr}[\rho_{SE}(0)^2]$ for all $t$.
 \end{align*}
 The apparent purity loss in the reduced state
 $\rho_S = \mathrm{Tr}_E[\rho_{SE}]$ reflects transfer of coherence
-into $S$-$E$ correlations~---~the joint state remains pure, and
+into $S$-$E$ correlations~--- the joint state remains pure, and
 $\mathrm{Tr}[\rho_{SE}^2] = 1$ throughout.
 The ``lost'' coherence is not destroyed; it is encoded in the
 relational network $\Gamma_S$ (Sec.~\ref{sec:rqm}) as $S$-$E$

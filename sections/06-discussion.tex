@@ -6,8 +6,8 @@
 \subsection{The Affinity Operator and Existing Coherence Measures}
 
 The scalar affinity $\bar\alpha(S,E)$ is a measure of \emph{local}
-quantum coherence~---~the off-diagonal magnitude of the reduced state
-$\rho_S$ in the einselected pointer basis~---~and it is therefore a
+quantum coherence~--- the off-diagonal magnitude of the reduced state
+$\rho_S$ in the einselected pointer basis~--- and it is therefore a
 distinct object from standard bipartite entanglement measures.
 Concurrence~\cite{Wootters1998} and von Neumann
 entropy~\cite{vonNeumann1932} quantify the entanglement of the joint
@@ -36,9 +36,9 @@ dynamical figure of merit.
 Concurrence and entropy report on a static joint state at one moment;
 $\bar\alpha(t)$ reports on the time-evolving local coherence budget that
 remains available to a unitary acting on $S$ alone.
-For circuit-level coherence accounting~---~quantifying how much
+For circuit-level coherence accounting~--- quantifying how much
 pointer-basis coherence a gate consumes, layer by layer, before the
-bath records it~---~the appropriate observable is $\bar\alpha$, not
+bath records it~--- the appropriate observable is $\bar\alpha$, not
 concurrence.
 
 \subsection{Relation to the Resource Theory of Coherence}
@@ -73,7 +73,7 @@ noise channels, where its monotonic decay
 
 What the \RCF~adds that the resource-theory framework does not supply
 on its own is twofold.
-First, the reference basis is not stipulated~---~it is fixed by
+First, the reference basis is not stipulated~--- it is fixed by
 physics: einselection (Sec.~\ref{sec:decoherence}) singles out the
 pointer basis from the $S$-$E$ Hamiltonian, so the basis-dependence of
 $\bar\alpha$ is grounded in the dynamics rather than chosen by
@@ -90,7 +90,7 @@ This redistribution-rather-than-annihilation reading has recently
 acquired a vivid physical illustration outside the circuit setting.
 Yuksel et al.~\cite{Yuksel2026PhononicDressed} tune a nanomechanical
 resonator into resonance with a single intrinsic two-level
-defect~---~ordinarily regarded as a decoherence channel~---~and recover
+defect~--- ordinarily regarded as a decoherence channel~--- and recover
 the would-be-lost coherence as a hybridized phononic ``dressed state,''
 so that a single defect that one system--environment partition registers
 as irreversible decoherence another addresses as a coherent relational
@@ -135,8 +135,8 @@ To my knowledge, prior noise-aware compilation work for continuously
 parameterized two-qubit gates has arrived at qualitatively similar routing
 and skipping behaviours through compiler search over calibrated hardware metrics.
 The contribution claimed here is not the use of continuous gates, noise-aware
-angle routing, or the omission of low-impact operations~---~all demonstrated
-in~\cite{Yale2025NoiseAware}~---~but the derivation of those behaviours as the
+angle routing, or the omission of low-impact operations~--- all demonstrated
+in~\cite{Yale2025NoiseAware}~--- but the derivation of those behaviours as the
 unique analytic solution to a convex coherence-budget program grounded in
 einselection.
 
@@ -156,10 +156,10 @@ a smaller fraction of the per-gate decoherence budget than a fixed
 maximally-entangling primitive [Eq.~\eqref{eq:peff}], equivalently
 redistributing a smaller fraction of the local pointer-basis coherence
 $\bar\alpha$ into $S$--bath correlations.
-The fidelity advantage~---~$\Delta F \in [+0.038,+0.039]$ at
+The fidelity advantage~--- $\Delta F \in [+0.038,+0.039]$ at
 $p_{\rm base} = 0.10$ across depolarizing, dephasing, and amplitude
 damping noise, growing from $\Delta F \in [+0.019,+0.020]$ at
-$p_{\rm base} = 0.05$ (Table~\ref{tab:fidelity-all})~---~is the
+$p_{\rm base} = 0.05$ (Table~\ref{tab:fidelity-all})~--- is the
 cumulative result of this per-gate saving over a circuit.
 
 I stress what this result is and is not.
@@ -234,8 +234,8 @@ On platforms where $\URA(\theta)$ must be decomposed into fixed native
 gates~\cite{VatanWilliams2004}, the fidelity advantage depends on the
 decomposition depth and may shrink or vanish.
 Second, the calibration overhead of providing $\URA(\theta)$ at
-arbitrary $\theta$~---~either as continuous in-situ tuning or as a
-pre-calibrated lookup~---~is not modelled here and constitutes an
+arbitrary $\theta$~--- either as continuous in-situ tuning or as a
+pre-calibrated lookup~--- is not modelled here and constitutes an
 additional engineering cost that may offset per-gate savings in
 algorithm-level benchmarks~\cite{Foxen2020,Lacroix2020}.
 Third, the decoherence treatment of Proposition~\ref{prop:determination}
@@ -269,14 +269,14 @@ regime (the reference scheduler takes the rates $\gamma_\ell$ directly),
 so the present numerics do not discriminate between the \RCF~cost
 functional and a cost built from the dephasing rates alone.
 The two differ only when $\bar\alpha_\ell^{\rm pre}$ varies across
-layers~---~for example, as residual coherence decays through a deep
-circuit~---~in which case the \RCF~schedule shifts entangling weight
+layers~--- for example, as residual coherence decays through a deep
+circuit~--- in which case the \RCF~schedule shifts entangling weight
 toward layers that retain \emph{less} pointer-basis coherence, since a
 larger $\bar\alpha_\ell^{\rm pre}$ raises that layer's effective rate
 $\tilde\gamma_\ell$.
 
 I tested that regime directly (Fig.~\ref{fig:alpha-varying},
-\texttt{figures/benchmark\_alpha\_varying.py}).
+\texttt{figures/\allowbreak benchmark\_\allowbreak alpha\_\allowbreak varying.py}).
 The circuits are the two-qubit, $L = 8$ circuits of
 Sec.~\ref{subsec:benchmark-alloc}, with two additions that make
 $\bar\alpha_\ell^{\rm pre}$ differ between layers: fixed single-qubit
@@ -377,7 +377,7 @@ this kind, however it is weighted, remains an approximation.
   with idle dephasing.
   \textbf{Right:} mean fidelity gain over the rate-only schedule
   across 300 random circuits (error bars: standard error).
-  Generated by \texttt{figures/benchmark\_alpha\_varying.py}.
+  Generated by \texttt{figures/\allowbreak benchmark\_\allowbreak alpha\_\allowbreak varying.py}.
 }
 \label{fig:alpha-varying}
 \end{figure*}
@@ -443,9 +443,9 @@ linearly with $\theta$, so smaller exchange angles shrink the safe
 range further (e.g.\ at $\theta = \pi/16$, the threshold falls to
 $0.00625$, already below most reported hardware error rates).
 On platforms or operating points where $p_{\rm CNOT} > p_{\rm
-CNOT}^{\rm BE}(\theta)$~---~which now includes a meaningful fraction of
+CNOT}^{\rm BE}(\theta)$~--- which now includes a meaningful fraction of
 present-day devices at partial-exchange operating points, not only
-older or crosstalk-limited hardware~---~the decomposition overhead
+older or crosstalk-limited hardware~--- the decomposition overhead
 erases the gate-time saving and the fixed-gate baseline should be
 preferred.
 Equation~\eqref{eq:breakeven} thus converts the qualitative limitation
@@ -468,7 +468,7 @@ Third, investigation of $\bar\alpha$-aware quantum error correction:
 the local pointer-basis coherence budget may provide a natural
 diagnostic for surface-code threshold behaviour distinct from the usual
 logical-error rate.
-The philosophical implications of the \RCF~---~including the argument
+The philosophical implications of the \RCF~--- including the argument
 that process ontology is formally required (not merely permitted) by
-quantum mechanics~---~are developed in the companion
+quantum mechanics~--- are developed in the companion
 paper~\cite{Adams2026Philosophy}.
