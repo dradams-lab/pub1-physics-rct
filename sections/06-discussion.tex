@@ -5,9 +5,7 @@
 
 \subsection{The Affinity Operator and Existing Coherence Measures}
 
-The scalar affinity $\bar\alpha(S,E)$ is a measure of \emph{local}
-quantum coherence~--- the off-diagonal magnitude of the reduced state
-$\rho_S$ in the einselected pointer basis~--- and it is therefore a
+The scalar affinity $\bar\alpha(S,E)$ is a measure of \emph{local} quantum coherence (the off-diagonal magnitude of the reduced state $\rho_S$ in the einselected pointer basis), and it is therefore a
 distinct object from standard bipartite entanglement measures.
 Concurrence~\cite{Wootters1998} and von Neumann
 entropy~\cite{vonNeumann1932} quantify the entanglement of the joint
@@ -36,9 +34,7 @@ dynamical figure of merit.
 Concurrence and entropy report on a static joint state at one moment;
 $\bar\alpha(t)$ reports on the time-evolving local coherence budget that
 remains available to a unitary acting on $S$ alone.
-For circuit-level coherence accounting~--- quantifying how much
-pointer-basis coherence a gate consumes, layer by layer, before the
-bath records it~--- the appropriate observable is $\bar\alpha$, not
+For circuit-level coherence accounting, that is, tracking how much pointer-basis coherence is lost layer by layer to the bath, the appropriate observable is $\bar\alpha$, not
 concurrence.
 
 \subsection{Relation to the Resource Theory of Coherence}
@@ -73,8 +69,7 @@ noise channels, where its monotonic decay
 
 What the \RCF~adds that the resource-theory framework does not supply
 on its own is twofold.
-First, the reference basis is not stipulated~--- it is fixed by
-physics: einselection (Sec.~\ref{sec:decoherence}) singles out the
+First, the reference basis is not stipulated but fixed by physics: einselection (Sec.~\ref{sec:decoherence}) singles out the
 pointer basis from the $S$-$E$ Hamiltonian, so the basis-dependence of
 $\bar\alpha$ is grounded in the dynamics rather than chosen by
 convention.
@@ -89,8 +84,7 @@ dynamical, conservation-aware, einselection-grounded setting.
 This redistribution-rather-than-annihilation reading has recently
 acquired a vivid physical illustration outside the circuit setting.
 Yuksel et al.~\cite{Yuksel2026PhononicDressed} tune a nanomechanical
-resonator into resonance with a single intrinsic two-level
-defect~--- ordinarily regarded as a decoherence channel~--- and recover
+resonator into resonance with a single intrinsic two-level defect, ordinarily regarded as a decoherence channel, and recover
 the would-be-lost coherence as a hybridized phononic ``dressed state,''
 so that a single defect that one system--environment partition registers
 as irreversible decoherence another addresses as a coherent relational
@@ -135,8 +129,7 @@ To my knowledge, prior noise-aware compilation work for continuously
 parameterized two-qubit gates has arrived at qualitatively similar routing
 and skipping behaviours through compiler search over calibrated hardware metrics.
 The contribution claimed here is not the use of continuous gates, noise-aware
-angle routing, or the omission of low-impact operations~--- all demonstrated
-in~\cite{Yale2025NoiseAware}~--- but the derivation of those behaviours as the
+angle routing, or the omission of low-impact operations (all demonstrated in~\cite{Yale2025NoiseAware}), but the derivation of those behaviours as the
 unique analytic solution to a convex coherence-budget program grounded in
 einselection.
 
@@ -156,16 +149,15 @@ a smaller fraction of the per-gate decoherence budget than a fixed
 maximally-entangling primitive [Eq.~\eqref{eq:peff}], equivalently
 redistributing a smaller fraction of the local pointer-basis coherence
 $\bar\alpha$ into $S$--bath correlations.
-The fidelity advantage~--- $\Delta F \in [+0.038,+0.039]$ at
+The fidelity advantage, $\Delta F \in [+0.038,+0.039]$ at
 $p_{\rm base} = 0.10$ across depolarizing, dephasing, and amplitude
 damping noise, growing from $\Delta F \in [+0.019,+0.020]$ at
-$p_{\rm base} = 0.05$ (Table~\ref{tab:fidelity-all})~--- is the
-cumulative result of this per-gate saving over a circuit.
+$p_{\rm base} = 0.05$ (Table~\ref{tab:fidelity-all}), is the cumulative result of this per-gate saving over a circuit.
 
-I stress what this result is and is not.
-It is \emph{not} a quantitative identity between $\theta$ and
-$\bar\alpha$; the exchange angle and the scalar affinity have different
-domains and inverse responses, as discussed in Sec.~\ref{sec:gate}.
+This result is \emph{not} a quantitative identity between $\theta$ and
+$\bar\alpha$: the exchange angle and the scalar affinity have different
+domains, and the gate does not set $\bar\alpha$ directly
+(Sec.~\ref{sec:gate}).
 What the \RCF~contributes is the coherence-budget framing for the
 parameter selection: the redistribution structure of
 Proposition~\ref{prop:conservation} renders the per-gate cost of
@@ -208,180 +200,6 @@ readout error or inter-layer correlations; they restate the fidelity
 advantage of Theorem~\ref{thm:alloc} in resource-accounting terms
 directly relevant to algorithm-level cost benchmarks.
 
-\subsection{Scope and Limitations}
-
-The \RCF~formalizes the relational structure of quantum mechanics
-established by Bell's theorem~\cite{Bell1964} and relational quantum
-mechanics~\cite{Rovelli1996,Rovelli2021}; it does not resolve the
-quantum measurement problem.
-It provides a precise formal vocabulary within which a definite outcome
-is described as the establishment of a relational fact under
-einselection (Proposition~\ref{prop:determination}, operational
-corollary in App.~\ref{app:rct-proof}), but the question of
-\emph{which} outcome is selected in a given experimental run remains
-outside the framework's scope, as it does for all no-collapse
-interpretations.
-
-Five further limitations bound the simulation claims.
-First, the gate-time-proportional noise model (Eq.~\eqref{eq:peff})
-captures only the coherence-limited contribution to gate error and is
-appropriate for Heisenberg exchange directly calibrated on suitable
-hardware~\cite{LossDiVincenzo1998,Krantz2019,Caldwell2018,Foxen2020,Abrams2020};
-coherent calibration error, leakage to non-computational levels, and
-spectator-qubit crosstalk can scale differently with $\theta$ and may
-attenuate the advantage at small $\theta$.
-On platforms where $\URA(\theta)$ must be decomposed into fixed native
-gates~\cite{VatanWilliams2004}, the fidelity advantage depends on the
-decomposition depth and may shrink or vanish.
-Second, the calibration overhead of providing $\URA(\theta)$ at
-arbitrary $\theta$~--- either as continuous in-situ tuning or as a
-pre-calibrated lookup~--- is not modelled here and constitutes an
-additional engineering cost that may offset per-gate savings in
-algorithm-level benchmarks~\cite{Foxen2020,Lacroix2020}.
-Third, the decoherence treatment of Proposition~\ref{prop:determination}
-adopts the Markovian approximation; non-Markovian environments introduce
-memory kernels that modify the $e^{-\gamma t}$ decay law without
-qualitatively altering the redistribution result of
-Proposition~\ref{prop:conservation}, but a quantitative extension is
-deferred to future work.
-Fourth, the einselection idealization assumed in
-Definition~\ref{def:alpha-tensor} is sharp only in the limit in which
-the pointer basis has converged; for finite baths and finite times the
-pointer basis is approximate, time-dependent, and partially defined,
-and the basis-dependence of $\bar\alpha$ inherits this
-approximation~\cite{Schlosshauer2005}.
-The relational network $\Gamma_S$ is also treated here as a collection
-of interaction events rather than a weighted graph; coupling-strength
-and event-ordering effects on the multi-environment generalization are
-left to subsequent development (cf.\ Sec.~\ref{sec:rqm}).
-Fifth, the scalar affinity enters the allocation program of
-Theorem~\ref{thm:alloc} only through the effective rates
-$\tilde\gamma_\ell = \bar\alpha_\ell^{\rm pre}\gamma_\ell\kappa$
-(Eq.~\eqref{eq:linear-cost}), and the optimal schedule
-Eq.~\eqref{eq:alloc-solution} is invariant under a common rescaling
-$\tilde\gamma_\ell \to c\,\tilde\gamma_\ell$ ($c>0$), which is absorbed
-exactly by the shadow price $\lambda^{\!*} \to c\,\lambda^{\!*}$.
-Consequently, when the pre-gate affinity is the same on every layer,
-$\bar\alpha$ drops out of the argmin and the schedule depends only on
-the dephasing rates $\gamma_\ell$ and on $E_{\rm target}$.
-The benchmarks of Sec.~\ref{subsec:benchmark-alloc} are run in this
-regime (the reference scheduler takes the rates $\gamma_\ell$ directly),
-so the present numerics do not discriminate between the \RCF~cost
-functional and a cost built from the dephasing rates alone.
-The two differ only when $\bar\alpha_\ell^{\rm pre}$ varies across
-layers~--- for example, as residual coherence decays through a deep
-circuit~--- in which case the \RCF~schedule shifts entangling weight
-toward layers that retain \emph{less} pointer-basis coherence, since a
-larger $\bar\alpha_\ell^{\rm pre}$ raises that layer's effective rate
-$\tilde\gamma_\ell$.
-
-I tested that regime directly (Fig.~\ref{fig:alpha-varying},
-\texttt{figures/\allowbreak benchmark\_\allowbreak alpha\_\allowbreak varying.py}).
-The circuits are the two-qubit, $L = 8$ circuits of
-Sec.~\ref{subsec:benchmark-alloc}, with two additions that make
-$\bar\alpha_\ell^{\rm pre}$ differ between layers: fixed single-qubit
-rotations before each exchange layer, and idle dephasing between
-layers that is common to every schedule.
-The \RCF\ schedule takes $\bar\alpha_\ell^{\rm pre}$ from the noisy
-trajectory of the rate-only schedule and then applies
-Theorem~\ref{thm:alloc} once.
-A self-consistent version, in which the profile is recomputed from the
-schedule it produces, does not converge: the linear program moves all
-of the entangling weight onto the lowest-affinity layers, which changes
-the profile, and the iteration oscillates.
-As a reference I maximize the simulated fidelity numerically under the
-same constraint $\sum_\ell \sin 2\theta_\ell = E_{\rm target}$.
-
-The result is mixed.
-When coherence decays steadily with depth, the \RCF\ schedule moves
-the entangling angle onto the last layers and gains
-$\Delta F = +0.022$ ($E_{\rm target} = 1$) and $+0.038$
-($E_{\rm target} = 2$) over the rate-only schedule, most of what the
-numerical optimum gains.
-When the rotations make the affinity jump from layer to layer, the
-schedule puts $\theta \approx 0.6$ on the single lowest-affinity
-layer, well outside the small-angle regime in which
-Eq.~\eqref{eq:linear-cost} holds, and loses $\Delta F = -0.035$.
-Over 300 random circuits
-($\gamma_\ell \in [0.02, 0.30]$, random rotations and idle
-dephasing), the \RCF\ schedule beats the rate-only schedule on average
-by $\Delta F = +0.003$ to $+0.005$ for
-$E_{\rm target} \in \{0.5, 1, 2\}$ (standard errors 0.0005--0.0014),
-but it is worse on 13--41\% of circuits and recovers only 10--25\% of
-the gap to the numerical optimum, which is itself
-$0.010$--$0.052$.
-Weighting each layer instead by the first-order infidelity
-$\sum_{i\neq j} h_{ij}\,\lvert\rho_{ij}\rvert^2$ of the state exposed
-to the gate noise, where $h_{ij}$ is the Hamming distance between
-pointer states $i$ and $j$, recovers 23--38\%, although it fails in
-the same way when the affinity jumps between layers.
-That weight scales as $\bar\alpha^2$ rather than $\bar\alpha$, because
-dephasing costs fidelity in proportion to the squared off-diagonal
-elements.
-The affinity is therefore operationally relevant, and the direction in
-which it moves the schedule is right, but the linear-in-$\bar\alpha$
-cost of Eq.~\eqref{eq:layer-cost} is not the best way to use it.
-
-I tried the obvious repair: weight each layer by
-$(\bar\alpha_\ell^{\rm pre})^2$ instead of $\bar\alpha_\ell^{\rm pre}$,
-and add the bound $\theta_\ell \le \theta_{\max}$ to
-Eq.~\eqref{eq:alloc-problem}.
-The bound leaves Theorem~\ref{thm:alloc} intact; the optimal angle is
-simply Eq.~\eqref{eq:alloc-solution} clipped at $\theta_{\max}$.
-I chose $\theta_{\max} = \pi/12$ on a separate calibration set of 150
-random circuits and then fixed it for the 300 reported above.
-Of the two changes, the bound does most of the work.
-In the case where the affinity jumps between layers, the capped
-quadratic schedule gains $\Delta F = +0.019$ ($E_{\rm target} = 1$)
-and $+0.027$ ($E_{\rm target} = 2$) where the linear schedule lost
-$0.035$ and $0.039$; with steady decay it gives up a little
-($+0.020$ and $+0.026$ instead of $+0.022$ and $+0.038$); and with
-heterogeneous rates it gains $+0.011$ and $+0.012$.
-Over the random circuits at $E_{\rm target} = 1$ it gains
-$\Delta F = +0.013 \pm 0.002$, three times the linear schedule, recovers
-43\% of the gap to the optimum instead of 14\%, and its worst single
-loss falls from $0.11$ to $0.06$.
-At $E_{\rm target} = 0.5$ the bound never binds and squaring the
-weight adds little ($+0.003$).
-At $E_{\rm target} = 2$ a fixed $\theta_{\max} = \pi/12$ is too
-tight: meeting the target then forces angle onto at least four layers,
-including noisy ones, and the gain falls to $+0.006$.
-Squaring the weight without the bound barely changes the average and
-makes the worst cases worse.
-The lesson is that the coherence cost needs to stay inside the regime
-in which it was derived, and that the bound should scale with
-$E_{\rm target}/L$ rather than be fixed.
-Even the best of these schedules recovers well under half of what
-direct numerical optimization achieves, so a per-layer linear cost of
-this kind, however it is weighted, remains an approximation.
-
-\begin{figure*}[htbp]
-\centering
-\includegraphics[width=\textwidth]{fig4_alpha_varying}
-\caption{
-  Allocation with layer-varying pre-gate affinity ($L = 8$,
-  $E_{\rm target} = 1$ in the first three panels).
-  Gray bars: $\bar\alpha_\ell^{\rm pre}$ along the rate-only schedule.
-  Lines: exchange angles $\theta_\ell$ for the rate-only schedule,
-  the \RCF\ schedule ($\tilde\gamma_\ell \propto
-  \bar\alpha_\ell^{\rm pre}\gamma_\ell$), the capped quadratic
-  schedule ($\tilde\gamma_\ell \propto
-  (\bar\alpha_\ell^{\rm pre})^2\gamma_\ell$,
-  $\theta_\ell \le \pi/12$), and the numerical optimum, with final-state fidelities
-  in the legends.
-  \textbf{A:} uniform $\gamma = 0.15$, coherence decaying through idle
-  dephasing.
-  \textbf{B:} uniform $\gamma = 0.15$, interleaved single-qubit
-  rotations.
-  \textbf{C:} the heterogeneous rates of Fig.~\ref{fig:rcb-sweep}
-  with idle dephasing.
-  \textbf{Right:} mean fidelity gain over the rate-only schedule
-  across 300 random circuits (error bars: standard error).
-  Generated by \texttt{figures/\allowbreak benchmark\_\allowbreak alpha\_\allowbreak varying.py}.
-}
-\label{fig:alpha-varying}
-\end{figure*}
-
 \subsection{Decomposition Break-Even for Fixed-Gate Platforms}
 \label{subsec:decomp-breakeven}
 
@@ -395,8 +213,7 @@ block carries the overall phase $e^{-i\theta/2}$ while its
 $\{\ket{01},\ket{10}\}$ block carries $e^{i\theta/2}$, and no single
 global phase can render both real simultaneously except at $\theta = 0$.
 Consequently the $N_{\rm CNOT} = 2$ special case of the KAK
-decomposition~\cite{VatanWilliams2004} --- which applies only to gates
-locally equivalent to a real (SO(4)) unitary --- does not apply here;
+decomposition~\cite{VatanWilliams2004}, which applies only to gates locally equivalent to a real (SO(4)) unitary, does not apply here;
 the relevant bound is instead the generic
 $N_{\rm CNOT} = 3$ result, shown to be necessary and
 sufficient for a generic $\mathrm{SU}(4)$ gate by
@@ -434,24 +251,87 @@ At the half-entangling point $\theta = \pi/8$ and
 $p_{\rm base} = 0.10$, the threshold is
 $p_{\rm CNOT}^{\rm BE} = (1/8)\times 0.10 = 0.0125$.
 Current best-reported two-qubit gate error rates on superconducting
-and trapped-ion hardware range from $p_{\rm CNOT} \approx 0.003$
-to $0.015$~\cite{Krantz2019}, which now straddles this threshold rather
-than sitting uniformly below it: only the lower half of this range
-($p_{\rm CNOT} \lesssim 0.0125$) retains the direct-calibration
-advantage at $\theta=\pi/8$, and the break-even threshold scales
-linearly with $\theta$, so smaller exchange angles shrink the safe
-range further (e.g.\ at $\theta = \pi/16$, the threshold falls to
-$0.00625$, already below most reported hardware error rates).
-On platforms or operating points where $p_{\rm CNOT} > p_{\rm
-CNOT}^{\rm BE}(\theta)$~--- which now includes a meaningful fraction of
-present-day devices at partial-exchange operating points, not only
-older or crosstalk-limited hardware~--- the decomposition overhead
+and trapped-ion hardware range from $p_{\rm CNOT} \approx 0.003$ to $0.015$~\cite{Krantz2019}, which straddles this threshold. Only the part of this range below $p_{\rm CNOT} \approx 0.0125$ retains the direct-calibration advantage at $\theta=\pi/8$. The break-even threshold also scales linearly with $\theta$, so smaller exchange angles shrink the safe range further: at $\theta = \pi/16$ it falls to $0.00625$, below most reported hardware error rates.
+On platforms or operating points where $p_{\rm CNOT} > p_{\rm CNOT}^{\rm BE}(\theta)$ (which now includes a meaningful fraction of present-day devices at partial-exchange operating points, not only older or crosstalk-limited hardware), the decomposition overhead
 erases the gate-time saving and the fixed-gate baseline should be
 preferred.
 Equation~\eqref{eq:breakeven} thus converts the qualitative limitation
 noted above into a testable, hardware- and angle-specific criterion,
 one that is markedly less permissive than a naive $N_{\rm CNOT}=2$
 assumption would suggest.
+
+\subsection{Scope and Limitations}
+\label{subsec:limitations}
+
+The \RCF~formalizes the relational structure of quantum mechanics
+established by Bell's theorem~\cite{Bell1964} and relational quantum
+mechanics~\cite{Rovelli1996,Rovelli2021}; it does not resolve the
+quantum measurement problem.
+It provides a precise formal vocabulary within which a definite outcome
+is described as the establishment of a relational fact under
+einselection (Proposition~\ref{prop:determination}, operational
+corollary in App.~\ref{app:rct-proof}), but the question of
+\emph{which} outcome is selected in a given experimental run remains
+outside the framework's scope, as it does for all no-collapse
+interpretations.
+
+Five further limitations bound the simulation claims.
+First, the gate-time-proportional noise model (Eq.~\eqref{eq:peff})
+captures only the coherence-limited contribution to gate error and is
+appropriate for Heisenberg exchange directly calibrated on suitable
+hardware~\cite{LossDiVincenzo1998,Krantz2019,Caldwell2018,Foxen2020,Abrams2020};
+coherent calibration error, leakage to non-computational levels, and
+spectator-qubit crosstalk can scale differently with $\theta$ and may
+attenuate the advantage at small $\theta$.
+On platforms where $\URA(\theta)$ must be decomposed into fixed native
+gates~\cite{VatanWilliams2004}, the fidelity advantage depends on the
+decomposition depth and may shrink or vanish
+(Sec.~\ref{subsec:decomp-breakeven}).
+
+Second, the calibration overhead of providing $\URA(\theta)$ at
+arbitrary $\theta$ (either as continuous in-situ tuning or as a pre-calibrated lookup) is not modelled here and constitutes an
+additional engineering cost that may offset per-gate savings in
+algorithm-level benchmarks~\cite{Foxen2020,Lacroix2020}.
+
+Third, the decoherence treatment of Proposition~\ref{prop:determination}
+adopts the Markovian approximation; non-Markovian environments introduce
+memory kernels that modify the $e^{-\gamma t}$ decay law without
+qualitatively altering the redistribution result of
+Proposition~\ref{prop:conservation}, but a quantitative extension is
+deferred to future work.
+
+Fourth, the einselection idealization assumed in
+Definition~\ref{def:alpha-tensor} is sharp only in the limit in which
+the pointer basis has converged; for finite baths and finite times the
+pointer basis is approximate, time-dependent, and partially defined,
+and the basis-dependence of $\bar\alpha$ inherits this
+approximation~\cite{Schlosshauer2005}.
+The relational network $\Gamma_S$ is also treated here as a collection
+of interaction events rather than a weighted graph; coupling-strength
+and event-ordering effects on the multi-environment generalization are
+left to subsequent development (cf.\ Sec.~\ref{sec:rqm}).
+
+Fifth, the scalar affinity enters the allocation program of
+Theorem~\ref{thm:alloc} only through the effective rates
+$\tilde\gamma_\ell = \bar\alpha_\ell^{\rm pre}\gamma_\ell\kappa$
+(Eq.~\eqref{eq:linear-cost}), and the optimal schedule
+Eq.~\eqref{eq:alloc-solution} is invariant under a common rescaling
+$\tilde\gamma_\ell \to c\,\tilde\gamma_\ell$ ($c>0$), which is absorbed
+exactly by the shadow price $\lambda^{\!*} \to c\,\lambda^{\!*}$.
+Consequently, when the pre-gate affinity is the same on every layer,
+$\bar\alpha$ drops out of the argmin and the schedule depends only on
+the dephasing rates $\gamma_\ell$ and on $E_{\rm target}$.
+The benchmarks of Sec.~\ref{subsec:benchmark-alloc} are run in this
+regime (the reference scheduler takes the rates $\gamma_\ell$ directly),
+so the present numerics do not discriminate between the \RCF~cost
+functional and a cost built from the dephasing rates alone.
+The two differ only when $\bar\alpha_\ell^{\rm pre}$ varies across layers (for example, as residual coherence decays through a deep circuit), in which case the \RCF~schedule shifts entangling weight
+toward layers that retain \emph{less} pointer-basis coherence, since a
+larger $\bar\alpha_\ell^{\rm pre}$ raises that layer's effective rate
+$\tilde\gamma_\ell$.
+Section~\ref{subsec:alpha-varying} tests that regime: weighting by
+$\bar\alpha$ helps only modestly and can hurt, and a capped quadratic
+variant does better but remains an approximation.
 
 \subsection{Future Directions}
 
@@ -468,7 +348,4 @@ Third, investigation of $\bar\alpha$-aware quantum error correction:
 the local pointer-basis coherence budget may provide a natural
 diagnostic for surface-code threshold behaviour distinct from the usual
 logical-error rate.
-The philosophical implications of the \RCF~--- including the argument
-that process ontology is formally required (not merely permitted) by
-quantum mechanics~--- are developed in the companion
-paper~\cite{Adams2026Philosophy}.
+The philosophical implications of the \RCF, including the question of which ontology best fits the relational reading, are developed in the companion paper~\cite{Adams2026Philosophy}.

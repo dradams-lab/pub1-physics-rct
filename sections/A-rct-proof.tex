@@ -82,7 +82,7 @@ consistent with the quantum predictions for all projection-valued
 measures on $\mathcal{H}_S$.
 (A non-contextual assignment would give the same value to a projector
 $\hat{P}$ regardless of which complete set of commuting observables it
-is measured alongside~--- precisely the assignment required by any
+is measured alongside, which is precisely the assignment required by any
 hidden variable theory seeking to recover quantum predictions.)
 No such assignment exists.
 
@@ -91,8 +91,8 @@ context, i.e., independently of relational interaction. $\square$
 
 \subsection{Proof of Proposition~\ref{prop:determination} (Relational Determination)}
 
-The dynamical proof~--- the Lindblad calculation showing
-$\bar\alpha(S,E;t) = \bar\alpha(S,E;0)\,e^{-\gamma t}$~--- is given in
+The dynamical proof (the Lindblad calculation showing
+$\bar\alpha(S,E;t) = \bar\alpha(S,E;0)\,e^{-\gamma t}$) is given in
 Sec.~\ref{sec:prop2}.
 Here I record an operational corollary that connects the dynamical
 decay to the relational reading of measurement outcomes.
@@ -102,12 +102,13 @@ A definite pointer-basis outcome for an observable $\hat{A}$ on $S$
 arises relative to an environment $E_i$ if and only if (a)~$S$ has
 coupled to $E_i$ via an interaction Hamiltonian $H_{SE_i}$ that drives
 the joint state from Schmidt rank~$1$ to rank~$r > 1$, and
-(b)~einselection has subsequently driven the local pointer-basis
+(b)~einselection has driven the local pointer-basis
 coherence $\bar\alpha(S,E_i;t)$ to zero.
-Equivalently, the trajectory of $\bar\alpha(S,E_i;t)$ for a relevant
-relational interaction is non-monotone: a transient rise (from
-coupling) followed by exponential decay (from einselection,
-Proposition~\ref{prop:determination}).
+Equivalently, for the pointer-basis coupling of
+Proposition~\ref{prop:conservation}, $\bar\alpha(S,E_i;t)$ starts from
+a nonzero value fixed by the preparation of $S$ and decays to zero
+without ever exceeding that value; the decay is exponential in the
+Markovian regime of Proposition~\ref{prop:determination}.
 
 \textbf{Sketch.}
 
@@ -129,9 +130,13 @@ is assigned to $\hat{A}$.
 ($\Leftarrow$)
 Suppose~(a)~and~(b) hold.
 The joint unitary $U(t) = e^{-iH_{SE_i}t/\hbar}$ takes
-$\ket{\psi_S}\otimes\ket{e_0}$ to a Schmidt rank-$r>1$ state, growing
-$\bar\alpha(S,E_i;t)$ above zero in the einselected pointer basis.
-Einselection~\cite{Zurek2003} then drives
+$\ket{\psi_S}\otimes\ket{e_0}$ to a Schmidt rank-$r>1$ state.
+For a pointer-basis coupling this requires $\ket{\psi_S}$ to superpose
+at least two pointer states, so $\bar\alpha(S,E_i;0) > 0$ before the
+coupling acts.
+The branching that raises the Schmidt rank is the same branching that
+lowers $\bar\alpha(S,E_i;t)$ [Eq.~\eqref{eq:coherence-transfer}].
+Einselection~\cite{Zurek2003} drives
 $\bar\alpha(S,E_i;t)\to 0$ by Proposition~\ref{prop:determination},
 leaving $\rho_S$ pointer-basis-diagonal: relative to $E_i$, $S$ has a
 definite outcome. $\square$
@@ -246,7 +251,7 @@ $\mathrm{Tr}[\rho_{SE}(t)^2] = \mathrm{Tr}[\rho_{SE}(0)^2]$ for all $t$.
 \end{align*}
 The apparent purity loss in the reduced state
 $\rho_S = \mathrm{Tr}_E[\rho_{SE}]$ reflects transfer of coherence
-into $S$-$E$ correlations~--- the joint state remains pure, and
+into $S$-$E$ correlations; the joint state remains pure, and
 $\mathrm{Tr}[\rho_{SE}^2] = 1$ throughout.
 The ``lost'' coherence is not destroyed; it is encoded in the
 relational network $\Gamma_S$ (Sec.~\ref{sec:rqm}) as $S$-$E$

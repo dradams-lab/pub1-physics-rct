@@ -6,17 +6,11 @@
 I have introduced the Relational Coherence framework (\RCF), a
 formal packaging of the relational reading of quantum
 mechanics~\cite{Bell1964,Rovelli1996,Rovelli2021} into a single
-computable scalar quantity~--- the scalar affinity
+computable scalar quantity: the scalar affinity
 $\bar\alpha(S,E)$, the normalized Hilbert--Schmidt coherence of
 $\rho_S$ in the einselected pointer
 basis~\cite{Zurek2003,Baumgratz2014,Streltsov2017Review}.
-The \RCF~comprises four propositions~--- property indefiniteness,
-relational determination, coherence--affinity correspondence, and
-coherence redistribution under unitary $S$--$E$ evolution~--- each of
-which rests on standard quantum-mechanical machinery (Cauchy--Schwarz
-bounds, Lindblad calculation, Schmidt decomposition, Joos--Zeh / Zurek
-branching) packaged in $\bar\alpha$-language; the framework's
-contribution lies in this packaging, not in the underlying identities.
+The \RCF~comprises four propositions: property indefiniteness, relational determination, coherence--affinity correspondence, and coherence redistribution under unitary $S$--$E$ evolution. Each rests on standard quantum-mechanical machinery (Cauchy--Schwarz bounds, a Lindblad calculation, the Schmidt decomposition and Joos--Zeh / Zurek branching); what the framework adds is their restatement in terms of $\bar\alpha$, not the identities themselves.
 
 The Affinity Operator~$\alpha(S,E)$ provides an operationalized, computable
 measure of relational coherence: it is built from the off-diagonal
@@ -42,34 +36,16 @@ the per-layer coherence-budget reading of the parameter selection, with
 Proposition~\ref{prop:conservation} rendering the per-gate cost of
 partial entanglement explicit as a fraction of $\bar\alpha$ exported
 into $S$--$E$ correlations.
-Numerical simulation under gate-time-proportional depolarizing,
-dephasing, and amplitude damping noise yields, for $\URA(\pi/8)$
-operating at half the duration of a full \textsc{iswap} or \textsc{cnot},
-fidelity advantages of $\Delta F \in [+0.038, +0.039]$ over fixed gates
-at $p_{\rm base} = 0.10$ (and $\Delta F \in [+0.019, +0.020]$ at
-$p_{\rm base} = 0.05$), consistent with and quantitatively similar to
-the experimental continuous-fSim advantage reported on
-Sycamore-class hardware by Foxen~\textit{et~al.}~\cite{Foxen2020}.
+In numerical simulation under gate-time-proportional depolarizing, dephasing and amplitude-damping noise, $\URA(\pi/8)$, which runs at half the duration of a full \textsc{iswap} or \textsc{cnot}, outperforms the fixed gates by $\Delta F \in [+0.038, +0.039]$ at $p_{\rm base} = 0.10$ and by $\Delta F \in [+0.019, +0.020]$ at $p_{\rm base} = 0.05$. These figures are consistent with, and quantitatively similar to, the continuous-fSim advantage reported on Sycamore-class hardware by Foxen~\textit{et~al.}~\cite{Foxen2020}.
 
-These results illustrate the \RCF~as a formal packaging: the Affinity
-Tensor is computable from the reduced state in the einselected pointer
-basis, the gate is implementable on platforms with directly
-calibratable exchange coupling, and the simulated fidelity advantage
-under gate-time-proportional decoherence is the analytical consequence
-of the gate-time scaling combined with the continuous Weyl-chamber
-trajectory.
+These results show the \RCF~working as a formal packaging. The Affinity Operator is computable from the reduced state in the einselected pointer basis, and the gate is implementable on platforms with directly calibratable exchange coupling. The simulated fidelity advantage follows analytically from the gate-time scaling together with the continuous Weyl-chamber trajectory.
 
 The principal technical contribution of this paper is the
 \emph{Coherence-Budget Allocation Theorem} (Sec.~\ref{sec:alloc}), which
 turns the per-gate coherence-budget framing into a layerwise scheduling
 rule with a unique closed-form solution
 $\theta_\ell^\ast = \tfrac{1}{2}\arccos\bigl(\min(1,\tilde\gamma_\ell/(2\lambda^\ast))\bigr)$.
-The theorem yields three falsifiable predictions~--- distribute
-entanglement rather than concentrate it, route entanglement onto
-quieter layers, and skip layers whose effective dephasing rate
-exceeds the global shadow price~--- which a reference scheduler
-(\texttt{figures/\allowbreak rcb\_\allowbreak optimizer.py}) verifies on a multi-layer 2-qubit
-benchmark.
+The theorem yields three falsifiable predictions: distribute entanglement rather than concentrate it, route entanglement onto quieter layers, and skip layers whose effective dephasing rate exceeds the global shadow price. A reference scheduler (\texttt{figures/\allowbreak rcb\_\allowbreak optimizer.py}) verifies them on a multi-layer 2-qubit benchmark.
 Against a concentrated full-entangler baseline the optimal schedule
 yields a final-state fidelity advantage of up to $\Delta F = +0.040$ at
 $\gamma = 0.15$, $E_{\rm target}\!=\!1$, $L\!=\!8$; against

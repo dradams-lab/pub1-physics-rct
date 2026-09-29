@@ -19,8 +19,7 @@ The circuit representation is:
 \end{center}
 
 \noindent
-Performance is benchmarked against three fixed two-qubit gates~--- \textsc{cnot},
-\textsc{iswap}, and \textsc{cz}~--- which are the standard entangling
+Performance is benchmarked against three fixed two-qubit gates (\textsc{cnot}, \textsc{iswap} and \textsc{cz}), which are the standard entangling
 primitives on IBM and Google hardware respectively.
 The key distinction is that these fixed gates always operate at full
 entanglement capability ($\mathcal{E} = 1$), whereas $\URA(\theta)$
@@ -48,11 +47,7 @@ decoherence mechanisms in near-term superconducting qubit devices:
 
 A critical physical consideration governs the comparison.
 On hardware where the two-qubit-gate pulse duration is set by the
-Heisenberg exchange coupling and the gate is directly calibrated as a
-single continuous parameter~--- spin-qubit exchange platforms, certain
-parametric transmon architectures, and Sycamore-class tunable
-couplers~\cite{LossDiVincenzo1998,Caldwell2018,Foxen2020,Abrams2020}~--- the
-coherence-limited contribution to two-qubit gate error accumulates in
+Heisenberg exchange coupling and the gate is directly calibrated as a single continuous parameter (spin-qubit exchange platforms, certain parametric transmon architectures and Sycamore-class tunable couplers~\cite{LossDiVincenzo1998,Caldwell2018,Foxen2020,Abrams2020}), the coherence-limited contribution to two-qubit gate error accumulates in
 proportion to gate duration~\cite{Krantz2019}, and the
 exchange-angle pulse duration scales linearly with~$\theta$: running at
 $\theta = \pi/8$ takes half the time of a full $\theta = \pi/4$
@@ -99,8 +94,7 @@ p_{\rm eff}\,\mathbf{I}_4/4$ applied after an ideal unitary, this
 reduces to the closed-form expression
 $F_{\rm avg} = 1 - 3\,p_{\rm eff}/4$.
 The values in Table~\ref{tab:fidelity} are this analytical expression
-evaluated at the gate-specific $p_{\rm eff}$ of
-Eq.~\eqref{eq:peff}~--- i.e., the depolarizing column is closed-form
+evaluated at the gate-specific $p_{\rm eff}$ of Eq.~\eqref{eq:peff}; that is, the depolarizing column is closed-form
 rather than simulator-derived.
 The script \texttt{figures/\allowbreak generate\_\allowbreak tables.py} computes these values
 directly from the formula, and the Qiskit/Cirq density-matrix
@@ -108,8 +102,7 @@ simulator notebooks of the release tag (Sec.~\ref{sec:conc}) reproduce
 them to numerical precision under the same channel.
 $\URA(\pi/4)$ (full duration, $\theta = \pi/4$) operates at maximum
 entanglement capability ($\mathcal{E} = 1$).
-Under the global depolarizing channel~--- which is unitary-invariant~--- the
-average gate fidelity depends only on $p_{\rm eff}$, so $\URA(\pi/4)$ and
+Under the global depolarizing channel, which is unitary-invariant, the average gate fidelity depends only on $p_{\rm eff}$, so $\URA(\pi/4)$ and
 \textsc{iswap} achieve identical $F_{\rm avg}$ at equal duration; the
 partial-exchange advantage I report below is therefore at $\theta < \pi/4$.
 $\URA(\pi/8)$ (half duration, $\theta = \pi/8$) achieves measurable
@@ -205,8 +198,7 @@ with the bath, accumulating less decoherence per operation.
 Operationally, this means a smaller fraction of the local pointer-basis
 coherence budget $\bar\alpha$ (Definition~\ref{def:alpha-scalar}) is
 expended into $S$-bath correlations during the gate, leaving more
-coherence available for downstream layers~--- exactly the redistribution
-quantified by Eq.~\eqref{eq:coherence-transfer}.
+coherence available for downstream layers; this is the redistribution quantified by Eq.~\eqref{eq:coherence-transfer}.
 For circuits requiring partial entanglement, or in which entanglement
 is built incrementally across layers, $\URA(\theta)$ can therefore be
 tuned to the coherence regime of the device: small $\theta$ in
