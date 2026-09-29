@@ -90,17 +90,18 @@ All simulation scripts and figure-generation code used in this work are
 publicly available at
 \url{https://github.com/dradams-lab/pub1-physics-rct} and archived
 at Zenodo, concept DOI~\texttt{10.5281/\allowbreak zenodo.20130304} (evergreen).
-The repository includes:
-\texttt{figures/\allowbreak generate\_\allowbreak fig1.py} (single-qubit affinity decay,
-Fig.~\ref{fig:affinity-decay});
-\texttt{figures/\allowbreak generate\_\allowbreak fig2.py} (two-qubit independent-dephasing
-dynamics, Fig.~\ref{fig:alpha-dynamics});
-\texttt{figures/\allowbreak generate\_\allowbreak tables.py} (closed-form analytical
-reproduction of Tables~\ref{tab:fidelity}--\ref{tab:fidelity-all});
-and the density-matrix simulator scripts
-\texttt{figures/\allowbreak simulate\_\allowbreak table2\_\allowbreak qiskit.py} and
-\texttt{figures/\allowbreak simulate\_\allowbreak table2\_\allowbreak cirq.py}, which reproduce the
-dephasing and amplitude-damping rows of
-Table~\ref{tab:fidelity-all} via independent full-channel simulation
-in Qiskit-Aer and Cirq and agree with the analytical values to
-numerical precision.
+The repository includes the following scripts, all in \texttt{figures/}:
+\begin{itemize}
+  \item \texttt{generate\_fig1.py}: single-qubit affinity decay,
+    Fig.~\ref{fig:affinity-decay};
+  \item \texttt{generate\_fig2.py}: two-qubit independent-dephasing
+    dynamics, Fig.~\ref{fig:alpha-dynamics};
+  \item \texttt{generate\_tables.py}: closed-form analytical
+    reproduction of Tables~\ref{tab:fidelity}--\ref{tab:fidelity-all};
+  \item \texttt{simulate\_table2\_qiskit.py} and
+    \texttt{simulate\_table2\_cirq.py}: density-matrix simulators that
+    reproduce the dephasing and amplitude-damping rows of
+    Table~\ref{tab:fidelity-all} via independent full-channel simulation
+    in Qiskit-Aer and Cirq, agreeing with the analytical values to
+    numerical precision.
+\end{itemize}
