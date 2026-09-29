@@ -11,18 +11,11 @@ Author: Dr. Joshua Adams ([ORCID 0000-0002-7185-9125](https://orcid.org/0000-000
 
 ## Abstract
 
-Bell's theorem and the loophole-free experimental violation of Bell inequalities rule out local non-contextual hidden-variable completions of quantum mechanics. A natural response, on which this work builds, is the relational reading of Rovelli, on which quantum properties are not assigned to systems in isolation but are encoded in their interaction histories. This paper packages one technically explicit aspect of that reading into the **Relational Coherence framework** (RCF), centred on the **Affinity Operator** α(S,E) — the off-diagonal part of the reduced state ρ_S in the einselected pointer basis — whose normalized Frobenius norm ᾱ(S,E) ∈ [0,1] is the Hilbert–Schmidt coherence quantifier of ρ_S in that basis.
+Decoherence theory already explains why system properties become definite. This paper asks what that explanation is worth to someone who can tune the strength of an entangling gate. The Relational Coherence framework (RCF) restates four standard identities of pointer-basis coherence theory in terms of a normalized Hilbert–Schmidt quantifier ᾱ(S,E) ∈ [0,1], fixed by einselection, and treats the drop ᾱ<sup>pre</sup> − ᾱ<sup>post</sup> across a circuit layer as a cost. None of this changes the predictions of quantum mechanics. Rovelli's relational interpretation serves as the conceptual setting; I do not argue that Bell's theorem singles it out.
 
-The framework collects four standard identities in the language of ᾱ:
+For tunable Heisenberg-exchange gates U<sub>RA</sub>(θ) under Markovian dephasing proportional to gate time, with per-layer rates γ̃<sub>ℓ</sub> and a fixed entanglement target Σ<sub>ℓ</sub>|sin 2θ<sub>ℓ</sub>|, I prove that the cost-minimizing schedule is unique: θ<sub>ℓ</sub>\* = ½ arccos[min(1, γ̃<sub>ℓ</sub>/2λ\*)], where the multiplier λ\* is set by the target. Quiet layers receive more entanglement, and any layer with γ̃<sub>ℓ</sub> ≥ 2λ\* receives none.
 
-1. **Property indefiniteness** — ᾱ > 0 precludes a pointer-basis-diagonal ρ_S
-2. **Relational determination** — ᾱ decays exponentially under Markovian dephasing in the pointer basis
-3. **Coherence–affinity correspondence** — ᾱ ranges continuously over [0,1], with extrema at full pointer-basis decoherence and at the equal-weight pointer-basis pure superposition
-4. **Coherence redistribution** — under closed unitary S–E evolution, local pointer-basis coherence is redistributed into S–E correlations rather than destroyed
-
-Building on existing parametric-gate work, this paper examines the **tunable isotropic-exchange gate** U_RA(θ) = exp[−iθ(σ_x⊗σ_x + σ_y⊗σ_y + σ_z⊗σ_z)/2], a two-qubit unitary on the Heisenberg-exchange diagonal of the Weyl chamber of SU(4)/[SU(2)⊗SU(2)] with exchange angle θ ∈ [0, π/2]. The gate is the standard isotropic-exchange family; within the RCF diagnostic we refer to its use as the relational-affinity parameterization rather than as a new gate primitive. On platforms where Heisenberg-exchange pulse duration scales linearly with θ, U_RA(π/8) accumulates half the coherence-limited error of a full θ = π/4 entangler.
-
-Numerical simulations in Qiskit and Cirq under gate-time-proportional depolarizing, dephasing, and amplitude-damping noise yield a per-gate fidelity advantage of ΔF ∈ [+0.038, +0.039] at p_base = 0.10 over CNOT, iSWAP, and CZ, consistent with the experimental continuous-fSim advantage reported by Foxen et al. on Sycamore. The advantage is contingent on direct exchange calibration; on platforms where U_RA(θ) must be decomposed into fixed native primitives, the advantage may shrink or vanish.
+In eight-layer density-matrix simulations with unit target, the schedule improves final-state fidelity by up to 0.040 over a single full entangler (γ = 0.15) and by 0.025 over equal angles when per-layer noise ranges from 0.02 to 0.30. The per-gate behavior agrees with published continuous-fSim results on Sycamore-class processors. These gains assume the exchange angle can be calibrated directly; where U<sub>RA</sub>(θ) has to be built from fixed native gates, they may shrink or disappear.
 
 ---
 
@@ -61,7 +54,7 @@ pdflatex main.tex
 pdflatex main.tex
 ```
 
-The PDF is also attached to each [GitHub release](https://github.com/dradams-lab/pub1-physics-rct/releases) and archived on Zenodo via the DOI above.
+The compiled PDF is attached to each [GitHub release](https://github.com/dradams-lab/pub1-physics-rct/releases). Zenodo archives the source files under the DOI above.
 
 ---
 
