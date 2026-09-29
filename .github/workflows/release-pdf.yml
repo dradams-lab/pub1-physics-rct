@@ -1,0 +1,43 @@
+name: Build PDF for release
+
+# Compiles main.tex (the Quantum-journal preprint) and attaches the PDF to a
+# GitHub release, so readers get a paper rather than a source zip. The stable
+# link to the newest PDF is:
+#   https://github.com/dradams-lab/pub1-physics-rct/releases/latest/download/Adams-Relational-Coherence-Budgeting.pdf
+# Note: Zenodo archives only the source zip of a release, never attached files.
+
+on:
+  release:
+    types: [published]
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: "Existing release tag to build and attach the PDF to"
+        required: true
+
+jobs:
+  build-pdf:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write   # needed to upload release assets
+    env:
+      TAG: ${{ github.event.release.tag_name || inputs.tag }}
+      PDF_NAME: Adams-Relational-Coherence-Budgeting.pdf
+    steps:
+      - name: Check out the release tag
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.release.tag_name || inputs.tag }}
+
+      - name: Compile main.tex (pdflatex + BibTeX via latexmk)
+        uses: xu-cheng/latex-action@v3
+        with:
+          root_file: main.tex
+          args: -pdf -interaction=nonstopmode -halt-on-error
+
+      - name: Attach the PDF to the release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          cp main.pdf "$PDF_NAME"
+          gh release upload "$TAG" "$PDF_NAME" --clobber --repo "$GITHUB_REPOSITORY"
