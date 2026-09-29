@@ -23,6 +23,7 @@ The plain figure scripts (`generate_fig1.py`, `generate_fig2.py`) depend only on
 | `generate_tables.py` | stdout: closed-form Tables I and II | §V |
 | `simulate_table2_qiskit.py` | stdout: Table II via Qiskit-Aer density-matrix simulation | §V |
 | `simulate_table2_cirq.py` | stdout: Table II via Cirq density-matrix simulation | §V |
+| `benchmark_alpha_varying.py` | stdout + `fig4_alpha_varying.pdf`: RCF (ᾱ-weighted) vs rate-only schedules when ᾱ<sup>pre</sup> varies across layers (not yet referenced in the text) | §VII, fifth limitation |
 
 Run each from the repository root:
 
@@ -32,6 +33,7 @@ figures/.venv/bin/python figures/generate_fig2.py
 figures/.venv/bin/python figures/generate_tables.py
 figures/.venv/bin/python figures/simulate_table2_qiskit.py
 figures/.venv/bin/python figures/simulate_table2_cirq.py
+figures/.venv/bin/python figures/benchmark_alpha_varying.py   # ~8 min; --quick for ~1 min
 ```
 
 ## Notes for reviewers
@@ -58,3 +60,11 @@ figures/.venv/bin/python figures/simulate_table2_cirq.py
   per-qubit off-diagonal damping `1 − γ` (equivalent to a Pauli-Z channel
   with flip probability `p_Z = γ/2`); the amplitude-damping channel uses
   the standard Kraus operators independently per qubit.
+
+- **Layer-varying ᾱ benchmark** (`benchmark_alpha_varying.py`, needs `scipy`):
+  tests the one regime where the RCF cost `γ̃_ℓ = ᾱ_ℓ^pre γ_ℓ κ` and a
+  rate-only cost give different schedules. ᾱ^pre is profiled once on the
+  rate-only schedule's noisy trajectory; a self-consistent fixed point
+  oscillates (the linear program is bang-bang) and is not used. The
+  `oracle` column is SLSQP maximization of the simulated fidelity under
+  the same `Σ sin 2θ = E_target` constraint, multi-start, fixed seed.
