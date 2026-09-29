@@ -68,9 +68,9 @@ directly-calibrated exchange-gate case treated throughout this paper.
 
 \begin{proposition}[Exchange-angle coherence cost, Markovian regime]
 \label{prop:exchange-cost}
-Under uniform Markovian pointer-basis dephasing at rate $\gamma$ and
-direct exchange-gate duration $t(\theta) = t_{\pi/4}\,\theta/(\pi/4)$
-(Sec.~\ref{sec:sim}), the layerwise scalar-affinity loss induced by
+Under uniform Markovian pointer-basis dephasing at rate $\gamma$ and the
+direct exchange-gate duration of Sec.~\ref{sec:sim},
+$t(\theta) = t_{\pi/4}\,\theta/(\pi/4)$, the layerwise scalar-affinity loss induced by
 $\URA(\theta)$ on a layer with input affinity $\bar\alpha_{\rm in}$ is
 %
 \begin{equation}
@@ -261,10 +261,13 @@ Three predictions follow immediately from Eq.~\eqref{eq:alloc-solution}
 and are testable in numerical simulation.
 
 \textbf{P1 (Distribution beats concentration, uniform-$\tilde\gamma$).}
-For $\tilde\gamma_\ell = \tilde\gamma$ uniform, the optimal schedule is
-$\theta_\ell^* = \tfrac{1}{2}\arcsin(E_{\rm target}/L)$ on all layers,
-with total cost
-$C^* = \tilde\gamma\,L\cdot \tfrac{1}{2}\arcsin(E_{\rm target}/L)$.
+For $\tilde\gamma_\ell = \tilde\gamma$ uniform, the optimal schedule
+and its total cost are
+\[
+\theta_\ell^* = \tfrac{1}{2}\arcsin(E_{\rm target}/L)\ \text{on all layers},
+\qquad
+C^* = \tilde\gamma\,L\cdot \tfrac{1}{2}\arcsin(E_{\rm target}/L).
+\]
 Since $\arcsin$ is strictly convex on $[0,1]$ with $\arcsin 0 = 0$,
 the ratio $\arcsin(x)/x$ is strictly increasing on $(0,1]$; setting
 $x = E_{\rm target}/L < E_{\rm target}$ gives

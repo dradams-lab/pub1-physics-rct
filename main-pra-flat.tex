@@ -983,7 +983,7 @@ in Sec.~\ref{sec:sim}.
 
 \begin{proposition}[Coherence--Affinity Correspondence]
 \label{prop:correspondence}
-The scalar affinity satisfies $\bar{\alpha}(S,E) \in [0,1]$, with:
+The scalar affinity $\bar{\alpha}(S,E)$ takes values in $[0,1]$, with:
 \begin{enumerate}
   \item[\emph{(i)}] $\bar{\alpha}(S,E) = 0$ if and only if $\rho_S$
     is diagonal in the pointer basis (complete decoherence);
@@ -1104,7 +1104,7 @@ stated explicitly in its own itemization below.
     environmental branch overlaps
     $\lvert\langle E_j(t)\vert E_i(t)\rangle\rvert$ decay monotonically
     in $t$~--- the quantum mutual information
-    $I(S\!:\!E;\,t) = 2\,S(\rho_S(t))$ is non-decreasing, where
+    $I(S\!:\!E;\,t)$, which equals $2\,S(\rho_S(t))$, is non-decreasing, where
     $S(\cdot)$ is the von Neumann entropy.
     For finite non-Markovian environments the branch overlaps can revive
     and $S(\rho_S(t))$ and $I(S\!:\!E;\,t)$ can decrease (information
@@ -1769,9 +1769,9 @@ directly-calibrated exchange-gate case treated throughout this paper.
 
 \begin{proposition}[Exchange-angle coherence cost, Markovian regime]
 \label{prop:exchange-cost}
-Under uniform Markovian pointer-basis dephasing at rate $\gamma$ and
-direct exchange-gate duration $t(\theta) = t_{\pi/4}\,\theta/(\pi/4)$
-(Sec.~\ref{sec:sim}), the layerwise scalar-affinity loss induced by
+Under uniform Markovian pointer-basis dephasing at rate $\gamma$ and the
+direct exchange-gate duration of Sec.~\ref{sec:sim},
+$t(\theta) = t_{\pi/4}\,\theta/(\pi/4)$, the layerwise scalar-affinity loss induced by
 $\URA(\theta)$ on a layer with input affinity $\bar\alpha_{\rm in}$ is
 %
 \begin{equation}
@@ -1962,10 +1962,13 @@ Three predictions follow immediately from Eq.~\eqref{eq:alloc-solution}
 and are testable in numerical simulation.
 
 \textbf{P1 (Distribution beats concentration, uniform-$\tilde\gamma$).}
-For $\tilde\gamma_\ell = \tilde\gamma$ uniform, the optimal schedule is
-$\theta_\ell^* = \tfrac{1}{2}\arcsin(E_{\rm target}/L)$ on all layers,
-with total cost
-$C^* = \tilde\gamma\,L\cdot \tfrac{1}{2}\arcsin(E_{\rm target}/L)$.
+For $\tilde\gamma_\ell = \tilde\gamma$ uniform, the optimal schedule
+and its total cost are
+\[
+\theta_\ell^* = \tfrac{1}{2}\arcsin(E_{\rm target}/L)\ \text{on all layers},
+\qquad
+C^* = \tilde\gamma\,L\cdot \tfrac{1}{2}\arcsin(E_{\rm target}/L).
+\]
 Since $\arcsin$ is strictly convex on $[0,1]$ with $\arcsin 0 = 0$,
 the ratio $\arcsin(x)/x$ is strictly increasing on $(0,1]$; setting
 $x = E_{\rm target}/L < E_{\rm target}$ gives
