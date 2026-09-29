@@ -56,7 +56,7 @@ IJTP's [submission guidelines](https://link.springer.com/journal/10773/submissio
 
 ## Before uploading
 
-- [ ] Overleaf: set Main document to `main-ijtp.tex` and recompile — 0 errors
+- [x] Overleaf: set Main document to `main-ijtp.tex` and recompile — compiled cleanly (confirmed by the author, 2026-09-29)
 - [ ] Confirm the **Funding** and **Competing interests** statements in `main-ijtp.tex`
       are accurate (written as "no funding" and "no competing interests")
 - [ ] Regenerate the upload file after any edit: `bash flatten-ijtp.sh`
@@ -100,7 +100,7 @@ IJTP's [submission guidelines](https://link.springer.com/journal/10773/submissio
 
 ## Build status
 
-Not compiled locally (no TeX on this machine). Static checks on `main-ijtp-flat.tex`
-passed: balanced braces and environments, one `\documentclass`, no leftover `\input`,
-all 45 citation keys in `references.bib`, all 58 cross-references resolve, all four
-figures present. The Overleaf compile is the real test.
+**Compiles cleanly in Overleaf** (author-confirmed, 2026-09-29). Static checks on
+`main-ijtp-flat.tex` also passed: balanced braces and environments, one
+`\documentclass`, no leftover `\input`, all 45 citation keys in `references.bib`,
+all 58 cross-references resolve, all four figures present.
