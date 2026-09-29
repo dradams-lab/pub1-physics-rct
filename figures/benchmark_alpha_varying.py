@@ -27,12 +27,18 @@ Schedules compared (all satisfy Σ sin 2θ_ℓ = E_target, θ_ℓ ∈ [0, π/4])
     rcf2      same profiling, with weight W_ℓ = Σ_{i≠j} h_ij |ρ_ij|² of the state
               exposed to the gate dephasing (h = Hamming distance) — the exact
               first-order infidelity weight, ∝ ᾱ² rather than ᾱ
+    rcf_q     quadratic RCF cost: γ̃_ℓ = (ᾱ_ℓ^pre)² γ_ℓ κ, same profiling
+    rcf_cap   rcf with a per-layer cap θ_ℓ ≤ THETA_MAX (small-angle regime)
+    rcf_q_cap rcf_q with the same cap. THETA_MAX is chosen by --calibrate on
+              a separate random ensemble (different seed), not on the
+              instances reported below
     oracle    direct numerical maximization of the simulated fidelity (SLSQP,
               multi-start); the reference the proxies are measured against
 
 Run from the repository root:
     python3 figures/benchmark_alpha_varying.py            # full run + figure
     python3 figures/benchmark_alpha_varying.py --quick    # small ensemble
+    python3 figures/benchmark_alpha_varying.py --calibrate  # choose THETA_MAX
 """
 import argparse
 import os
@@ -55,6 +61,12 @@ HAMMING = np.array([[bin(i ^ j).count('1') for j in range(4)]
 OFFDIAG = ~np.eye(4, dtype=bool)
 PSI0 = np.array([1, 1, 0, 0], dtype=complex) / np.sqrt(2)   # |+0⟩, as in Sec. 6.5
 E_FLOOR = 1e-6   # keeps γ̃ > 0 (Theorem 1 hypothesis) when a weight vanishes
+THETA_MAX = np.pi / 12  # best rcf_q cap in --calibrate (seed 7, 150 instances)
+CAPS = {'π/16': np.pi / 16, 'π/12': np.pi / 12, 'π/8': np.pi / 8,
+        '3π/16': 3 * np.pi / 16, 'none': np.pi / 4}
+KEYS = ('uniform', 'rate', 'rcf', 'rcf2', 'rcf_q', 'rcf_cap', 'rcf_q_cap',
+        'oracle')
+PROXIES = ('rcf', 'rcf2', 'rcf_q', 'rcf_cap', 'rcf_q_cap')
 
 
 def U_RA(theta):
@@ -121,12 +133,14 @@ def sched_rate(inst, E):
     return rcb_schedule(inst['gammas'] * inst['kappa'], E)['thetas']
 
 
-def sched_weighted(inst, E, which):
+def sched_weighted(inst, E, which, theta_max=np.pi / 4):
     """Theorem-1 schedule with γ̃_ℓ = w_ℓ γ_ℓ κ; w profiled on the noisy
     trajectory of the rate-only schedule."""
     _, a_pre, _, w_exp = run(sched_rate(inst, E), inst)
-    w = np.maximum({'rcf': a_pre, 'rcf2': w_exp}[which], E_FLOOR)
-    return rcb_schedule(w * inst['gammas'] * inst['kappa'], E)['thetas']
+    w = {'rcf': a_pre, 'rcf2': w_exp, 'rcf_q': a_pre ** 2}[which]
+    w = np.maximum(w, E_FLOOR)
+    return rcb_schedule(w * inst['gammas'] * inst['kappa'], E,
+                        theta_max=theta_max)['thetas']
 
 
 def sched_oracle(inst, E, starts, n_random=4, rng=None):
@@ -157,8 +171,10 @@ def evaluate(inst, E, rng=None):
     th = {'uniform': sched_uniform(inst, E), 'rate': sched_rate(inst, E)}
     th['rcf'] = sched_weighted(inst, E, 'rcf')
     th['rcf2'] = sched_weighted(inst, E, 'rcf2')
-    th['oracle'] = sched_oracle(inst, E, [th['uniform'], th['rate'],
-                                          th['rcf'], th['rcf2']], rng=rng)
+    th['rcf_q'] = sched_weighted(inst, E, 'rcf_q')
+    th['rcf_cap'] = sched_weighted(inst, E, 'rcf', THETA_MAX)
+    th['rcf_q_cap'] = sched_weighted(inst, E, 'rcf_q', THETA_MAX)
+    th['oracle'] = sched_oracle(inst, E, list(th.values()), rng=rng)
     F = {k: fidelity(v, inst) for k, v in th.items()}
     return th, F
 
@@ -189,7 +205,10 @@ def main():
     ap.add_argument('--quick', action='store_true')
     ap.add_argument('--n', type=int, default=300)
     ap.add_argument('--no-fig', action='store_true')
+    ap.add_argument('--calibrate', action='store_true')
     args = ap.parse_args()
+    if args.calibrate:
+        return calibrate(40 if args.quick else 150)
     n = 40 if args.quick else args.n
     rng = np.random.default_rng(20260929)
     np.set_printoptions(precision=3, suppress=True)
@@ -216,11 +235,10 @@ def main():
             sc_results[(name, E)] = (inst, th, F, a_pre)
             print(f'\n--- {name}, E_target = {E} ---')
             print(f'  ᾱ_pre under rate schedule : {a_pre}')
-            for k in ('uniform', 'rate', 'rcf', 'rcf2', 'oracle'):
-                print(f'  θ {k:<8}: {th[k]}   F = {F[k]:.5f}')
-            print(f'  ΔF(rcf − rate) = {F["rcf"] - F["rate"]:+.5f}   '
-                  f'ΔF(rcf2 − rate) = {F["rcf2"] - F["rate"]:+.5f}   '
-                  f'ΔF(oracle − rate) = {F["oracle"] - F["rate"]:+.5f}')
+            for k in KEYS:
+                print(f'  θ {k:<9}: {th[k]}   F = {F[k]:.5f}')
+            print('  ΔF vs rate: ' + '  '.join(
+                f'{k} {F[k] - F["rate"]:+.5f}' for k in PROXIES + ('oracle',)))
             # direction check: does rcf move θ toward low- or high-ᾱ layers?
             d = th['rcf'] - th['rate']
             if np.ptp(a_pre) > 1e-6 and np.linalg.norm(d) > 1e-9:
@@ -231,8 +249,7 @@ def main():
     # 2. random ensemble
     print(f'\n--- Random ensemble: {n} instances × E ∈ {{0.5, 1, 2}} ---')
     print('    γ_ℓ ~ U[0.02, 0.30], φ_ℓ¹,² ~ U[-π/2, π/2], τ_idle ~ U[0, 0.2]')
-    ens = {E: {k: [] for k in ('uniform', 'rate', 'rcf', 'rcf2', 'oracle')}
-           for E in (0.5, 1.0, 2.0)}
+    ens = {E: {k: [] for k in KEYS} for E in (0.5, 1.0, 2.0)}
     for i in range(n):
         inst = random_instance(rng)
         for E in ens:
@@ -244,7 +261,7 @@ def main():
         d = {k: np.array(v) for k, v in d.items()}
         gap = d['oracle'] - d['rate']
         rows = {}
-        for k in ('rcf', 'rcf2'):
+        for k in PROXIES:
             dF = d[k] - d['rate']
             closed = np.sum(dF) / np.sum(gap) if np.sum(gap) > 0 else np.nan
             rows[k] = dict(mean=dF.mean(), sem=dF.std(ddof=1) / np.sqrt(len(dF)),
@@ -253,7 +270,7 @@ def main():
         summary[E] = (rows, gap.mean())
         print(f'\n  E_target = {E}:  mean F(oracle) − F(rate) = {gap.mean():+.5f}')
         for k, r in rows.items():
-            print(f'    {k:<5} ΔF vs rate: mean {r["mean"]:+.5f} ± {r["sem"]:.5f}  '
+            print(f'    {k:<9} ΔF vs rate: mean {r["mean"]:+.5f} ± {r["sem"]:.5f}  '
                   f'wins {r["win"]:.0%}  losses {r["lose"]:.0%}  '
                   f'range [{r["worst"]:+.4f}, {r["best"]:+.4f}]  '
                   f'oracle gap closed {r["closed"]:.0%}')
@@ -270,7 +287,8 @@ def make_figure(sc_results, ens):
     names = list(dict.fromkeys(k[0] for k in sc_results))
     fig, axes = plt.subplots(1, len(names) + 1, figsize=(16, 3.8))
     style = {'rate': ('C0', 'o', 'rate-only'), 'rcf': ('C3', 's', 'RCF (ᾱ)'),
-             'rcf2': ('C2', '^', 'first-order (W)'), 'oracle': ('k', 'x', 'oracle')}
+             'rcf_q_cap': ('C1', 'D', 'RCF (ᾱ², capped)'),
+             'oracle': ('k', 'x', 'oracle')}
     for ax, name in zip(axes, names):
         inst, th, F, a_pre = sc_results[(name, 1.0)]
         x = np.arange(1, len(a_pre) + 1)
@@ -289,7 +307,8 @@ def make_figure(sc_results, ens):
         ax.legend(fontsize=7, loc='upper left')
     ax = axes[-1]
     Es = list(ens)
-    for k, c, lab in (('rcf', 'C3', 'RCF (ᾱ)'), ('rcf2', 'C2', 'first-order (W)'),
+    for k, c, lab in (('rcf', 'C3', 'RCF (ᾱ)'), ('rcf_q', 'C4', 'RCF (ᾱ²)'),
+                      ('rcf_q_cap', 'C1', 'RCF (ᾱ², capped)'),
                       ('oracle', 'k', 'oracle')):
         m = [np.mean(np.array(ens[E][k]) - np.array(ens[E]['rate'])) for E in Es]
         s = [np.std(np.array(ens[E][k]) - np.array(ens[E]['rate']), ddof=1)
@@ -305,6 +324,24 @@ def make_figure(sc_results, ens):
                        'fig4_alpha_varying.pdf')
     fig.savefig(out)
     print(f'\nWrote {out}')
+
+
+def calibrate(n):
+    """Choose THETA_MAX on a separate ensemble (seed 7). No oracle needed:
+    mean fidelity of each capped schedule, pooled over E ∈ {0.5, 1, 2}."""
+    rng = np.random.default_rng(7)
+    insts = [random_instance(rng) for _ in range(n)]
+    print(f'Calibration: {n} instances (seed 7) × E ∈ {{0.5, 1, 2}}')
+    print(f'  {"cap":>6}  {"mean F rcf":>11}  {"mean F rcf_q":>13}')
+    base = np.mean([fidelity(sched_rate(i, E), i)
+                    for i in insts for E in (0.5, 1.0, 2.0)])
+    print(f'  {"rate":>6}  {base:11.5f}  {base:13.5f}')
+    for name, cap in CAPS.items():
+        f1 = np.mean([fidelity(sched_weighted(i, E, 'rcf', cap), i)
+                      for i in insts for E in (0.5, 1.0, 2.0)])
+        f2 = np.mean([fidelity(sched_weighted(i, E, 'rcf_q', cap), i)
+                      for i in insts for E in (0.5, 1.0, 2.0)])
+        print(f'  {name:>6}  {f1:11.5f}  {f2:13.5f}')
 
 
 if __name__ == '__main__':

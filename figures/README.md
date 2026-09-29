@@ -68,3 +68,6 @@ figures/.venv/bin/python figures/benchmark_alpha_varying.py   # ~8 min; --quick 
   oscillates (the linear program is bang-bang) and is not used. The
   `oracle` column is SLSQP maximization of the simulated fidelity under
   the same `Σ sin 2θ = E_target` constraint, multi-start, fixed seed.
+  `rcf_q` weights by ᾱ² and `rcf_cap` / `rcf_q_cap` add θ_ℓ ≤ THETA_MAX
+  (= π/12). THETA_MAX was chosen with `--calibrate` on a separate
+  150-circuit set (seed 7), not on the reported ensemble.
