@@ -30,10 +30,8 @@
 %    column, so NONE of sections/*.tex needs a PRA-specific edit.
 %  * apsrev4-2.bst (numbered) matches the plain \cite{} usage already in
 %    sections/*.tex -- same reasoning as the Foundations sn-basic choice.
-%  * The abstract (sections/00-abstract.tex) is multi-paragraph and
-%    contains displayed equations and citations. APS style prefers a
-%    single paragraph without displayed math; this compiles as-is, but
-%    consider trimming to a single paragraph before final submission.
+%  * The abstract (sections/00-abstract.tex) is a single paragraph with
+%    no displayed math and no citations, per APS style.
 
 \documentclass[aps,pra,preprint,amsmath,amssymb,superscriptaddress,nofootinbib]{revtex4-2}
 \pdfoutput=1
@@ -2726,6 +2724,30 @@ The repository includes the following scripts, all in \texttt{figures/}:
 \end{itemize}
 % ─── End of sections/07-conclusion.tex ───
 
+
+% ── Acknowledgments (includes AI-use disclosure) ─────────
+\begin{acknowledgments}
+
+% ─── Inlined from sections/08-acknowledgments.tex ───
+% ── ACKNOWLEDGMENTS / DECLARATION OF AI-ASSISTED TECHNOLOGIES ──────────────
+% Body text only. Each main file supplies its own heading or environment:
+% main-pra.tex wraps it in REVTeX's acknowledgments environment,
+% main.tex uses \section*, main-foundations.tex uses \bmhead.
+
+The author used Claude (Anthropic), a large language model, extensively in
+preparing this work: to draft and revise prose in every section from the
+author's outline and direction; to write and run the simulation and
+figure-generation scripts listed under Code and Data Availability; to
+check derivations and propose corrections (among them the CNOT count in
+Sec.~\ref{subsec:decomp-breakeven} and the purity bound on $\bar\alpha$ in
+Sec.~\ref{sec:rct}); to audit the references; and to prepare the
+journal-specific LaTeX sources. The research question, the framework, and
+the choice of which results to claim are the author's. The author has
+reviewed all AI-assisted content and takes full responsibility for the
+accuracy and integrity of the manuscript.
+% ─── End of sections/08-acknowledgments.tex ───
+
+\end{acknowledgments}
 
 % ── Appendix ──────────────────────────────────────────────
 \appendix

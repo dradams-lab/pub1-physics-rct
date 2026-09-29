@@ -15,10 +15,12 @@ Pointer-Basis Affinity, Decoherence, and Exchange-Angle Coherence Cost*
 | `main-pra-flat.tex` | **Auto-generated** single-file version (run `./flatten-pra.sh` to regenerate) — this is what you upload |
 | `flatten-pra.sh` | Regenerates `main-pra-flat.tex` from `main-pra.tex` + `sections/` |
 | `references.bib` | Bibliography (unchanged from other variants) |
-| `figures/` | 3 referenced figures: `alpha-dynamics.pdf`, `fig1_affinity_decay.pdf`, `fig3_rcb_sweep.pdf` |
+| `figures/` | 4 referenced figures: `fig1_affinity_decay.pdf`, `alpha-dynamics.pdf`, `fig3_rcb_sweep.pdf`, `fig4_alpha_varying.pdf` |
+| `COVER-LETTER-pra.md` | Cover letter text to paste into the APS portal |
 
-The prebuilt zip (`pub1-pra-submission.zip`, saved as an artifact) contains
-`main-pra-flat.tex` + `references.bib` + the 3 figures.
+Upload `main-pra-flat.tex` + `references.bib` + the 4 figures. Regenerate
+the flat file first with `bash flatten-pra.sh` (the script is not marked
+executable).
 
 **Do NOT bundle `revtex4-2.cls` or `apsrev4-2.bst`** — APS and Overleaf
 provide REVTeX; including your own copy can conflict with theirs.
@@ -50,21 +52,24 @@ provide REVTeX; including your own copy can conflict with theirs.
 
 ## BEFORE you submit — must do
 
-1. **Compile `main-pra-flat.tex` on Overleaf** (New Project → Upload the
-   zip, or paste the flat file + upload figures/bib). The sandbox LaTeX
-   toolchain here cannot generate a format file (missing `mktexlsr.pl`),
-   so this variant was **NOT compiled locally** — only statically
-   verified (brace balance, no dangling `\input`, single `documentclass`,
-   no undefined-macro / package-conflict patterns of the kind that broke
-   the Foundations variant). A real compile is still required.
+1. **Compile `main-pra-flat.tex` on Overleaf** (Integrations → GitHub →
+   pull, then set Settings → Main document → `main-pra-flat.tex`,
+   Recompile, and switch back afterwards). As of 2026-09-29 the PRA and
+   Quantum builds were clean (0 errors, 0 overfull boxes) at `f092abe`;
+   the §3/§4 correction (`cf3b32e`) and the Acknowledgments/AI disclosure
+   added after it still need one compile.
 
-2. **Decide on the abstract.** `sections/00-abstract.tex` is
-   multi-paragraph, contains 2 displayed equations and a bold inline
-   header, and has 6 citations. REVTeX will compile it, but **APS style
-   prefers a single-paragraph abstract with no display math and no
-   citations.** Options: (a) leave as-is and risk an editorial nudge, or
-   (b) produce a single-paragraph, no-display-math version for submission.
-   *(Ask the agent to generate option (b) if you want it.)*
+2. **Read the Foundations of Physics decision letter** (see note below)
+   before uploading.
+
+3. **Confirm the AI-use disclosure** in `sections/08-acknowledgments.tex`
+   is accurate as worded. APS expects AI-tool use to be disclosed; it is
+   rendered as the Acknowledgments section in all three variants.
+
+4. **Cover letter:** `COVER-LETTER-pra.md`.
+
+Done: abstract is a single paragraph with no display math and no
+citations (APS style).
 
 ## Portal form fields (same content as the Foundations submission)
 

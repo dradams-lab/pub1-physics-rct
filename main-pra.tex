@@ -21,10 +21,8 @@
 %    column, so NONE of sections/*.tex needs a PRA-specific edit.
 %  * apsrev4-2.bst (numbered) matches the plain \cite{} usage already in
 %    sections/*.tex -- same reasoning as the Foundations sn-basic choice.
-%  * The abstract (sections/00-abstract.tex) is multi-paragraph and
-%    contains displayed equations and citations. APS style prefers a
-%    single paragraph without displayed math; this compiles as-is, but
-%    consider trimming to a single paragraph before final submission.
+%  * The abstract (sections/00-abstract.tex) is a single paragraph with
+%    no displayed math and no citations, per APS style.
 
 \documentclass[aps,pra,preprint,amsmath,amssymb,superscriptaddress,nofootinbib]{revtex4-2}
 \pdfoutput=1
@@ -122,6 +120,11 @@
 \input{sections/06-allocation-theorem}
 \input{sections/06-discussion}
 \input{sections/07-conclusion}
+
+% ── Acknowledgments (includes AI-use disclosure) ─────────
+\begin{acknowledgments}
+\input{sections/08-acknowledgments}
+\end{acknowledgments}
 
 % ── Appendix ──────────────────────────────────────────────
 \appendix
