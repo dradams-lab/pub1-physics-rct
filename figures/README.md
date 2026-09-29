@@ -23,7 +23,7 @@ The plain figure scripts (`generate_fig1.py`, `generate_fig2.py`) depend only on
 | `generate_tables.py` | stdout: closed-form Tables I and II | §V |
 | `simulate_table2_qiskit.py` | stdout: Table II via Qiskit-Aer density-matrix simulation | §V |
 | `simulate_table2_cirq.py` | stdout: Table II via Cirq density-matrix simulation | §V |
-| `benchmark_alpha_varying.py` | stdout + `fig4_alpha_varying.pdf`: RCF (ᾱ-weighted) vs rate-only schedules when ᾱ<sup>pre</sup> varies across layers (not yet referenced in the text) | §VII, fifth limitation |
+| `benchmark_alpha_varying.py` | stdout + `fig4_alpha_varying.pdf`: RCF (ᾱ-weighted) vs rate-only schedules when ᾱ<sup>pre</sup> varies across layers | Fig. 4, §VII (fifth limitation) |
 
 Run each from the repository root:
 
